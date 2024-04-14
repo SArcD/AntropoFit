@@ -1,5 +1,5 @@
 
-%pprint
+#%pprint
 import pandas as pd #importa la paquetería PAnel DAta (llamada pandas)
 from matplotlib_venn import venn2, venn2_circles, venn2_unweighted # importa paqueteria para graficar diagramas de venn
 from matplotlib_venn import venn3, venn3_circles
