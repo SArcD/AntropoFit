@@ -675,11 +675,6 @@ else:
        st.subheader("Contenido de la Pestaña 3")       
        st.write("Aquí puedes agregar contenido para la tercera pestaña.")
 
-if pestañas == "Pestaña 1":
-       st.subheader("Contenido de la Pestaña 1")
-       st.write("Aquí puedes agregar contenido para la primera pestaña.")
-
-
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
        st.dataframe(df)
@@ -891,9 +886,6 @@ if pestañas == "Pestaña 1":
                            return 44.70
                        else:
                            return 37.60
-
-# Leer el DataFrame desde un archivo CSV (o cualquier otro formato)
-#df = pd.read_csv("data.csv")  # Cambia el nombre del archivo según sea necesario
 
        # Aplicar las funciones a las columnas correspondientes de df
        df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
