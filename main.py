@@ -46,7 +46,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Puedes definir tus datos de prueba aquí para simular la carga de datos.
 #data = pd.DataFrame({'PPantorrilla (cm)': np.random.rand(100) * 50,
-                     'Músculo (kg)': np.random.rand(100) * 100})
+#                     'Músculo (kg)': np.random.rand(100) * 100})
 
 
 data = df
@@ -134,7 +134,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 
 #data = pd.DataFrame({'PBrazo (cm)': np.random.rand(100) * 50,
-                     'Grasa Corporal (%)': np.random.rand(100) * 100})
+#                     'Grasa Corporal (%)': np.random.rand(100) * 100})
 data = df
 # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
 X_grasa = data[['PBrazo (cm)']]
