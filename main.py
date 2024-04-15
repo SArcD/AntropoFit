@@ -727,8 +727,8 @@ valores = clasificacion_counts.values
 
 # Crear un gráfico de pastel
 fig = plt.figure(figsize=(8, 8))
-px.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
-ax.set_title('Distribución de Clasificaciones')
+plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
+plt.title('Distribución de Clasificaciones')
 
 # Mostrar el gráfico en Streamlit
 st.pyplot(fig)
