@@ -749,14 +749,16 @@ numeric_columns = clasificado_df.select_dtypes(include='number').columns
 num_rows = len(numeric_columns)
 
 # Filtrar el DataFrame para cada clasificación y crear gráficos de caja
-for clasificacion in N_df['clasificacion'].unique():
-    df_filtrado = N_df[N_df['clasificacion'] == clasificacion]
+for clasificacion in clasificado_df['Clasificación'].unique():
+    df_filtrado = clasificado_df[clasificado_df['Clasificación'] == clasificacion]
     fig = make_subplots(rows=1, cols=len(numeric_columns), shared_yaxes=True, subplot_titles=numeric_columns)
     for i, column in enumerate(numeric_columns):
-        box = px.box(df_filtrado, x='clasificacion', y=column, title=column)
+        box = px.box(df_filtrado, x='Clasificación', y=column, title=column)
         fig.add_trace(box['data'][0], row=1, col=i + 1)
     fig.update_layout(title=f'Clasificación {clasificacion}')
     st.plotly_chart(fig)
+
+
 
 ######################3
 
