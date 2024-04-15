@@ -667,7 +667,6 @@ if st.button("Predecir Músculo", key="predict_button"):
 
        ###################
 
-       N_df = df[['Folio', 'Músculo (kg)', 'Grasa Corporal (%)', 'FA', 'Velocidad de marcha']]
 
 # Contenido de la pestaña 3
 else:
@@ -676,6 +675,7 @@ else:
 
        import streamlit as st
        import pandas as pd
+       N_df = df[['Folio', 'Músculo (kg)', 'Grasa Corporal (%)', 'FA', 'Velocidad de marcha']]
 
        def clasificar_filas(df):
            clasificaciones = []
