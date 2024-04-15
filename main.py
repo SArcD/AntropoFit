@@ -888,4 +888,41 @@ df_2
 clasificar_filas(df_2)
 df_2
 
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import AgglomerativeClustering
+
+N_df_filtro = N_df[N_df['Clasificación'] == 1.0]
+# Cargar los datos en un dataframe
+# Elimina la columna "Clasificación" del DataFrame N_df_filtro
+N_df_filtro = N_df_filtro.drop(columns=['Clasificación'])
+data_2023 = N_df_filtro
+
+# Seleccionar solo las columnas numéricas
+numeric_data_2023 = data_2023.select_dtypes(include='number')
+
+# Eliminar valores no numéricos
+numeric_data_2023 = numeric_data_2023.dropna()
+
+# Normalizar los datos
+scaler = StandardScaler()
+normalized_data_2023 = scaler.fit_transform(numeric_data_2023)
+
+# Obtener los valores máximos y mínimos de las columnas originales
+min_values = np.min(numeric_data_2023, axis=0)
+max_values = np.max(numeric_data_2023, axis=0)
+
+# Aplicar hierarchical clustering
+clustering = AgglomerativeClustering(n_clusters=3, metric='euclidean', linkage='ward')
+labels_2023 = clustering.fit_predict(normalized_data_2023)
+
+# Agregar las etiquetas al dataframe original
+data_2023['Cluster'] = labels_2023
+
+# Guardar el dataframe con las etiquetas en un archivo Excel
+nombre_archivo_excel = "data_2023_clustered.xlsx"
+data_2023.to_excel(nombre_archivo_excel, index=False)
+st.write(f"Se ha guardado el DataFrame con etiquetas en {nombre_archivo_excel}")
 
