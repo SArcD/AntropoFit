@@ -135,7 +135,7 @@ from sklearn.metrics import r2_score
 
 #data = pd.DataFrame({'PBrazo (cm)': np.random.rand(100) * 50,
 #                     'Grasa Corporal (%)': np.random.rand(100) * 100})
-data = df
+#data = df
 # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
 X_grasa = data[['PBrazo (cm)']]
 y_grasa = data['Grasa Corporal (%)']
