@@ -375,5 +375,33 @@ cbar.set_label('Músculo (kg)')
 st.pyplot(fig)
 
 
-############333
+##################
 
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+import matplotlib.pyplot as plt
+
+# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+
+# Divide tus datos en características (X) y la variable dependiente (y)
+X = data[['PPantorrilla (cm)', 'FA']]
+y = data['Músculo (kg)']
+
+# Crea un modelo de árbol de decisión
+modelo_musculo_dt = DecisionTreeRegressor(max_depth=4)
+modelo_musculo_dt.fit(X, y)
+
+# Genera el diagrama del árbol de decisión
+fig = plt.figure(figsize=(50, 20))
+from sklearn.tree import plot_tree
+plot_tree(modelo_musculo_dt, filled=True, feature_names=X.columns, fontsize=20)
+plt.title("Árbol de Decisión para Músculo (kg) vs. PPantorrilla (cm) y FA", fontsize=24)
+
+# Mostrar el diagrama del árbol en Streamlit
+st.pyplot(fig)
+
+
+
+
+###################
