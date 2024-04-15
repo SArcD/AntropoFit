@@ -615,6 +615,50 @@ plt.title("Árbol de Decisión para Grasa Corporal (%) vs. PBrazo (cm) y PCB (mm
 # Mostrar el diagrama del árbol en Streamlit
 st.pyplot(plt)
 
+################
+
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import export_text
+
+# Programa para que el usuario ingrese valores y obtenga una predicción
+def predecir_grasa_corporal(pbrazo, pcb):
+    # Crea un modelo de árbol de decisión
+    modelo_grasa_dt = DecisionTreeRegressor(max_depth=4)
+    modelo_grasa_dt.fit(X, y)
+
+    # Realiza una predicción utilizando el modelo de árbol de decisión
+    predicción = modelo_grasa_dt.predict([[pbrazo, pcb]])[0]
+
+    return predicción
+
+# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+# Asumiendo que los datos están en formato CSV
+
+# Divide tus datos en características (X) y la variable dependiente (y)
+X = data[['PBrazo (cm)', 'PCB (mm)']]
+y = data['Grasa Corporal (%)']
+
+# Extraer las reglas de decisión
+tree_rules = export_text(modelo_grasa_dt, feature_names=list(X.columns))
+
+# Mostrar las reglas de decisión en Streamlit
+st.text("Reglas de Decisión:")
+st.text(tree_rules)
+
+# Interfaz de usuario para ingresar valores y obtener predicciones
+#st.sidebar.header("Ingrese los valores para la predicción:")
+#pbrazo_input = st.sidebar.number_input("PBrazo (cm):", min_value=0.0)
+#pcb_input = st.sidebar.number_input("PCB (mm):", min_value=0.0)
+pbrazo_input = st.number_input("Ingresa el valor del perimetro de brazo (cm): ")
+pcb_input = st.number_input("Ingresa el valor del pliegue subcutaneo escapular (mm): ")
+
+
+if st.button("Predicción"):
+       predicción = predecir_grasa_corporal(pbrazo_input, pcb_input)
+       st.write.(f"Predicción de Grasa Corporal (%): {predicción:.2f}")
+
 
 
 
