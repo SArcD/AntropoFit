@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn as sk
 
-
+import streamlit as st
 import pandas as pd
 df=pd.read_excel('AM_2023_Antropo.xlsx')
 st.dataframe(df)
