@@ -401,49 +401,49 @@ elif pestañas == "Pestaña 2":
        # Genera el diagrama del árbol de decisión
        fig = plt.figure(figsize=(50, 20))
        from sklearn.tree import plot_tree
-plot_tree(modelo_musculo_dt, filled=True, feature_names=X.columns, fontsize=20)
-plt.title("Árbol de Decisión para Músculo (kg) vs. PPantorrilla (cm) y FA", fontsize=24)
+       plot_tree(modelo_musculo_dt, filled=True, feature_names=X.columns, fontsize=20)
+       plt.title("Árbol de Decisión para Músculo (kg) vs. PPantorrilla (cm) y FA", fontsize=24)
 
-# Mostrar el diagrama del árbol en Streamlit
-st.pyplot(fig)
+       # Mostrar el diagrama del árbol en Streamlit
+       st.pyplot(fig)
 
-##################
+       ##################
 
-import streamlit as st
-import pandas as pd
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.tree import export_text
+       import streamlit as st
+       import pandas as pd
+       from sklearn.tree import DecisionTreeRegressor
+       from sklearn.tree import export_text
 
 # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
 
 # Divide tus datos en características (X) y la variable dependiente (y)
-X = data[['PPantorrilla (cm)', 'FA']]
-y = data['Músculo (kg)']
+       X = data[['PPantorrilla (cm)', 'FA']]
+       y = data['Músculo (kg)']
 
-# Crea un modelo de árbol de decisión
-modelo_musculo_dt = DecisionTreeRegressor(max_depth=4)
-modelo_musculo_dt.fit(X, y)
+       # Crea un modelo de árbol de decisión
+       modelo_musculo_dt = DecisionTreeRegressor(max_depth=4)
+       modelo_musculo_dt.fit(X, y)
 
-# Extraer las reglas de decisión
-tree_rules = export_text(modelo_musculo_dt, feature_names=list(X.columns))
+       # Extraer las reglas de decisión
+       tree_rules = export_text(modelo_musculo_dt, feature_names=list(X.columns))
 
-# Muestra las reglas de decisión en Streamlit
-st.text("Reglas de Decisión:")
-st.text(tree_rules)
+       # Muestra las reglas de decisión en Streamlit
+       st.text("Reglas de Decisión:")
+       st.text(tree_rules)
 
-# Programa para que el usuario ingrese valores y obtenga una predicción
-def predecir_musculo(ppantorrilla, fa):
-    # Realiza una predicción utilizando el modelo de árbol de decisión
-    predicción = modelo_musculo_dt.predict([[ppantorrilla, fa]])[0]
-    return predicción
+       # Programa para que el usuario ingrese valores y obtenga una predicción
+       def predecir_musculo(ppantorrilla, fa):
+           # Realiza una predicción utilizando el modelo de árbol de decisión
+           predicción = modelo_musculo_dt.predict([[ppantorrilla, fa]])[0]
+           return predicción
 
-# Interfaz de usuario para que el usuario ingrese valores y obtenga predicciones
-ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ")
-fa_input = st.number_input("Ingresa el valor de FA: ")
+       # Interfaz de usuario para que el usuario ingrese valores y obtenga predicciones
+       ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ")
+       fa_input = st.number_input("Ingresa el valor de FA: ")
 
-if st.button("Predecir Músculo", key="predict_button"):
-       predicción = predecir_musculo(ppantorrilla_input, fa_input)
-       st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
+       if st.button("Predecir Músculo", key="predict_button"):
+              predicción = predecir_musculo(ppantorrilla_input, fa_input)
+              st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
 
 
        ###################
