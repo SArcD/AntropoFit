@@ -574,21 +574,21 @@ y_pred = modelo_grasa_dt.predict(X_grid)
 y_pred = y_pred.reshape(pbrazo_grid.shape)
 
 # Crea la gráfica de superficie de decisión
-fig = plt.figure(figsize=(10, 6))
-ax = fig.add_subplot(111, projection='3d')
+figu = plt.figure(figsize=(10, 6))
+ax = figu.add_subplot(111, projection='3d')
 contour = ax.plot_surface(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']), alpha=0.5)
 scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
 ax.set_xlabel('PBrazo (cm)')
 ax.set_ylabel('PCB (mm)')
 ax.set_zlabel('Grasa Corporal (%)')
-cbar = fig.colorbar(contour)
+cbar = figu.colorbar(contour)
 cbar.set_label('Grasa Corporal (%)')
 
 # Título del gráfico
 plt.title(f'Superficie de Decisión del Árbol de Decisión para Grasa Corporal (%) (R^2={r2_grasa_dt:.2f})')
 
 # Mostrar el gráfico en Streamlit
-st.pyplot(fig)
+st.pyplot(figu)
 
 
 
