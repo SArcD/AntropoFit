@@ -700,7 +700,7 @@ def clasificar_filas(df):
             else:
                 clasificacion = 2.0
         clasificaciones.append(clasificacion)
-    df["Clasificación"] = clasificaciones
+    df["clasificacion"] = clasificaciones
     return df
 
 # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
@@ -719,7 +719,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Contar la cantidad de pacientes en cada clasificación
-clasificacion_counts = clasificado_df['Clasificación'].value_counts()
+clasificacion_counts = N_df['clasificacion'].value_counts()
 
 # Obtener las etiquetas de las clasificaciones y sus valores
 etiquetas = clasificacion_counts.index
@@ -749,11 +749,11 @@ numeric_columns = clasificado_df.select_dtypes(include='number').columns
 num_rows = len(numeric_columns)
 
 # Filtrar el DataFrame para cada clasificación y crear gráficos de caja
-for clasificacion in clasificado_df['Clasificación'].unique():
-    df_filtrado = clasificado_df[clasificado_df['Clasificación'] == clasificacion]
+for clasificacion in N_df['clasificacion'].unique():
+    df_filtrado = N_df[N_df['clasificacion'] == clasificacion]
     fig = make_subplots(rows=1, cols=len(numeric_columns), shared_yaxes=True, subplot_titles=numeric_columns)
     for i, column in enumerate(numeric_columns):
-        box = px.box(df_filtrado, x='Clasificación', y=column, title=column)
+        box = px.box(df_filtrado, x='clasificacion', y=column, title=column)
         fig.add_trace(box['data'][0], row=1, col=i + 1)
     fig.update_layout(title=f'Clasificación {clasificacion}')
     st.plotly_chart(fig)
@@ -766,11 +766,11 @@ import plotly.express as px
 numeric_columns = df.select_dtypes(include='number').columns
 
 # Obtener las clasificaciones únicas
-clasificaciones_unicas = df['Clasificación'].unique()
+clasificaciones_unicas = N_df['clasificacion'].unique()
 
 # Filtrar el DataFrame para cada parámetro y crear un único gráfico de caja para cada uno
 for column in numeric_columns:
-    fig = px.box(df, x='Clasificación', y=column, title=column, notched=True, points='all')
+    fig = px.box(N_df, x='clasificacion', y=column, title=column, notched=True, points='all')
     st.plotly_chart(fig)
 
 
@@ -871,7 +871,7 @@ def calcular_grasa(pbrazo, pcb):
                     return 37.60
 
 # Leer el DataFrame desde un archivo CSV (o cualquier otro formato)
-df = pd.read_csv("data.csv")  # Cambia el nombre del archivo según sea necesario
+#df = pd.read_csv("data.csv")  # Cambia el nombre del archivo según sea necesario
 
 # Aplicar las funciones a las columnas correspondientes de df
 df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
