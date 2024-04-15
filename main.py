@@ -577,12 +577,13 @@ y_pred = y_pred.reshape(pbrazo_grid.shape)
 figu = plt.figure(figsize=(10, 6))
 #ax = figu.add_subplot(111, projection='3d')
 contour = plt.contourf(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
-plt.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+plt.scatter(X['PBrazo (cm)'], X['PCB (mm)'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
 plt.xlabel('PBrazo (cm)')
 plt.ylabel('PCB (mm)')
 #plt.title('Grasa Corporal (%)')
 cbar = plt.colorbar(contour)
 cbar.set_label('Grasa Corporal (%)')
+
 
 # Título del gráfico
 plt.title(f'Superficie de Decisión del Árbol de Decisión para Grasa Corporal (%) (R^2={r2_grasa_dt:.2f})')
