@@ -545,6 +545,51 @@ plt.title(f'Grasa Corporal en función de PBrazo (cm) y PCB (mm) (R^2={r2_grasa_
 # Mostrar el gráfico en Streamlit
 st.pyplot(fig)
 
+#################
+
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+from sklearn.tree import DecisionTreeRegressor
+
+# Carga tus datos y define tus características (X) y la variable dependiente (y)
+X = data[['PBrazo (cm)', 'PCB (mm)']]
+y = data['Grasa Corporal (%)']
+
+# Entrena un modelo de árbol de decisión
+modelo_grasa_dt = DecisionTreeRegressor()
+modelo_grasa_dt.fit(X, y)
+
+# Define rangos de valores para PBrazo (cm) y PCB (mm)
+pbrazo_range = np.linspace(X['PBrazo (cm)'].min(), X['PBrazo (cm)'].max(), 100)
+pcb_range = np.linspace(X['PCB (mm)'].min(), X['PCB (mm)'].max(), 100)
+pbrazo_grid, pcb_grid = np.meshgrid(pbrazo_range, pcb_range)
+
+# Combina las características en una matriz bidimensional
+X_grid = np.c_[pbrazo_grid.ravel(), pcb_grid.ravel()]
+
+# Realiza predicciones en la malla de valores
+y_pred = modelo_grasa_dt.predict(X_grid)
+y_pred = y_pred.reshape(pbrazo_grid.shape)
+
+# Crea la gráfica de superficie de decisión
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+contour = ax.plot_surface(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']), alpha=0.5)
+scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+ax.set_xlabel('PBrazo (cm)')
+ax.set_ylabel('PCB (mm)')
+ax.set_zlabel('Grasa Corporal (%)')
+cbar = fig.colorbar(contour)
+cbar.set_label('Grasa Corporal (%)')
+
+# Título del gráfico
+plt.title(f'Superficie de Decisión del Árbol de Decisión para Grasa Corporal (%) (R^2={r2_grasa_dt:.2f})')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
 
 
 ###################
