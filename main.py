@@ -85,7 +85,19 @@ r2_musculo_dt = modelo_musculo_dt.score(X, y)
 r2_musculo_rf = modelo_musculo_rf.score(X, y)
 
 # Grafica los datos y las predicciones para cada modelo
-#st.write("Gráfico de predicciones:")
+st.write("Gráfico de predicciones:")
+fig, ax=plt.subplots()
+ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")
+ax.plot(ppantorrilla_values, musculo_pred_lr, color='red')
+ax.plot(ppantorrilla_values, musculo_pred_dt, color='green')
+ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue')
+ax.set_xlabel('Pantorrilla (cm)')
+ax.set_ylabel('Masa muscular (Kg)')
+ax.set_title('Predicciones de Masa muscular (Kg)')
+ax.legend()
+st.pyplot(fig)
+
+
 #plt.scatter(X, y, label='Datos reales')
 #plt.plot(ppantorilla_values, musculo_pred_lr, label=f'Regresión Lineal (R^2={r2_musculo_lr:.2f})', color='red')
 #plt.plot(ppantorilla_values, musculo_pred_dt, label=f'Árbol de Decisión (R^2={r2_musculo_dt:.2f})', color='green')
