@@ -675,6 +675,25 @@ else:
        st.subheader("Contenido de la Pestaña 3")       
        st.write("Aquí puedes agregar contenido para la tercera pestaña.")
 
+if pestañas == "Pestaña 1":
+       st.subheader("Contenido de la Pestaña 1")
+       st.write("Aquí puedes agregar contenido para la primera pestaña.")
+
+
+       #import streamlit as st       
+       df=pd.read_excel('AM_2023_Antropo.xlsx')
+       st.dataframe(df)
+       df=df.dropna()
+       df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
+       df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
+       df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
+       df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+              'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
+              'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+              'Grasa Corporal (%)', 'Centro',
+              'FA','Velocidad de marcha']]
+       df_2=df
+       
        import streamlit as st
        import pandas as pd
        N_df = df[['Folio', 'Músculo (kg)', 'Grasa Corporal (%)', 'FA', 'Velocidad de marcha']]
