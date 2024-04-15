@@ -102,3 +102,18 @@ st.write(f'Ajuste Lineal: Pendiente = {pendiente_musculo_lr}, Intercepto = {inte
 st.write(f'R^2 Ajuste Lineal: {r2_musculo_lr}')
 st.write(f'R^2 Árbol de Decisión: {r2_musculo_dt}')
 st.write(f'R^2 Random Forest: {r2_musculo_rf}')
+
+import streamlit as st
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+
+# Crear un modelo de árbol de decisión limitando la profundidad
+modelo_musculo_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
+modelo_musculo_dt_simplified.fit(X, y)
+
+# Generar el diagrama del árbol de decisión simplificado
+plt.figure(figsize=(20, 10))
+plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
+plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
+plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
+st.pyplot()
