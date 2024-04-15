@@ -700,7 +700,7 @@ def clasificar_filas(df):
             else:
                 clasificacion = 2.0
         clasificaciones.append(clasificacion)
-    df["clasificacion"] = clasificaciones
+    df["Clasificación"] = clasificaciones
     return df
 
 # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
@@ -719,15 +719,15 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Contar la cantidad de pacientes en cada clasificación
-clasificacion_counts = N_df['clasificacion'].value_counts()
+clasificacion_counts = clasificado_df['Clasificación'].value_counts()
 
 # Obtener las etiquetas de las clasificaciones y sus valores
 etiquetas = clasificacion_counts.index
 valores = clasificacion_counts.values
 
 # Crear un gráfico de pastel
-fig, ax = plt.subplots(figsize=(8, 8))
-ax.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
+fig = plt.figure(figsize=(8, 8))
+px.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
 ax.set_title('Distribución de Clasificaciones')
 
 # Mostrar el gráfico en Streamlit
@@ -759,6 +759,7 @@ for clasificacion in N_df['clasificacion'].unique():
     st.plotly_chart(fig)
 
 ######################3
+
 import streamlit as st
 import plotly.express as px
 
@@ -766,11 +767,11 @@ import plotly.express as px
 numeric_columns = df.select_dtypes(include='number').columns
 
 # Obtener las clasificaciones únicas
-clasificaciones_unicas = N_df['clasificacion'].unique()
+clasificaciones_unicas = df['Clasificación'].unique()
 
 # Filtrar el DataFrame para cada parámetro y crear un único gráfico de caja para cada uno
 for column in numeric_columns:
-    fig = px.box(N_df, x='clasificacion', y=column, title=column, notched=True, points='all')
+    fig = px.box(df, x='Clasificación', y=column, title=column, notched=True, points='all')
     st.plotly_chart(fig)
 
 
