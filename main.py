@@ -13,6 +13,7 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn as sk
+import streamlit as st
 
 # Crear una barra lateral para las pestañas
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Pestaña 1", "Pestaña 2", "Pestaña 3"))
