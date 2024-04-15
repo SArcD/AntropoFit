@@ -766,14 +766,14 @@ import streamlit as st
 import plotly.express as px
 
 # Obtener las columnas numéricas
-numeric_columns = df.select_dtypes(include='number').columns
+numeric_columns = clasificado_df.select_dtypes(include='number').columns
 
 # Obtener las clasificaciones únicas
-clasificaciones_unicas = df['Clasificación'].unique()
+clasificaciones_unicas = clasificado_df['Clasificación'].unique()
 
 # Filtrar el DataFrame para cada parámetro y crear un único gráfico de caja para cada uno
 for column in numeric_columns:
-    fig = px.box(df, x='Clasificación', y=column, title=column, notched=True, points='all')
+    fig = px.box(clasificado_df, x='Clasificación', y=column, title=column, notched=True, points='all')
     st.plotly_chart(fig)
 
 
