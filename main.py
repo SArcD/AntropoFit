@@ -45,9 +45,11 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 # data = pd.read_csv('data.csv')
 
 # Puedes definir tus datos de prueba aquí para simular la carga de datos.
-data = pd.DataFrame({'PPantorrilla (cm)': np.random.rand(100) * 50,
+#data = pd.DataFrame({'PPantorrilla (cm)': np.random.rand(100) * 50,
                      'Músculo (kg)': np.random.rand(100) * 100})
 
+
+data = df
 # Divide tus datos en características (X) y la variable dependiente (y)
 X = data[['PPantorrilla (cm)']]
 y = data['Músculo (kg)']
@@ -131,9 +133,9 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 
-data = pd.DataFrame({'PBrazo (cm)': np.random.rand(100) * 50,
+#data = pd.DataFrame({'PBrazo (cm)': np.random.rand(100) * 50,
                      'Grasa Corporal (%)': np.random.rand(100) * 100})
-
+data = df
 # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
 X_grasa = data[['PBrazo (cm)']]
 y_grasa = data['Grasa Corporal (%)']
