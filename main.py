@@ -435,9 +435,20 @@ def predecir_musculo(ppantorrilla, fa):
 ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ")
 fa_input = st.number_input("Ingresa el valor de FA: ")
 
-if st.button("Predecir Músculo"):
+if st.button("Predecir Músculo", key="predict_button"):
     predicción = predecir_musculo(ppantorrilla_input, fa_input)
     st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
+
+
+#pbrazo_input = st.number_input("Ingresa el valor del perimetro de brazo (cm): ")
+#pcb_input = st.number_input("Ingresa el valor del pliegue subcutaneo escapular (mm): ")
+
+
+# Usando la opción 'key' para el botón para asegurar que se active después de que se ingresen los valores
+#if st.button("Predicción", key="predict_button"):
+#    predicción = predecir_grasa_corporal(pbrazo_input, pcb_input)
+#    st.write(f"Predicción de Grasa Corporal (%): {predicción:.2f}")
+
 
 
 
