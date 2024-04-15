@@ -200,3 +200,23 @@ st.write(f'R^2 Árbol de Decisión: {r2_grasa_dt}')
 st.write(f'R^2 Random Forest: {r2_grasa_rf}')
 
 #######################
+
+
+import streamlit as st
+from sklearn.tree import DecisionTreeRegressor
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+# Crear un modelo de árbol de decisión limitando la profundidad
+modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
+modelo_grasa_dt_simplified.fit(X_grasa, y_grasa)
+
+# Generar el diagrama del árbol de decisión simplificado
+st.set_option('deprecation.showPyplotGlobalUse', False)  # Deshabilitar el warning sobre el uso de plt.pyplot
+fig, ax = plt.subplots(figsize=(20, 10))
+plot_tree(modelo_grasa_dt_simplified, filled=True, feature_names=X_grasa.columns, ax=ax)
+ax.set_title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBrazo (cm)", fontsize=24)
+st.pyplot(fig)
+
+
+################################
