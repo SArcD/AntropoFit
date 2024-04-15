@@ -894,7 +894,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import AgglomerativeClustering
 
-N_df_filtro = N_df[N_df['Clasificación'] == 1.0]
+N_df_filtro = df_2[df_2['Clasificación'] == 1.0]
 # Cargar los datos en un dataframe
 # Elimina la columna "Clasificación" del DataFrame N_df_filtro
 N_df_filtro = N_df_filtro.drop(columns=['Clasificación'])
