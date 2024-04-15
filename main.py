@@ -212,11 +212,16 @@ modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el val
 modelo_grasa_dt_simplified.fit(X_grasa, y_grasa)
 
 # Generar el diagrama del árbol de decisión simplificado
-st.set_option('deprecation.showPyplotGlobalUse', False)  # Deshabilitar el warning sobre el uso de plt.pyplot
-fig, ax = plt.subplots(figsize=(20, 10))
-plot_tree(modelo_grasa_dt_simplified, filled=True, feature_names=X_grasa.columns, ax=ax)
+#st.set_option('deprecation.showPyplotGlobalUse', False)  # Deshabilitar el warning sobre el uso de plt.pyplot
+plt.figure(figsize=(20, 10))
+plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
+plot_tree(modelo_grasa_dt_simplified, filled=True, feature_names=X_grasa.columns)
 ax.set_title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBrazo (cm)", fontsize=24)
-st.pyplot(fig)
+st.pyplot()
+
+
+
+
 
 
 ################################
