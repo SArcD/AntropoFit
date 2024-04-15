@@ -598,32 +598,22 @@ from sklearn.tree import DecisionTreeRegressor
 import matplotlib.pyplot as plt
 from io import StringIO
 
-# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-# Asumiendo que los datos están en formato CSV
+# Divide tus datos en características (X) y la variable dependiente (y)
+X = data[['PBrazo (cm)', 'PCB (mm)']]
+y = data['Grasa Corporal (%)']
 
-# Carga de datos desde un archivo CSV
-uploaded_file = st.file_uploader("Cargar archivo CSV", type=["csv"])
+# Crea un modelo de árbol de decisión
+modelo_grasa_dt = DecisionTreeRegressor(max_depth=4)
+modelo_grasa_dt.fit(X, y)
 
-if uploaded_file is not None:
-    # Lee el archivo CSV en un DataFrame
-    data = pd.read_csv(uploaded_file)
+# Genera el diagrama del árbol de decisión
+plt.figure(figsize=(70, 25))
+from sklearn.tree import plot_tree
+plot_tree(modelo_grasa_dt, filled=True, feature_names=X.columns, fontsize=20)
+plt.title("Árbol de Decisión para Grasa Corporal (%) vs. PBrazo (cm) y PCB (mm)", fontsize=24)
 
-    # Divide tus datos en características (X) y la variable dependiente (y)
-    X = data[['PBrazo (cm)', 'PCB (mm)']]
-    y = data['Grasa Corporal (%)']
-
-    # Crea un modelo de árbol de decisión
-    modelo_grasa_dt = DecisionTreeRegressor(max_depth=4)
-    modelo_grasa_dt.fit(X, y)
-
-    # Genera el diagrama del árbol de decisión
-    plt.figure(figsize=(70, 25))
-    from sklearn.tree import plot_tree
-    plot_tree(modelo_grasa_dt, filled=True, feature_names=X.columns, fontsize=20)
-    plt.title("Árbol de Decisión para Grasa Corporal (%) vs. PBrazo (cm) y PCB (mm)", fontsize=24)
-
-    # Mostrar el diagrama del árbol en Streamlit
-    st.pyplot(plt)
+# Mostrar el diagrama del árbol en Streamlit
+st.pyplot(plt)
 
 
 
