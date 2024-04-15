@@ -331,5 +331,49 @@ plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_dt:.2f})'
 st.pyplot(fig)
 
 
-#############################3
+#############################
+
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+from sklearn.tree import DecisionTreeRegressor
+
+# Carga tus datos y define tus características (X) y la variable dependiente (y)
+X = data[['PPantorrilla (cm)', 'FA']]
+y = data['Músculo (kg)']
+
+# Entrena un modelo de árbol de decisión
+modelo_musculo_dt = DecisionTreeRegressor()
+modelo_musculo_dt.fit(X, y)
+
+# Define rangos de valores para PPantorrilla (cm) y FA
+ppantorilla_range = np.linspace(X['PPantorrilla (cm)'].min(), X['PPantorrilla (cm)'].max(), 100)
+fa_range = np.linspace(X['FA'].min(), X['FA'].max(), 100)
+ppantorilla_grid, fa_grid = np.meshgrid(ppantorilla_range, fa_range)
+
+# Combina las características en una matriz bidimensional
+X_grid = np.c_[ppantorilla_grid.ravel(), fa_grid.ravel()]
+
+# Realiza predicciones en la malla de valores
+y_pred = modelo_musculo_dt.predict(X_grid)
+y_pred = y_pred.reshape(ppantorilla_grid.shape)
+
+# Crea la gráfica de superficie de decisión
+fig = plt.figure(figsize=(10, 6))
+contour = plt.contourf(ppantorilla_grid, fa_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+plt.scatter(X['PPantorrilla (cm)'], X['FA'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+plt.xlabel('PPantorrilla (cm)')
+plt.ylabel('FA')
+plt.title(f'Superficie de Decisión del Árbol de Decisión para Músculo (kg) (R^2={modelo_musculo_dt.score(X, y):.2f})')
+
+# Agrega etiquetas con los valores de Músculo
+cbar = plt.colorbar(contour)
+cbar.set_label('Músculo (kg)')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
+
+############333
 
