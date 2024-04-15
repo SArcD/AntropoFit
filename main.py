@@ -85,15 +85,15 @@ r2_musculo_dt = modelo_musculo_dt.score(X, y)
 r2_musculo_rf = modelo_musculo_rf.score(X, y)
 
 # Grafica los datos y las predicciones para cada modelo
-st.write("Gráfico de predicciones:")
-plt.scatter(X, y, label='Datos reales')
-plt.plot(ppantorilla_values, musculo_pred_lr, label=f'Regresión Lineal (R^2={r2_musculo_lr:.2f})', color='red')
-plt.plot(ppantorilla_values, musculo_pred_dt, label=f'Árbol de Decisión (R^2={r2_musculo_dt:.2f})', color='green')
-plt.plot(ppantorilla_values, musculo_pred_rf, label=f'Random Forest (R^2={r2_musculo_rf:.2f})', color='blue')
-plt.xlabel('PPantorrilla (cm)')
-plt.ylabel('Músculo (kg)')
-plt.legend()
-st.pyplot()
+#st.write("Gráfico de predicciones:")
+#plt.scatter(X, y, label='Datos reales')
+#plt.plot(ppantorilla_values, musculo_pred_lr, label=f'Regresión Lineal (R^2={r2_musculo_lr:.2f})', color='red')
+#plt.plot(ppantorilla_values, musculo_pred_dt, label=f'Árbol de Decisión (R^2={r2_musculo_dt:.2f})', color='green')
+#plt.plot(ppantorilla_values, musculo_pred_rf, label=f'Random Forest (R^2={r2_musculo_rf:.2f})', color='blue')
+#plt.xlabel('PPantorrilla (cm)')
+#plt.ylabel('Músculo (kg)')
+#plt.legend()
+#st.pyplot()
 
 # Coeficientes de ajuste para el modelo de regresión lineal
 pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
