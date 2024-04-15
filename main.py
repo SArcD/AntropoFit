@@ -667,3 +667,52 @@ if st.button("Predicción", key="predict_button"):
 
 
 ###################
+
+
+N_df = df[['Folio', 'Músculo (kg)', 'Grasa Corporal (%)', 'FA', 'Velocidad de marcha']]
+
+import streamlit as st
+import pandas as pd
+
+def clasificar_filas(df):
+    clasificaciones = []
+    for _, fila in df.iterrows():
+        if fila['FA'] <= 23.90:
+            if fila['Músculo (kg)'] <= 62.81:
+                if fila['Grasa Corporal (%)'] <= 43.65:
+                    if fila['Velocidad de marcha'] <= 0.55:
+                        clasificacion = 3.0
+                    else:
+                        if fila['Velocidad de marcha'] <= 0.75:
+                            clasificacion = 1.0
+                        else:
+                            clasificacion = 1.0
+                else:
+                    clasificacion = 3.0
+            else:
+                clasificacion = 0.0
+        else:
+            if fila['FA'] <= 32.60:
+                if fila['Músculo (kg)'] <= 61.80:
+                    clasificacion = 2.0
+                else:
+                    clasificacion = 0.0
+            else:
+                clasificacion = 2.0
+        clasificaciones.append(clasificacion)
+    df["Clasificación"] = clasificaciones
+    return df
+
+# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+# Asumiendo que los datos están en formato CSV
+
+# Utiliza la función para clasificar las filas de tu DataFrame
+# Reemplaza 'N_df' con tu DataFrame
+clasificado_df = clasificar_filas(N_df.copy())
+
+# Ahora, en el DataFrame original, tendrás una nueva columna llamada "Clasificación" con las clasificaciones correspondientes.
+st.dataframe(clasificado_df)
+
+
+
+
