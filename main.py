@@ -774,3 +774,112 @@ for column in numeric_columns:
     st.plotly_chart(fig)
 
 
+
+############################
+
+
+import streamlit as st
+import pandas as pd
+
+# Función para calcular el músculo
+def calcular_musculo(fa, ppantorrilla):
+    if fa <= 27.90:
+        if ppantorrilla <= 34.55:
+            if fa <= 15.77:
+                if ppantorrilla <= 32.00:
+                    return 35.42
+                else:
+                    return 37.38
+            else:
+                if fa <= 16.38:
+                    return 58.30
+                else:
+                    return 37.63
+        else:
+            if fa <= 15.25:
+                return 51.90
+            else:
+                if ppantorrilla <= 41.25:
+                    return 40.96
+                else:
+                    return 50.20
+    else:
+        if fa <= 32.80:
+            if ppantorrilla <= 36.45:
+                if ppantorrilla <= 34.95:
+                    return 52.20
+                else:
+                    return 52.70
+            else:
+                return 47.10
+        else:
+            if ppantorrilla <= 36.75:
+                return 54.20
+            else:
+                if fa <= 36.27:
+                    return 61.10
+                else:
+                    return 60.00
+
+# Función para calcular la grasa corporal
+def calcular_grasa(pbrazo, pcb):
+    if pcb <= 9.50:
+        if pbrazo <= 27.65:
+            if pbrazo <= 24.75:
+                if pcb <= 6.50:
+                    return 26.50
+                else:
+                    return 26.40
+            else:
+                if pcb <= 6.50:
+                    return 34.70
+                else:
+                    return 30.37
+        else:
+            if pcb <= 7.50:
+                if pbrazo <= 30.75:
+                    return 20.60
+                else:
+                    return 27.07
+            else:
+                if pbrazo <= 29.15:
+                    return 27.90
+                else:
+                    return 30.80
+    else:
+        if pbrazo <= 28.75:
+            if pcb <= 11.00:
+                if pbrazo <= 27.65:
+                    return 35.40
+                else:
+                    return 34.50
+            else:
+                if pbrazo <= 25.85:
+                    return 31.50
+                else:
+                    return 28.75
+        else:
+            if pbrazo <= 35.25:
+                if pcb <= 18.50:
+                    return 37.19
+                else:
+                    return 30.60
+            else:
+                if pcb <= 19.00:
+                    return 44.70
+                else:
+                    return 37.60
+
+# Leer el DataFrame desde un archivo CSV (o cualquier otro formato)
+df = pd.read_csv("data.csv")  # Cambia el nombre del archivo según sea necesario
+
+# Aplicar las funciones a las columnas correspondientes de df
+df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
+df['Grasa Corporal_pred (%)'] = df.apply(lambda row: calcular_grasa(row['PBrazo (cm)'], row['PCB (mm)']), axis=1)
+
+# Guardar el DataFrame actualizado en un archivo Excel
+nombre_archivo_excel = "df_con_predicciones.xlsx"
+df.to_excel(nombre_archivo_excel, index=False)
+st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
+
+
