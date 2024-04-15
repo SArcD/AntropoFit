@@ -37,7 +37,7 @@ if pestañas == "Pestaña 1":
               'Grasa Corporal (%)', 'Centro',
               'FA','Velocidad de marcha']]
        df_2=df
-
+       
        import streamlit as st
        import pandas as pd
        from sklearn.linear_model import LinearRegression
@@ -47,15 +47,7 @@ if pestañas == "Pestaña 1":
        import matplotlib.pyplot as plt
        st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-# Considera cargar tus datos desde un archivo CSV o mediante la carga directa de datos.
-# data = pd.read_csv('data.csv')
-
-# Puedes definir tus datos de prueba aquí para simular la carga de datos.
-#data = pd.DataFrame({'PPantorrilla (cm)': np.random.rand(100) * 50,
-#                     'Músculo (kg)': np.random.rand(100) * 100})
-
-
+       ########################
        data = df
        # Divide tus datos en características (X) y la variable dependiente (y)
        X = data[['PPantorrilla (cm)']]
@@ -204,8 +196,7 @@ if pestañas == "Pestaña 1":
        st.write(f'R^2 Árbol de Decisión: {r2_grasa_dt}')
        st.write(f'R^2 Random Forest: {r2_grasa_rf}')
 
-#######################
-
+       #######################
 
        import streamlit as st
        from sklearn.tree import DecisionTreeRegressor
@@ -229,8 +220,19 @@ if pestañas == "Pestaña 1":
 elif pestañas == "Pestaña 2":
        st.subheader("Contenido de la Pestaña 2")
        st.write("Aquí puedes agregar contenido para la segunda pestaña.")
-
-
+       #import streamlit as st       
+       df=pd.read_excel('AM_2023_Antropo.xlsx')
+       st.dataframe(df)
+       df=df.dropna()
+       df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
+       df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
+       df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
+       df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+              'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
+              'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+              'Grasa Corporal (%)', 'Centro',
+              'FA','Velocidad de marcha']]
+       data = df
        import streamlit as st
        import pandas as pd
        from sklearn.linear_model import LinearRegression
