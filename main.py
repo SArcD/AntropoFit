@@ -117,3 +117,80 @@ plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
 plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
 plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
 st.pyplot()
+
+
+
+####################
+
+
+import streamlit as st
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+import numpy as np
+
+# Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
+X_grasa = data[['PBrazo (cm)']]
+y_grasa = data['Grasa Corporal (%)']
+modelo_grasa_lr = LinearRegression()
+modelo_grasa_lr.fit(X_grasa, y_grasa)
+
+# Crear un modelo de árbol de decisión para Grasa Corporal (%) vs. PBrazo (cm)
+modelo_grasa_dt = DecisionTreeRegressor()
+modelo_grasa_dt.fit(X_grasa, y_grasa)
+
+# Crear un modelo de Random Forest para Grasa Corporal (%) vs. PBrazo (cm)
+modelo_grasa_rf = RandomForestRegressor()
+modelo_grasa_rf.fit(X_grasa, y_grasa)
+
+# Predicciones para Grasa Corporal (%)
+pbrazo_value = 30  # Cambia este valor por el que desees predecir
+
+grasa_pred_lr = modelo_grasa_lr.predict(np.array([[pbrazo_value]]))
+grasa_pred_dt = modelo_grasa_dt.predict(np.array([[pbrazo_value]]))
+grasa_pred_rf = modelo_grasa_rf.predict(np.array([[pbrazo_value]]))
+
+# Coeficientes de ajuste para el modelo de regresión lineal
+pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+intercepto_grasa_lr = modelo_grasa_lr.intercept_
+
+# Coeficientes de determinación (R^2) para el modelo de regresión lineal
+r2_grasa_lr = r2_score(y_grasa, modelo_grasa_lr.predict(X_grasa))
+
+# Coeficientes de determinación (R^2) para el modelo de árbol de decisión
+r2_grasa_dt = modelo_grasa_dt.score(X_grasa, y_grasa)
+
+# Coeficientes de determinación (R^2) para el modelo de Random Forest
+r2_grasa_rf = modelo_grasa_rf.score(X_grasa, y_grasa)
+
+# Predicciones para Grasa Corporal (%) usando árbol de decisión y Random Forest
+X_pred_grasa_dt = np.linspace(min(X_grasa['PBrazo (cm)']), max(X_grasa['PBrazo (cm)']), 100).reshape(-1, 1)
+y_pred_grasa_dt = modelo_grasa_dt.predict(X_pred_grasa_dt)
+y_pred_grasa_rf = modelo_grasa_rf.predict(X_pred_grasa_dt)
+
+# Visualización de las predicciones
+st.title('Predicciones de Grasa Corporal (%)')
+st.write("Gráfico de predicciones:")
+fig, ax = plt.subplots()
+ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
+ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
+ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
+ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='orange', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+ax.set_xlabel('PBrazo (cm)')
+ax.set_ylabel('Grasa Corporal (%)')
+ax.set_title('Predicciones de Grasa Corporal (%)')
+ax.legend()
+st.pyplot(fig)
+
+# Coeficientes de ajuste para el modelo de regresión lineal
+pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+intercepto_grasa_lr = modelo_grasa_lr.intercept_
+st.write(f'Ajuste Lineal: Pendiente = {pendiente_grasa_lr}, Intercepto = {intercepto_grasa_lr}')
+
+# Coeficientes de determinación (R^2) para los modelos
+st.write(f'R^2 Ajuste Lineal: {r2_grasa_lr}')
+st.write(f'R^2 Árbol de Decisión: {r2_grasa_dt}')
+st.write(f'R^2 Random Forest: {r2_grasa_rf}')
+#######################
