@@ -926,3 +926,34 @@ nombre_archivo_excel = "data_2023_clustered.xlsx"
 data_2023.to_excel(nombre_archivo_excel, index=False)
 st.write(f"Se ha guardado el DataFrame con etiquetas en {nombre_archivo_excel}")
 
+# Filtrar el DataFrame para la clasificación 1.0
+df_clasif_0 = data_2023[data_2023['Cluster'] == 0.0]
+
+# Filtrar el DataFrame para la clasificación 2.0
+df_clasif_1 = data_2023[data_2023['Cluster'] == 1.0]
+
+# Filtrar el DataFrame para la clasificación 2.0
+df_clasif_2 = data_2023[data_2023['Cluster'] == 2.0]
+
+# Guardar los DataFrames en archivos Excel
+df_clasif_0.to_excel('clasificacion_0.xlsx', index=False)
+df_clasif_1.to_excel('clasificacion_1.xlsx', index=False)
+df_clasif_2.to_excel('clasificacion_2.xlsx', index=False)
+
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+# Obtener las columnas numéricas
+numeric_columns = data_2023.select_dtypes(include='number').columns
+
+# Obtener las clasificaciones únicas
+clasificaciones_unicas = data_2023['Cluster'].unique()
+
+# Calcular el número de filas y columnas del panel
+num_rows = len(numeric_columns)
+
+# Filtrar el DataFrame para cada parámetro y crear un único gráfico de caja para cada uno
+for column in numeric_columns:
+    fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
+    st.plotly_chart(fig)
