@@ -74,10 +74,10 @@ modelo_musculo_rf = RandomForestRegressor()
 modelo_musculo_rf.fit(X, y)
 
 # Realiza predicciones para diferentes valores de PPantorrilla (cm)
-ppantorilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100).reshape(-1, 1)
-musculo_pred_lr = modelo_musculo_lr.predict(ppantorilla_values)
-musculo_pred_dt = modelo_musculo_dt.predict(ppantorilla_values)
-musculo_pred_rf = modelo_musculo_rf.predict(ppantorilla_values)
+ppantorrilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100).reshape(-1, 1)
+musculo_pred_lr = modelo_musculo_lr.predict(ppantorrilla_values)
+musculo_pred_dt = modelo_musculo_dt.predict(ppantorrilla_values)
+musculo_pred_rf = modelo_musculo_rf.predict(ppantorrilla_values)
 
 # Calcula el coeficiente de determinación (R^2) para cada modelo
 r2_musculo_lr = modelo_musculo_lr.score(X, y)
