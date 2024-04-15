@@ -494,3 +494,57 @@ st.pyplot(fig)
 
 
 ###################
+
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+# Divide tus datos en características (X) y la variable dependiente (y)
+X = data[['PBrazo (cm)', 'PCB (mm)']]
+y = data['Grasa Corporal (%)']
+
+# Crea un modelo de árbol de decisión
+modelo_grasa_dt = DecisionTreeRegressor()
+modelo_grasa_dt.fit(X, y)
+
+# Realiza predicciones para diferentes valores de PBrazo (cm) y PCB (mm)
+pbrazo_values = np.linspace(min(X['PBrazo (cm)']), max(X['PBrazo (cm)']), 100)
+pcb_values = np.linspace(min(X['PCB (mm)']), max(X['PCB (mm)']), 100)
+pbrazo_values, pcb_values = np.meshgrid(pbrazo_values, pcb_values)
+grasa_pred_dt = modelo_grasa_dt.predict(np.column_stack((pbrazo_values.ravel(), pcb_values.ravel())))
+
+# Calcula el coeficiente de determinación (R^2) para el modelo
+r2_grasa_dt = modelo_grasa_dt.score(X, y)
+
+# Crear una figura 3D para visualizar los datos y las predicciones del modelo
+fig = plt.figure(figsize=(12, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+# Grafica los datos reales
+scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, label='Datos reales', c='blue')
+
+# Grafica las predicciones del modelo
+ax.plot_surface(pbrazo_values, pcb_values, grasa_pred_dt.reshape(pbrazo_values.shape), alpha=0.5, color='green')
+
+# Etiquetas de los ejes
+ax.set_xlabel('PBrazo (cm)')
+ax.set_ylabel('PCB (mm)')
+ax.set_zlabel('Grasa Corporal (%)')
+
+# Crear una leyenda ficticia para el gráfico
+legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
+ax.add_artist(legend)
+
+# Título del gráfico
+plt.title(f'Grasa Corporal en función de PBrazo (cm) y PCB (mm) (R^2={r2_grasa_dt:.2f})')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
+
+
+###################
