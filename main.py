@@ -38,6 +38,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 import matplotlib.pyplot as plt
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
 # Considera cargar tus datos desde un archivo CSV o mediante la carga directa de datos.
