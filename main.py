@@ -884,5 +884,8 @@ df['Grasa Corporal_pred (%)'] = df.apply(lambda row: calcular_grasa(row['PBrazo 
 nombre_archivo_excel = "df_con_predicciones.xlsx"
 df.to_excel(nombre_archivo_excel, index=False)
 st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
+df_2
+clasificar_filas(df_2)
+df_2
 
 
