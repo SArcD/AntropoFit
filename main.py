@@ -439,8 +439,8 @@ ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ")
 fa_input = st.number_input("Ingresa el valor de FA: ")
 
 if st.button("Predecir Músculo", key="predict_button"):
-    predicción = predecir_musculo(ppantorrilla_input, fa_input)
-    st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
+       predicción = predecir_musculo(ppantorrilla_input, fa_input)
+       st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
 
 
        ###################
