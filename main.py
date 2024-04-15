@@ -88,9 +88,9 @@ r2_musculo_rf = modelo_musculo_rf.score(X, y)
 st.write("Gráfico de predicciones:")
 fig, ax=plt.subplots()
 ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")
-ax.plot(ppantorrilla_values, musculo_pred_lr, color='red')
-ax.plot(ppantorrilla_values, musculo_pred_dt, color='green')
-ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue')
+ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
+ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
+ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', , label=f'Regresión lineal (R^2={r2_musculo_rf:.2f})')
 ax.set_xlabel('Pantorrilla (cm)')
 ax.set_ylabel('Masa muscular (Kg)')
 ax.set_title('Predicciones de Masa muscular (Kg)')
@@ -230,7 +230,6 @@ plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
 plot_tree(modelo_grasa_dt_simplified, filled=True, feature_names=X_grasa.columns)
 ax.set_title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBrazo (cm)", fontsize=24)
 st.pyplot()
-
 
 ##################################
 
