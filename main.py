@@ -713,6 +713,25 @@ clasificado_df = clasificar_filas(N_df.copy())
 # Ahora, en el DataFrame original, tendrás una nueva columna llamada "Clasificación" con las clasificaciones correspondientes.
 st.dataframe(clasificado_df)
 
+##########################3
+
+import streamlit as st
+import matplotlib.pyplot as plt
+
+# Contar la cantidad de pacientes en cada clasificación
+clasificacion_counts = clasificado_df['Clasificación'].value_counts()
+
+# Obtener las etiquetas de las clasificaciones y sus valores
+etiquetas = clasificacion_counts.index
+valores = clasificacion_counts.values
+
+# Crear un gráfico de pastel
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
+ax.set_title('Distribución de Clasificaciones')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
 
 
 
