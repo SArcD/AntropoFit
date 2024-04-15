@@ -124,12 +124,12 @@ st.pyplot()
 
 
 import streamlit as st
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
-import numpy as np
 
 # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
 X_grasa = data[['PBrazo (cm)']]
@@ -193,4 +193,5 @@ st.write(f'Ajuste Lineal: Pendiente = {pendiente_grasa_lr}, Intercepto = {interc
 st.write(f'R^2 Ajuste Lineal: {r2_grasa_lr}')
 st.write(f'R^2 Árbol de Decisión: {r2_grasa_dt}')
 st.write(f'R^2 Random Forest: {r2_grasa_rf}')
+
 #######################
