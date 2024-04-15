@@ -220,6 +220,62 @@ ax.set_title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBraz
 st.pyplot()
 
 
+##################################
+
+import streamlit as st
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+# Asegúrate de tener definida la variable 'data'
+
+# Divide tus datos en características (X) y la variable dependiente (y)
+X = data[['PPantorrilla (cm)', 'FA']]
+y = data['Músculo (kg)']
+
+# Crea un modelo de regresión lineal
+modelo_musculo_lr = LinearRegression()
+modelo_musculo_lr.fit(X, y)
+
+# Realiza predicciones para diferentes valores de PPantorrilla (cm) y FA
+ppantorilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100)
+fa_values = np.linspace(min(X['FA']), max(X['FA']), 100)
+ppantorilla_values, fa_values = np.meshgrid(ppantorilla_values, fa_values)
+musculo_pred_lr = modelo_musculo_lr.predict(np.column_stack((ppantorilla_values.ravel(), fa_values.ravel())))
+
+# Calcula el coeficiente de determinación (R^2) para el modelo
+r2_musculo_lr = modelo_musculo_lr.score(X, y)
+
+# Crear una figura 3D
+fig = plt.figure(figsize=(12, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+# Grafica los datos reales
+scatter = ax.scatter(X['PPantorrilla (cm)'], X['FA'], y, label='Datos reales', c='blue')
+
+# Grafica las predicciones del modelo
+ax.plot_surface(ppantorilla_values, fa_values, musculo_pred_lr.reshape(ppantorilla_values.shape), alpha=0.5, color='green')
+
+# Etiquetas de los ejes
+ax.set_xlabel('PPantorrilla (cm)')
+ax.set_ylabel('FA')
+ax.set_zlabel('Músculo (kg)')
+
+# Crear una leyenda ficticia para el gráfico
+legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
+ax.add_artist(legend)
+
+# Título del gráfico
+plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_lr:.2f})')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
+
 ################################
 
 import streamlit as st
