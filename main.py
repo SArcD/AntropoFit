@@ -575,13 +575,13 @@ y_pred = y_pred.reshape(pbrazo_grid.shape)
 
 # Crea la gráfica de superficie de decisión
 figu = plt.figure(figsize=(10, 6))
-ax = figu.add_subplot(111, projection='3d')
-contour = ax.plot_surface(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']), alpha=0.5)
-scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
-ax.set_xlabel('PBrazo (cm)')
-ax.set_ylabel('PCB (mm)')
-ax.set_zlabel('Grasa Corporal (%)')
-cbar = figu.colorbar(contour)
+#ax = figu.add_subplot(111, projection='3d')
+contour = plt.contourf(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+plt.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+plt.xlabel('PBrazo (cm)')
+plt.ylabel('PCB (mm)')
+#plt.title('Grasa Corporal (%)')
+cbar = plt.colorbar(contour)
 cbar.set_label('Grasa Corporal (%)')
 
 # Título del gráfico
