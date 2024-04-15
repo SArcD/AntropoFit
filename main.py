@@ -673,7 +673,7 @@ pcb_input = st.number_input("Ingresa el valor del pliegue subcutaneo escapular (
 
 
 # Usando la opción 'key' para el botón para asegurar que se active después de que se ingresen los valores
-if st.button("Predicción", key="predict_button"):
+if st.button("Predicción", key="predicto_button"):
     predicción = predecir_grasa_corporal(pbrazo_input, pcb_input)
     st.write(f"Predicción de Grasa Corporal (%): {predicción:.2f}")
 
