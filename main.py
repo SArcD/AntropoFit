@@ -1104,8 +1104,6 @@ elif pestañas == "Calculadora":
             st.dataframe(df)  # Mostrar el DataFrame cargado
             # Realizar otras operaciones con df aquí
 
-    st.dataframe(df)
-
 
 else:
        st.subheader("Equipo de Trabajo")
