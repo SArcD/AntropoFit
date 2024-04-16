@@ -1111,4 +1111,4 @@ else:
 
        # Información de contacto
        st.subheader("Información de Contacto")
-       st.write("Si deseas ponerte en contacto con nuestro equipo, puedes enviar un correo a santiagoarceodiaz@gmail,com")
+       st.write("Si deseas ponerte en contacto con nuestro equipo, puedes enviar un correo a santiagoarceodiaz@gmail.com")
