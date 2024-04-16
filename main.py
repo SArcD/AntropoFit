@@ -45,14 +45,18 @@ st.markdown(
 
 
 import streamlit as st
+import shutil  # Módulo para manipular archivos y directorios
 import git
 
 # Función para leer y actualizar el contador de visitas
 def update_visit_count():
-    # Clona el repositorio de GitHub
+    # Eliminar el directorio de destino si existe
+    shutil.rmtree("repo_temp", ignore_errors=True)
+
+    # Clonar el repositorio de GitHub
     repo = git.Repo.clone_from("https://github.com/SArcD/AntropoFit.git", "repo_temp")
 
-    # Intenta leer el contador de visitas desde el archivo
+    # Intentar leer el contador de visitas desde el archivo
     try:
         with open("repo_temp/visit_count.txt", "r") as f:
             visit_count_str = f.read().strip()  # Eliminar espacios en blanco alrededor del número
@@ -61,17 +65,17 @@ def update_visit_count():
             else:
                 visit_count = 0
     except FileNotFoundError:
-        # Si el archivo no existe, inicializa el contador de visitas en 0
+        # Si el archivo no existe, inicializar el contador de visitas en 0
         visit_count = 0
     
-    # Incrementa el contador de visitas
+    # Incrementar el contador de visitas
     visit_count += 1
 
-    # Escribe el nuevo contador de visitas en el archivo
+    # Escribir el nuevo contador de visitas en el archivo
     with open("repo_temp/visit_count.txt", "w") as f:
         f.write(str(visit_count))
 
-    # Realiza un commit y un push de los cambios en el archivo al repositorio de GitHub
+    # Realizar un commit y un push de los cambios en el archivo al repositorio de GitHub
     repo.index.add(["visit_count.txt"])
     repo.index.commit("Actualizar contador de visitas")
     origin = repo.remote(name='origin')
@@ -79,10 +83,10 @@ def update_visit_count():
 
     return visit_count
 
-# Obtén y actualiza el contador de visitas
+# Obtener y actualizar el contador de visitas
 visit_count = update_visit_count()
 
-# Muestra el contador de visitas en la aplicación
+# Mostrar el contador de visitas en la aplicación
 st.write(f"¡Bienvenido! Has visitado esta página {visit_count} veces.")
 
 
