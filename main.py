@@ -113,8 +113,10 @@ if pestañas == "Presentación":
 
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
-       st.subheader("Contenido de la Pestaña 1")
-       st.write("Aquí puedes agregar contenido para la primera pestaña.")
+       st.title("Modelos de aproximación de una sola variable independiente")
+       st.markdown("""
+       En esta pestaña se muestra el proceso para calcular modelos de aproximación a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal a partir de una sola variable. En el caso de la masa muscular, se predicen valores para pacientes  a partir del perímetro de pantorrilla y en el caso de la grasa corporal se utiliza el perimetro de brazo
+       """)
 
 
        #import streamlit as st       
