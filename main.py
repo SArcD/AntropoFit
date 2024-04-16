@@ -970,5 +970,5 @@ elif pestañas == "Predicción de Sarcopenia":
        for column in numeric_columns:
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
-else 
+else:
        st.write("Equipo de trabajo")
