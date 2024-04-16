@@ -19,7 +19,7 @@ import streamlit as st
 
 # Configurar el esquema de colores personalizado
 st.set_page_config(
-    page_title="Mi Aplicación Personalizada",
+    page_title="AntropoFit",
     page_icon=":chart_with_upwards_trend:",
     layout="wide",  # Puedes elegir entre 'wide' o 'centered'
     initial_sidebar_state="expanded",  # Puedes elegir entre 'expanded' o 'collapsed'
@@ -75,7 +75,7 @@ st.write(f"Esta página ha sido visitada {counter} veces.")
 
 
 # Crear una barra lateral para las pestañas
-pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
+pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Calculadora",  "Equipo de trabajo"))
 if pestañas == "Presentación":
        st.title("Sobre la calculadora")
        st.markdown("""
@@ -1075,6 +1075,10 @@ elif pestañas == "Predicción de Sarcopenia":
        for column in numeric_columns:
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
+elif pestañas == "Calculadora":
+st.title("Calculadora")
+
+
 else:
        st.subheader("Equipo de Trabajo")
 
