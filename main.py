@@ -1077,6 +1077,28 @@ elif pestañas == "Predicción de Sarcopenia":
            st.plotly_chart(fig)
 elif pestañas == "Calculadora":
        st.title("Calculadora")
+       import streamlit as st
+       import pandas as pd
+
+        # Función para cargar un archivo
+        def cargar_archivo():
+            uploaded_file = st.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
+            if uploaded_file is not None:
+                try:
+                    if uploaded_file.name.endswith('.csv'):
+                        # Leer el archivo CSV en un DataFrame de pandas
+                        df = pd.read_csv(uploaded_file)
+                    else:
+                        # Leer el archivo Excel en un DataFrame de pandas
+                        df = pd.read_excel(uploaded_file)
+                    st.write("¡Archivo cargado correctamente!")
+                    st.write(df)  # Mostrar el DataFrame cargado
+                except Exception as e:
+                    st.error(f"Error al cargar el archivo: {e}")
+
+        # Llamar a la función para cargar el archivo cuando se presione el botón
+        if st.button("Cargar archivo"):
+            cargar_archivo()
 
 
 else:
