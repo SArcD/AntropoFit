@@ -205,7 +205,6 @@ if pestañas == "Modelos con una variable":
        pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
        intercepto_musculo_lr = modelo_musculo_lr.intercept_
        st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
-       #st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
 
        # Coeficientes de determinación (R^2) para los modelos
        st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
@@ -221,9 +220,9 @@ if pestañas == "Modelos con una variable":
        modelo_musculo_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado con un tamaño de letra más grande
-       figur = plt.figure(figsize=(40, 20))
+       figur = plt.figure(figsize=(60, 30))
        plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
-       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=14)  # Ajusta el tamaño de la letra aquí
+       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=16)  # Ajusta el tamaño de la letra aquí
        plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
 
        # Mostrar la figura en Streamlit
