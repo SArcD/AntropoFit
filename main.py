@@ -55,7 +55,11 @@ def update_visit_count():
     # Intenta leer el contador de visitas desde el archivo
     try:
         with open("repo_temp/visit_count.txt", "r") as f:
-            visit_count = int(f.read())
+            visit_count_str = f.read().strip()  # Eliminar espacios en blanco alrededor del número
+            if visit_count_str:
+                visit_count = int(visit_count_str)
+            else:
+                visit_count = 0
     except FileNotFoundError:
         # Si el archivo no existe, inicializa el contador de visitas en 0
         visit_count = 0
@@ -80,7 +84,6 @@ visit_count = update_visit_count()
 
 # Muestra el contador de visitas en la aplicación
 st.write(f"¡Bienvenido! Has visitado esta página {visit_count} veces.")
-
 
 
 # Crear una barra lateral para las pestañas
