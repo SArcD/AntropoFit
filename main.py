@@ -26,8 +26,9 @@ st.set_page_config(
 )
 
 # Definir colores personalizados
-background_color = "#f0f0f0"
-text_color = "#333333"
+background_color = "#f0f0f0"  # Gris claro para el fondo
+text_color = "#000000"  # Negro para el texto
+interactive_elements_color = "#007bff"  # Azul para elementos interactivos
 
 # Configurar el estilo de la aplicación
 st.markdown(
