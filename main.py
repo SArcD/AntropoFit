@@ -50,10 +50,9 @@ import base64
 
 # Función para obtener el valor de la cookie del navegador
 def get_cookie_value(key):
-    session_state = st.report_thread.get_report_ctx().session
-    if key in session_state:
+    if key in st.session_state:
         try:
-            value = base64.b64decode(session_state[key]).decode()
+            value = base64.b64decode(st.session_state[key]).decode()
             return int(value)
         except:
             pass
@@ -61,8 +60,7 @@ def get_cookie_value(key):
 
 # Función para guardar el valor de la cookie del navegador
 def set_cookie_value(key, value):
-    session_state = st.report_thread.get_report_ctx().session
-    session_state[key] = base64.b64encode(str(value).encode()).decode()
+    st.session_state[key] = base64.b64encode(str(value).encode()).decode()
 
 # Obtener el contador actual de visitas
 counter = get_cookie_value("visit_counter")
