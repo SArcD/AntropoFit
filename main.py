@@ -45,49 +45,33 @@ st.markdown(
 
 
 import streamlit as st
-import shutil  # Módulo para manipular archivos y directorios
-import git
+import pickle
 
-# Función para leer y actualizar el contador de visitas
-def update_visit_count():
-    # Eliminar el directorio de destino si existe
-    shutil.rmtree("repo_temp", ignore_errors=True)
+#************************************* Función para cargar o crear el contador de visitas
 
-    # Clonar el repositorio de GitHub
-    repo = git.Repo.clone_from("https://github.com/SArcD/AntropoFit.git", "repo_temp")
-
-    # Intentar leer el contador de visitas desde el archivo
+# Función para cargar el contador de visitas
+def load_counter():
     try:
-        with open("repo_temp/visit_count.txt", "r") as f:
-            visit_count_str = f.read().strip()  # Eliminar espacios en blanco alrededor del número
-            if visit_count_str:
-                visit_count = int(visit_count_str)
-            else:
-                visit_count = 0
-    except FileNotFoundError:
-        # Si el archivo no existe, inicializar el contador de visitas en 0
-        visit_count = 0
-    
-    # Incrementar el contador de visitas
-    visit_count += 1
+        with open("visit_counter.pkl", "rb") as f:
+            counter = pickle.load(f)
+        return counter
+    except (FileNotFoundError, EOFError, pickle.UnpicklingError):
+        return 0  # Si el archivo no existe o está vacío, inicializa el contador en 0.
 
-    # Escribir el nuevo contador de visitas en el archivo
-    with open("repo_temp/visit_count.txt", "w") as f:
-        f.write(str(visit_count))
+# Función para guardar el contador de visitas
+def save_counter(counter):
+    with open("visit_counter.pkl", "wb") as f:
+        pickle.dump(counter, f)
 
-    # Realizar un commit y un push de los cambios en el archivo al repositorio de GitHub
-    repo.index.add(["visit_count.txt"])
-    repo.index.commit("Actualizar contador de visitas")
-    origin = repo.remote(name='origin')
-    origin.push()
+# Obtener el contador actual de visitas
+counter = load_counter()
 
-    return visit_count
+# Incrementar el contador y guardar los cambios
+counter += 1
+save_counter(counter)
 
-# Obtener y actualizar el contador de visitas
-visit_count = update_visit_count()
-
-# Mostrar el contador de visitas en la aplicación
-st.write(f"¡Bienvenido! Has visitado esta página {visit_count} veces.")
+# Mostrar el contador en la aplicación de Streamlit
+st.markdown(f"**Esta página ha sido visitada {counter} veces.**")
 
 
 # Crear una barra lateral para las pestañas
