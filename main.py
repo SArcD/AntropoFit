@@ -19,7 +19,12 @@ import streamlit as st
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 if pestañas == "Presentación":
        st.subheader("Sobre la calculadora")
-
+       st.write(
+              """
+       swsswxwqxwxwxw
+       
+       """
+               )
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.subheader("Contenido de la Pestaña 1")
