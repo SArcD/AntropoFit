@@ -58,7 +58,9 @@ if pestañas == "Pestaña 1":
 
        # Muestra una tabla con los primeros registros de los datos
        st.write("Primeros registros de los datos:")
-       st.write(data.head())
+       #st.write(data.head())
+       st.dataframe(data)
+
 
        # Crea un modelo de regresión lineal
        modelo_musculo_lr = LinearRegression()
