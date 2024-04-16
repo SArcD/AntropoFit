@@ -15,6 +15,33 @@ import seaborn as sns
 import sklearn as sk
 import streamlit as st
 
+import streamlit as st
+
+# Configurar el esquema de colores personalizado
+st.set_page_config(
+    page_title="Mi Aplicación Personalizada",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",  # Puedes elegir entre 'wide' o 'centered'
+    initial_sidebar_state="expanded",  # Puedes elegir entre 'expanded' o 'collapsed'
+)
+
+# Definir colores personalizados
+background_color = "#f0f0f0"
+text_color = "#333333"
+
+# Configurar el estilo de la aplicación
+st.markdown(
+    f"""
+    <style>
+    .reportview-container {{
+        background-color: {background_color};
+        color: {text_color};
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Crear una barra lateral para las pestañas
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 if pestañas == "Presentación":
