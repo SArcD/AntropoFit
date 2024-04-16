@@ -16,10 +16,10 @@ import sklearn as sk
 import streamlit as st
 
 # Crear una barra lateral para las pestañas
-pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Pestaña 1", "Pestaña 2", "Pestaña 3"))
+pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 
 # Contenido de la pestaña 1
-if pestañas == "Pestaña 1":
+if pestañas == "Modelos con una variable":
        st.subheader("Contenido de la Pestaña 1")
        st.write("Aquí puedes agregar contenido para la primera pestaña.")
 
@@ -219,7 +219,7 @@ if pestañas == "Pestaña 1":
 
        ##################################
 # Contenido de la pestaña 2
-elif pestañas == "Pestaña 2":
+elif pestañas == "Modelos con 2 variables":
        st.subheader("Contenido de la Pestaña 2")
        st.write("Aquí puedes agregar contenido para la segunda pestaña.")
        #import streamlit as st       
@@ -673,7 +673,7 @@ elif pestañas == "Pestaña 2":
 
 
 # Contenido de la pestaña 3
-else:
+elif pestañas == "Predicción de Sarcopenia":
        st.subheader("Contenido de la Pestaña 3")       
        st.write("Aquí puedes agregar contenido para la tercera pestaña.")
 
@@ -970,3 +970,5 @@ else:
        for column in numeric_columns:
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
+else 
+       st.write("Equipo de trabajo")
