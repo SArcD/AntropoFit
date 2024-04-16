@@ -1098,18 +1098,18 @@ elif pestañas == "Calculadora":
 
     # Llamar a la función para cargar el archivo cuando se presione el botón
     if st.button("Cargar archivo"):
-       cargar_archivo()
-    st.dataframe(df)
-    df=df.dropna()
-    df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
-    df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
-    df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
-    df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+        cargar_archivo()
+        st.dataframe(df)
+        df=df.dropna()
+        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
+        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
+        df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
+        df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
             'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
             'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
             'Grasa Corporal (%)', 'Centro',
             'FA','Velocidad de marcha']]
-    df_2=df
+        df_2=df
        
 
 
