@@ -19,9 +19,8 @@ import streamlit as st
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 if pestañas == "Presentación":
        st.title("Sobre la calculadora")
-       st.write(
-              """
-       swsswxwqxwxwxw
+       st.markdown("""
+       Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
        
        """
                )
@@ -30,9 +29,8 @@ if pestañas == "Presentación":
 
        st.subheader("Objetivo")
        st.markdown("""
-       El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento y análisis de datos antropométricos de adultos mayores para la determinación de dependencia funcional y sarcopenia. Es el resultado de una estancia de investigación posdoctoral, resultado de la colaboración entre el **Consejo Nacional de Humanidades Ciencia y Tecnología (CONAHCYT) y la Universidad de Colima (UCOL)** y desarrollada entre **octubre de 2022 y septiembre 2023**, en la que se utilizó una base de datos antropométricos de adultos mayores para crear modelos predictivos de dependencia funcional y sarcopenia. Estos modelos representan la primera fase de una estrategia diseñada para facilitar la identificación temprana de síntomas de condiciones debilitantes en adultos mayores, utilizando técnicas de inteligencia artificial y aprendizaje automático.
-       """
-           )
+       El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento y análisis de datos antropométricos de adultos mayores para la determinación de dependencia funcional y sarcopenia. Es el resultado de una estancia de investigación posdoctoral, resultado de la colaboración entre el **Consejo Nacional de Humanidades Ciencia y Tecnología (CONAHCYT) y la Universidad de Colima (UCOL)** y desarrollada en **noviembre de 2023**, en la que se utilizó una base de datos antropométricos de adultos mayores para crear modelos predictivos de dependencia funcional y sarcopenia. Estos modelos representan la primera fase de una estrategia diseñada para facilitar la identificación temprana de síntomas de condiciones debilitantes en adultos mayores, utilizando técnicas de inteligencia artificial y aprendizaje automático.
+       """)
 
        st.subheader("Ventajas y características")
 
