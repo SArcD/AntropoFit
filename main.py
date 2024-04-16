@@ -226,10 +226,8 @@ if pestañas == "Modelos con una variable":
        plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
        plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
 
-       # Guardar el gráfico como imagen
-       fig.savefig("arbol_decision.png", dpi=800)
-       st.image("arbol_decision.png", width=900)  # Cambia el tamaño de la imagen según tus necesidades
-       #st.pyplot(fig)
+
+       st.pyplot(fig)
 
        ####################
 
