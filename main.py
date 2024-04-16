@@ -325,8 +325,8 @@ if pestañas == "Modelos con una variable":
        ##################################
 # Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
-       st.subheader("Contenido de la Pestaña 2")
-       st.write("Aquí puedes agregar contenido para la segunda pestaña.")
+       st.title("Modelos de aproximación con dos variables independientes")
+       st.write("Se muestran los modelos en los que se estima grasa corporal y mas muscular usando pares de variables: perímetro de pantorrilla y fuerza de agarre, en el caso de masa muscular, y perímetro de brazo y pliegue cutáneo subescapular, en el caso del porcentaje de grasa corporal")
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
        st.dataframe(df)
