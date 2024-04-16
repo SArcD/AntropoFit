@@ -1103,6 +1103,22 @@ elif pestañas == "Calculadora":
     if df is not None:
         st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
 
+        # Crear una barra lateral para las pestañas
+        pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Calcular con una variable", "Calcular con dos variables"))
+        if pestañas == "Calcular con una variable":
+               st.title("Sobre la calculadora")
+               st.markdown("""
+               Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
+               """
+                   )
+
+        else pestañas == "Calcular con dos variables":
+               st.title("Sobre la calculadora")
+               st.markdown("""
+               Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
+               """
+                   )
+
 
 
 
