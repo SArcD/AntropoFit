@@ -279,7 +279,7 @@ if pestañas == "Modelos con una variable":
 
        # Visualización de las predicciones
        st.title('Predicciones de Grasa Corporal (%)')
-       st.write("Gráfico de predicciones:")
+       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
        fig, ax = plt.subplots()
        ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
