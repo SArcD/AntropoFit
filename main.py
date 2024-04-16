@@ -228,8 +228,8 @@ if pestañas == "Modelos con una variable":
 
        # Guardar el gráfico como imagen
        fig.savefig("arbol_decision.png", dpi=800)
-       st.image("arbol_decision.png", width=800)  # Cambia el tamaño de la imagen según tus necesidades
-       st.pyplot(fig)
+       st.image("arbol_decision.png", width=900)  # Cambia el tamaño de la imagen según tus necesidades
+       #st.pyplot(fig)
 
        ####################
 
