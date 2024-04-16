@@ -1095,19 +1095,14 @@ elif pestañas == "Calculadora":
                 return df  # Devolver el DataFrame cargado
             except Exception as e:
                 st.error(f"Error al cargar el archivo: {e}")
-    
-    # Crear pestañas después de cargar el archivo
-    if st.sidebar.button("Cargar archivo"):
-        df = cargar_archivo()  # Llamar a la función para cargar el archivo
-        if df is not None:
-            # Crear pestañas en la barra lateral
-            tab = st.sidebar.radio("Ir a", ["Explorar datos", "Visualizaciones"])
 
-            # Agregar contenido a las pestañas
-            if tab == "Explorar datos":
-                st.write(df)  # Mostrar el DataFrame cargado
-            elif tab == "Visualizaciones":
-                st.write("Aquí puedes agregar visualizaciones")
+    # Llamar a la función para cargar el archivo
+    df = cargar_archivo()
+
+    # Mostrar el DataFrame en el área principal de la aplicación
+    if df is not None:
+        st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
+
 
 
 
