@@ -1146,30 +1146,17 @@ elif pestañas == "Calculadora":
                # Calcula el coeficiente de determinación (R^2) para el modelo
                r2_musculo_dt = modelo_musculo_dt.score(X, y)
 
-               # Crear una figura 3D
-               fig = plt.figure(figsize=(12, 6))
-               ax = fig.add_subplot(111, projection='3d')
+               # Crea un modelo de árbol de decisión
+               modelo_musculo_dt = DecisionTreeRegressor(max_depth=4)
+               modelo_musculo_dt.fit(X, y)
 
-               # Grafica los datos reales
-               scatter = ax.scatter(X['PPantorrilla (cm)'], X['FA'], y, label='Datos reales', c='blue')
+               # Extraer las reglas de decisión
+               tree_rules = export_text(modelo_musculo_dt, feature_names=list(X.columns))
 
-               # Grafica las predicciones del modelo de árbol de decisión
-               ax.plot_surface(ppantorilla_values, fa_values, musculo_pred_dt.reshape(ppantorilla_values.shape), alpha=0.5, color='green')
-
-               # Etiquetas de los ejes
-               ax.set_xlabel('PPantorrilla (cm)')
-               ax.set_ylabel('FA')
-               ax.set_zlabel('Músculo (kg)')
-
-               # Crear una leyenda ficticia para el gráfico
-               legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
-               ax.add_artist(legend)
-
-               # Título del gráfico
-               plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_dt:.2f})')
-
-               # Mostrar el gráfico en Streamlit
-               st.pyplot(fig)           
+               # Muestra las reglas de decisión en Streamlit
+               st.text("Reglas de Decisión:")
+               st.text(tree_rules)
+       
 
 
 
