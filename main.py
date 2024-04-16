@@ -1102,7 +1102,10 @@ elif pestañas == "Calculadora":
     # Mostrar el DataFrame en el área principal de la aplicación
     if df is not None:
         st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
-
+        with st.sidebar:
+            st.write("Explorar datos")
+            
+            st.write("Visualizaciones")
 
 
 
