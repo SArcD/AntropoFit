@@ -193,7 +193,7 @@ if pestañas == "Modelos con una variable":
        ax.set_xlabel('Pantorrilla (cm)')
        ax.set_ylabel('Masa muscular (Kg)')
        ax.set_title('Predicciones de Masa muscular (Kg)')
-       ax.legend()
+       ax.legend(fontsize='medium')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
        # Coeficientes de ajuste para el modelo de regresión lineal       
