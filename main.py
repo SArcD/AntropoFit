@@ -16,7 +16,9 @@ import sklearn as sk
 import streamlit as st
 
 # Crear una barra lateral para las pestañas
-pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
+pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
+if pestañas == "Presentación":
+       st.subheader("Sobre la calculadora")
 
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
