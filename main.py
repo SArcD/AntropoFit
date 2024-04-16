@@ -223,13 +223,11 @@ if pestañas == "Modelos con una variable":
        # Generar el diagrama del árbol de decisión simplificado
        fig = plt.figure(figsize=(20, 10))
        plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
-       #plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
-       #plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
+       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
+       plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
 
-       # Mostrar la figura en Streamlit
-       # Mostrar la imagen en Streamlit
        # Guardar el gráfico como imagen
-       fig.savefig("arbol_decision.png", dpi=600)
+       fig.savefig("arbol_decision.png", dpi=800)
        st.image("arbol_decision.png", width=800)  # Cambia el tamaño de la imagen según tus necesidades
        st.pyplot(fig)
 
