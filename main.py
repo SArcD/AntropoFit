@@ -204,7 +204,7 @@ if pestañas == "Modelos con una variable":
        # Coeficientes de ajuste para el modelo de regresión lineal       
        pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
        intercepto_musculo_lr = modelo_musculo_lr.intercept_
-       st.write(f'Ajuste Lineal: Pendiente = {pendiente_musculo_lr}, Intercepto = {intercepto_musculo_lr}')
+       st.write(f'**Ajuste Lineal: Pendiente = {pendiente_musculo_lr}, Intercepto = {intercepto_musculo_lr}')
 
        # Coeficientes de determinación (R^2) para los modelos
        st.write(f'R^2 Ajuste Lineal: {r2_musculo_lr}')       
@@ -294,12 +294,12 @@ if pestañas == "Modelos con una variable":
        # Coeficientes de ajuste para el modelo de regresión lineal
        pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
        intercepto_grasa_lr = modelo_grasa_lr.intercept_
-       st.write(f'Ajuste Lineal: Pendiente = {pendiente_grasa_lr}, Intercepto = {intercepto_grasa_lr}')
+       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
 
        # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'R^2 Ajuste Lineal: {r2_grasa_lr}')
-       st.write(f'R^2 Árbol de Decisión: {r2_grasa_dt}')
-       st.write(f'R^2 Random Forest: {r2_grasa_rf}')
+       st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')
+       st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
+       st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
 
        #######################
 
