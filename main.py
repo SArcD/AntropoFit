@@ -1078,11 +1078,10 @@ elif pestañas == "Predicción de Sarcopenia":
 elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
-    import pandas as pd
 
     # Función para cargar un archivo
     def cargar_archivo():
-        uploaded_file = st.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
+        uploaded_file = st.sidebar.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
         if uploaded_file is not None:
             try:
                 if uploaded_file.name.endswith('.csv'):
@@ -1091,19 +1090,15 @@ elif pestañas == "Calculadora":
                 else:
                     # Leer el archivo Excel en un DataFrame de pandas
                     df = pd.read_excel(uploaded_file)
-                st.write("¡Archivo cargado correctamente!")
-                st.write(df)  # Mostrar el DataFrame cargado
+                st.sidebar.write("¡Archivo cargado correctamente!")
+                st.sidebar.write(df)  # Mostrar el DataFrame cargado
                 return df  # Devolver el DataFrame cargado
             except Exception as e:
-                st.error(f"Error al cargar el archivo: {e}")
-        return None
+                st.sidebar.error(f"Error al cargar el archivo: {e}")
 
-    # Llamar a la función para cargar el archivo cuando se presione el botón
-    if st.button("Cargar archivo"):
-        df = cargar_archivo()  # Llamar a la función y asignar su salida a df
-        if df is not None:
-            st.dataframe(df)  # Mostrar el DataFrame cargado
-            # Realizar otras operaciones con df aquí
+    # Llamar a la función para cargar el archivo
+    cargar_archivo()
+
 
 
 
