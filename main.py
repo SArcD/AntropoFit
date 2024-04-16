@@ -1117,7 +1117,7 @@ elif pestañas == "Calculadora":
                import matplotlib.pyplot as plt
                from mpl_toolkits.mplot3d import Axes3D
 
-
+               data=df
                X = data[['PPantorrilla (cm)', 'FA']]
                y = data['Músculo (kg)']
 
