@@ -204,12 +204,12 @@ if pestañas == "Modelos con una variable":
        # Coeficientes de ajuste para el modelo de regresión lineal       
        pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
        intercepto_musculo_lr = modelo_musculo_lr.intercept_
-       st.write(f'**Ajuste Lineal: Pendiente = {pendiente_musculo_lr}, Intercepto = {intercepto_musculo_lr}')
+       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}**, Intercepto =** {intercepto_musculo_lr}')
 
        # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'R^2 Ajuste Lineal: {r2_musculo_lr}')       
-       st.write(f'R^2 Árbol de Decisión: {r2_musculo_dt}')
-       st.write(f'R^2 Random Forest: {r2_musculo_rf}')
+       st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
+       st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
+       st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
@@ -285,6 +285,8 @@ if pestañas == "Modelos con una variable":
        ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
        ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='orange', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+       for label in ax.get_xticklabels() + ax.get_yticklabels():
+           label.set_fontsize(8)
        ax.set_xlabel('PBrazo (cm)')
        ax.set_ylabel('Grasa Corporal (%)')
        ax.set_title('Predicciones de Grasa Corporal (%)')
