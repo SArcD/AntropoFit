@@ -1157,7 +1157,7 @@ elif pestañas == "Calculadora":
                plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_dt:.2f})')
 
                # Mostrar el gráfico en Streamlit
-               st.pyplot(fig)           )
+               st.pyplot(fig)           
 
 
 
