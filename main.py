@@ -1078,6 +1078,7 @@ elif pestañas == "Predicción de Sarcopenia":
 elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
+    import pandas as pd
 
     # Función para cargar un archivo
     def cargar_archivo():
@@ -1090,14 +1091,20 @@ elif pestañas == "Calculadora":
                 else:
                     # Leer el archivo Excel en un DataFrame de pandas
                     df = pd.read_excel(uploaded_file)
-                st.sidebar.write("¡Archivo cargado correctamente!")
-                st.sidebar.write(df)  # Mostrar el DataFrame cargado
+                st.write("¡Archivo cargado correctamente!")
                 return df  # Devolver el DataFrame cargado
             except Exception as e:
-                st.sidebar.error(f"Error al cargar el archivo: {e}")
-
+                st.error(f"Error al cargar el archivo: {e}")
+    
     # Llamar a la función para cargar el archivo
-    cargar_archivo()
+    df = cargar_archivo()
+
+    # Mostrar el DataFrame en el área principal de la aplicación
+    if df is not None:
+        st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
+
+
+
 
 
 
