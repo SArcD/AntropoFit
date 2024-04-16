@@ -1233,33 +1233,33 @@ elif pestañas == "Calculadora":
                df_2
 
                def clasificar_filas(df):
-               clasificaciones = []
-               for _, fila in df.iterrows():
-                   if fila['FA'] <= 23.90:
-                       if fila['Músculo (kg)'] <= 62.81:
-                           if fila['Grasa Corporal (%)'] <= 43.65:
-                               if fila['Velocidad de marcha'] <= 0.55:
-                                   clasificacion = 3.0
-                               else:
-                                   if fila['Velocidad de marcha'] <= 0.75:
-                                       clasificacion = 1.0
+                   clasificaciones = []
+                   for _, fila in df.iterrows():
+                       if fila['FA'] <= 23.90:
+                           if fila['Músculo (kg)'] <= 62.81:
+                               if fila['Grasa Corporal (%)'] <= 43.65:
+                                   if fila['Velocidad de marcha'] <= 0.55:
+                                       clasificacion = 3.0
                                    else:
-                                       clasificacion = 1.0
-                           else:
-                               clasificacion = 3.0
-                       else:
-                           clasificacion = 0.0
-                   else:
-                       if fila['FA'] <= 32.60:
-                           if fila['Músculo (kg)'] <= 61.80:
-                               clasificacion = 2.0
+                                       if fila['Velocidad de marcha'] <= 0.75:
+                                           clasificacion = 1.0
+                                       else:
+                                           clasificacion = 1.0
+                               else:
+                                   clasificacion = 3.0
                            else:
                                clasificacion = 0.0
                        else:
-                           clasificacion = 2.0
-                   clasificaciones.append(clasificacion)
-               df["Clasificación"] = clasificaciones
-               return df
+                           if fila['FA'] <= 32.60:
+                               if fila['Músculo (kg)'] <= 61.80:
+                                   clasificacion = 2.0
+                               else:
+                                   clasificacion = 0.0
+                           else:
+                               clasificacion = 2.0
+                       clasificaciones.append(clasificacion)
+                   df["Clasificación"] = clasificaciones
+                   return df
 
 
                clasificado_df = clasificar_filas(df.copy())
