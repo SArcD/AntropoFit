@@ -221,10 +221,10 @@ if pestañas == "Modelos con una variable":
        modelo_musculo_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado
-       fig = plt.figure(figsize=(60, 30))
+       fig = plt.figure(figsize=(40, 20))
        plt.rc('font', size=15)  # Ajusta el tamaño de fuente aquí
        plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns)
-       plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
+       plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
 
 
        st.pyplot(fig)
