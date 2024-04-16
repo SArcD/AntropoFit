@@ -1117,6 +1117,18 @@ elif pestañas == "Calculadora":
                import matplotlib.pyplot as plt
                from mpl_toolkits.mplot3d import Axes3D
 
+               st.dataframe(df)
+               df=df.dropna()
+               df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
+               df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
+               df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
+               df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+                      'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
+                      'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+                      'Grasa Corporal (%)', 'Centro',
+                      'FA','Velocidad de marcha']]
+
+            
                data=df
                X = data[['PPantorrilla (cm)', 'FA']]
                y = data['Músculo (kg)']
