@@ -43,6 +43,46 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+import streamlit as st
+import git
+
+# Función para leer y actualizar el contador de visitas
+def update_visit_count():
+    # Clona el repositorio de GitHub
+    repo = git.Repo.clone_from("https://github.com/SArcD/AntropoFit.git", "repo_temp")
+
+    # Intenta leer el contador de visitas desde el archivo
+    try:
+        with open("repo_temp/visit_count.txt", "r") as f:
+            visit_count = int(f.read())
+    except FileNotFoundError:
+        # Si el archivo no existe, inicializa el contador de visitas en 0
+        visit_count = 0
+    
+    # Incrementa el contador de visitas
+    visit_count += 1
+
+    # Escribe el nuevo contador de visitas en el archivo
+    with open("repo_temp/visit_count.txt", "w") as f:
+        f.write(str(visit_count))
+
+    # Realiza un commit y un push de los cambios en el archivo al repositorio de GitHub
+    repo.index.add(["visit_count.txt"])
+    repo.index.commit("Actualizar contador de visitas")
+    origin = repo.remote(name='origin')
+    origin.push()
+
+    return visit_count
+
+# Obtén y actualiza el contador de visitas
+visit_count = update_visit_count()
+
+# Muestra el contador de visitas en la aplicación
+st.write(f"¡Bienvenido! Has visitado esta página {visit_count} veces.")
+
+
+
 # Crear una barra lateral para las pestañas
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 if pestañas == "Presentación":
