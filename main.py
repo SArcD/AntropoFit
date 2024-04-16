@@ -779,8 +779,8 @@ elif pestañas == "Modelos con 2 variables":
 
 # Contenido de la pestaña 3
 elif pestañas == "Predicción de Sarcopenia":
-       st.subheader("Contenido de la Pestaña 3")       
-       st.write("Aquí puedes agregar contenido para la tercera pestaña.")
+       st.title("Estimación de sarcopenia")       
+       st.write("Se usan los resultados de los modelos aproximados y el algoritmo de clustering jerárquico para estimar sarcopenia")
 
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
