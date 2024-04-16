@@ -44,34 +44,39 @@ st.markdown(
 )
 
 
+
 import streamlit as st
-import pickle
+from datetime import datetime, timedelta
+import base64
 
-#************************************* Función para cargar o crear el contador de visitas
+# Función para obtener el valor de la cookie del navegador
+def get_cookie_value(key):
+    cookie = st.cookies.get(key)
+    if cookie:
+        try:
+            value = base64.b64decode(cookie).decode()
+            return int(value)
+        except:
+            pass
+    return 0
 
-# Función para cargar el contador de visitas
-def load_counter():
-    try:
-        with open("visit_counter.pkl", "rb") as f:
-            counter = pickle.load(f)
-        return counter
-    except (FileNotFoundError, EOFError, pickle.UnpicklingError):
-        return 0  # Si el archivo no existe o está vacío, inicializa el contador en 0.
-
-# Función para guardar el contador de visitas
-def save_counter(counter):
-    with open("visit_counter.pkl", "wb") as f:
-        pickle.dump(counter, f)
+# Función para guardar el valor de la cookie del navegador
+def set_cookie_value(key, value):
+    encoded_value = base64.b64encode(str(value).encode()).decode()
+    expiration = datetime.now() + timedelta(days=30)  # Expira en 30 días
+    st.cookies[key] = encoded_value, expiration
 
 # Obtener el contador actual de visitas
-counter = load_counter()
+counter = get_cookie_value("visit_counter")
 
-# Incrementar el contador y guardar los cambios
+# Incrementar el contador y guardar los cambios en la cookie
 counter += 1
-save_counter(counter)
+set_cookie_value("visit_counter", counter)
 
 # Mostrar el contador en la aplicación de Streamlit
-st.markdown(f"**Esta página ha sido visitada {counter} veces.**")
+st.write(f"Esta página ha sido visitada {counter} veces.")
+
+
 
 
 # Crear una barra lateral para las pestañas
