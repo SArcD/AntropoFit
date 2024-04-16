@@ -18,13 +18,42 @@ import streamlit as st
 # Crear una barra lateral para las pestañas
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Equipo de trabajo"))
 if pestañas == "Presentación":
-       st.subheader("Sobre la calculadora")
+       st.title("Sobre la calculadora")
        st.write(
               """
        swsswxwqxwxwxw
        
        """
                )
+
+       #st.title("Acerca de Sarc-open-IA")
+
+       st.subheader("Objetivo")
+       st.markdown("""
+       El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento y análisis de datos antropométricos de adultos mayores para la determinación de dependencia funcional y sarcopenia. Es el resultado de una estancia de investigación posdoctoral, resultado de la colaboración entre el **Consejo Nacional de Humanidades Ciencia y Tecnología (CONAHCYT) y la Universidad de Colima (UCOL)** y desarrollada entre **octubre de 2022 y septiembre 2023**, en la que se utilizó una base de datos antropométricos de adultos mayores para crear modelos predictivos de dependencia funcional y sarcopenia. Estos modelos representan la primera fase de una estrategia diseñada para facilitar la identificación temprana de síntomas de condiciones debilitantes en adultos mayores, utilizando técnicas de inteligencia artificial y aprendizaje automático.
+       """
+           )
+
+       st.subheader("Ventajas y características")
+
+       st.markdown("""
+
+       - **Objetivo de Facilitar su Uso:** Queríamos que nuestra herramienta fuera fácil de usar para el personal médico, incluso si no estaban familiarizados con la inteligencia artificial o la programación. Para lograrlo, elegimos el lenguaje de programación Python y las plataformas Streamlit y GitHub. Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube.
+
+       - **Interfaz Amigable:** El resultado es una interfaz gráfica que permite a los médicos ingresar los datos antropométricos de los pacientes y ver gráficas útiles para el análisis estadístico. También ofrece un diagnóstico en tiempo real de la sarcopenia, y todo esto se hace utilizando cajas de texto y deslizadores para ingresar y manipular los datos.
+
+       - **Accesibilidad Total:** El personal médico puede descargar de forma segura las gráficas y los archivos generados por la aplicación. Además, pueden acceder a ella desde cualquier dispositivo con conexión a internet, ya sea un teléfono celular, una computadora, tablet o laptop.
+       """)
+
+       st.subheader("Método")
+       st.markdown("""
+       A partir de los datos registrados en el año 2021 en una muestra de adultos mayores que residen en la Zona Metropolitana, Colima, Villa de Álvarez, México, se procedió al desarrollo de modelos predictivos mediante el algoritmo Random Forest. Mediante la aplicación de técnicas de reducción de dimensionalidad, análisis de componentes principales, clustering jerárquico y teoría de conjuntos rugosos, los modelos presentados aquí generan una lista de condiciones que, en caso de cumplirse, indicarían un posible diagnóstico de sarcopenia. Estas condiciones de diagnóstico fueron propuestas con el objetivo de minimizar la cantidad de parámetros antropométricos y establecer puntos de corte que puedan ser validados por personal médico capacitado. Este enfoque se asemeja a lo que se conoce en inteligencia artificial como un sistema experto, ya que los modelos resultantes requieren validación por parte de especialistas.
+       """
+       )
+
+
+
+
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.subheader("Contenido de la Pestaña 1")
