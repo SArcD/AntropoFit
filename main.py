@@ -1167,7 +1167,7 @@ elif pestañas == "Calculadora":
                            if ppantorrilla <= 36.75:
                                return 54.20
                            else:
-                                if fa <= 36.27:
+                               if fa <= 36.27:
                                    return 61.10
                                else:
                                    return 60.00
