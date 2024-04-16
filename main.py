@@ -185,11 +185,12 @@ if pestañas == "Modelos con una variable":
 
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
+       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
        fig, ax=plt.subplots()
        ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")       
        ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
        ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
-       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Regresión lineal (R^2={r2_musculo_rf:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Random forest (R^2={r2_musculo_rf:.2f})')
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
