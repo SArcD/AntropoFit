@@ -46,15 +46,14 @@ st.markdown(
 
 
 import streamlit as st
-from datetime import datetime, timedelta
 import base64
 
 # Función para obtener el valor de la cookie del navegador
 def get_cookie_value(key):
-    cookie = st.cookies.get(key)
-    if cookie:
+    session_state = st.report_thread.get_report_ctx().session
+    if key in session_state:
         try:
-            value = base64.b64decode(cookie).decode()
+            value = base64.b64decode(session_state[key]).decode()
             return int(value)
         except:
             pass
@@ -62,9 +61,8 @@ def get_cookie_value(key):
 
 # Función para guardar el valor de la cookie del navegador
 def set_cookie_value(key, value):
-    encoded_value = base64.b64encode(str(value).encode()).decode()
-    expiration = datetime.now() + timedelta(days=30)  # Expira en 30 días
-    st.cookies[key] = encoded_value, expiration
+    session_state = st.report_thread.get_report_ctx().session
+    session_state[key] = base64.b64encode(str(value).encode()).decode()
 
 # Obtener el contador actual de visitas
 counter = get_cookie_value("visit_counter")
@@ -75,7 +73,6 @@ set_cookie_value("visit_counter", counter)
 
 # Mostrar el contador en la aplicación de Streamlit
 st.write(f"Esta página ha sido visitada {counter} veces.")
-
 
 
 
