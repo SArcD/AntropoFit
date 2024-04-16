@@ -192,7 +192,7 @@ if pestañas == "Modelos con una variable":
        ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Regresión lineal (R^2={r2_musculo_rf:.2f})')
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
-           label.set_fontsize(12)
+           label.set_fontsize(10)
 
        ax.set_xlabel('Pantorrilla (cm)')
        ax.set_ylabel('Masa muscular (Kg)')
