@@ -187,9 +187,13 @@ if pestañas == "Modelos con una variable":
        st.write("Gráfico de predicciones:")
        fig, ax=plt.subplots()
        ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")       
-       ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})', fontsize=10)
-       ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})', fontsize=10)
-       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Regresión lineal (R^2={r2_musculo_rf:.2f})', fontsize=10)
+       ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Regresión lineal (R^2={r2_musculo_rf:.2f})')
+       # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
+       for label in ax.get_xticklabels() + ax.get_yticklabels():
+           label.set_fontsize(12)
+
        ax.set_xlabel('Pantorrilla (cm)')
        ax.set_ylabel('Masa muscular (Kg)')
        ax.set_title('Predicciones de Masa muscular (Kg)')
