@@ -1076,7 +1076,7 @@ elif pestañas == "Predicción de Sarcopenia":
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
 elif pestañas == "Calculadora":
-st.title("Calculadora")
+    st.title("Calculadora")
     import streamlit as st
     import pandas as pd
 
