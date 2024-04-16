@@ -1076,7 +1076,7 @@ elif pestañas == "Predicción de Sarcopenia":
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
 elif pestañas == "Calculadora":
-    st.title("Calculadora")
+st.title("Calculadora")
     import streamlit as st
     import pandas as pd
 
@@ -1096,6 +1096,7 @@ elif pestañas == "Calculadora":
                 return df  # Devolver el DataFrame cargado
             except Exception as e:
                 st.error(f"Error al cargar el archivo: {e}")
+        return None
 
     # Llamar a la función para cargar el archivo cuando se presione el botón
     if st.button("Cargar archivo"):
@@ -1103,6 +1104,7 @@ elif pestañas == "Calculadora":
         if df is not None:
             st.dataframe(df)  # Mostrar el DataFrame cargado
             # Realizar otras operaciones con df aquí
+
 
 
 else:
