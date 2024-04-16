@@ -220,9 +220,9 @@ if pestañas == "Modelos con una variable":
        modelo_musculo_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado con un tamaño de letra más grande
-       figur = plt.figure(figsize=(35, 10), dpi=200)
+       figur = plt.figure(figsize=(35, 10), dpi=300)
        plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
-       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=15)  # Ajusta el tamaño de la letra aquí
+       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=14)  # Ajusta el tamaño de la letra aquí
        plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
 
        # Mostrar la figura en Streamlit
