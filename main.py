@@ -227,6 +227,10 @@ if pestañas == "Modelos con una variable":
        plt.title("Árbol de Decisión Simplificado para Musculo (kg) vs. PPantorrilla (cm)", fontsize=24)  # Ajusta el tamaño de fuente del título aquí
 
        # Mostrar la figura en Streamlit
+       # Mostrar la imagen en Streamlit
+       # Guardar el gráfico como imagen
+       fig.savefig("arbol_decision.png")
+       st.image("arbol_decision.png", width=800)  # Cambia el tamaño de la imagen según tus necesidades
        st.pyplot(fig)
 
        ####################
