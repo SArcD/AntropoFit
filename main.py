@@ -1305,7 +1305,7 @@ elif pestañas == "Calculadora":
                   # Crear un arreglo de subplots
                   fig, axs = plt.subplots(nrows=len(columnas_seleccionadas), ncols=1, figsize=(10, 6 * len(columnas_seleccionadas)))
                   # Aplanar los ejes
-                  axs = axs.flatten()
+                  axs = np.ravel(axs)
     
                   # Iterar sobre las columnas seleccionadas
                   for i, columna in enumerate(columnas_seleccionadas):
