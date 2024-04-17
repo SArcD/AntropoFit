@@ -1075,6 +1075,7 @@ elif pestañas == "Predicción de Sarcopenia":
        for column in numeric_columns:
            fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
            st.plotly_chart(fig)
+           
 elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
@@ -1286,25 +1287,51 @@ elif pestañas == "Calculadora":
                st.pyplot(fig)
 
                import streamlit as st
-               import plotly.express as px
-               import plotly.graph_objects as go
-               from plotly.subplots import make_subplots
+               import pandas as pd
+               import matplotlib.pyplot as plt
+               import seaborn as sns
 
                # Obtener las columnas numéricas
-               numeric_columns = clasificado_df.select_dtypes(include='number').columns
+               columnas_numericas = clasificado_df.select_dtypes(include=['int', 'float']).columns.tolist()
 
-               # Calcular el número de filas y columnas del panel
-               num_rows = len(numeric_columns)
+               # Interfaz de usuario
+               st.title('Visualización de Datos por Clasificación')
 
-               # Filtrar el DataFrame para cada clasificación y crear gráficos de caja
-               for clasificacion in clasificado_df['Clasificación'].unique():
-                   df_filtrado = clasificado_df[clasificado_df['Clasificación'] == clasificacion]
-                   fig = make_subplots(rows=1, cols=len(numeric_columns), shared_yaxes=True, subplot_titles=numeric_columns)
-                   for i, column in enumerate(numeric_columns):
-                       box = px.box(df_filtrado, x='Clasificación', y=column, title=column)
-                       fig.add_trace(box['data'][0], row=1, col=i + 1)
-                   fig.update_layout(title=f'Clasificación {clasificacion}')
-                   st.plotly_chart(fig)
+               # Lista de selección de columnas numéricas
+               columnas_seleccionadas = st.multiselect('Selecciona las columnas numéricas:', columnas_numericas)
+
+               # Verificar si se han seleccionado columnas
+               if len(columnas_seleccionadas) > 0:
+                  # Crear un arreglo de subplots
+                  fig, axs = plt.subplots(nrows=len(columnas_seleccionadas), ncols=1, figsize=(10, 6 * len(columnas_seleccionadas)))
+    
+                  # Iterar sobre las columnas seleccionadas
+                  for i, columna in enumerate(columnas_seleccionadas):
+                      # Obtener los valores únicos de la columna 'Clasificación'
+                      valores_clasificacion = clasificado_df['Clasificación'].unique()
+        
+                      # Iterar sobre los valores de clasificación
+                      for valor in valores_clasificacion:
+                          # Filtrar el DataFrame por el valor de clasificación
+                          df_filtrado = clasificado_df[clasificado_df['Clasificación'] == valor]
+            
+                          # Crear un gráfico de caja para la columna actual y el valor de clasificación actual
+                          sns.boxplot(x=columna, data=df_filtrado, ax=axs[i], label=f'Clasificación {valor}')
+        
+                          # Añadir título y etiquetas al subplot
+                      axs[i].set_title(f'Boxplot de {columna}')
+                      axs[i].set_xlabel(columna)
+                      axs[i].set_ylabel('Valor')
+                      axs[i].legend()
+    
+                  # Ajustar el diseño de los subplots    
+                  plt.tight_layout()
+    
+                  # Mostrar los subplots en Streamlit
+                  st.pyplot(fig)
+               else:
+                  st.write('Por favor, selecciona al menos una columna numérica.')
+
 
 
 
