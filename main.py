@@ -1319,7 +1319,7 @@ elif pestañas == "Calculadora":
                           #sns.boxplot(x=columna, data=df_filtrado, ax=axs[i], label=f'Clasificación {valor}')
                           #sns.boxplot(x=columna, data=df_filtrado, ax=axs[i])
                           #sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i])
-                          sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=ax)
+                          sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs)
 
                           # Añadir título y etiquetas al subplot
                       axs[i].set_title(f'Boxplot de {columna}')
