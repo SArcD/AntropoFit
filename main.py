@@ -1266,6 +1266,29 @@ elif pestañas == "Calculadora":
 
                st.dataframe(clasificado_df)
 
+            
+              import streamlit as st
+              import matplotlib.pyplot as plt
+
+              # Contar la cantidad de pacientes en cada clasificación
+              clasificacion_counts = clasificado_df['Clasificación'].value_counts()
+
+              # Obtener las etiquetas de las clasificaciones y sus valores
+              etiquetas = clasificacion_counts.index
+              valores = clasificacion_counts.values
+
+              # Crear un gráfico de pastel
+              fig = plt.figure(figsize=(8, 8))
+              plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
+              plt.title('Distribución de Clasificaciones')
+
+              # Mostrar el gráfico en Streamlit
+              st.pyplot(fig)
+
+
+
+            
+
                import streamlit as st
                import pandas as pd
 
