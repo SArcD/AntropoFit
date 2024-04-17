@@ -1335,17 +1335,6 @@ elif pestañas == "Calculadora":
                   st.write('Por favor, selecciona al menos una columna numérica.')
 
 
-
-            
-
-
-
-
-
-
-
-            
-
                import streamlit as st
                import pandas as pd
 
@@ -1361,6 +1350,18 @@ elif pestañas == "Calculadora":
                # Mostrar el DataFrame filtrado
                st.write("DataFrame filtrado:")
                st.write(df_filtrado)
+
+               # Botón de descarga para el DataFrame filtrado como archivo Excel
+               csv_file = df_filtrado.to_csv(index=False)
+               b64 = base64.b64encode(csv_file.encode()).decode()  # Codificar el archivo CSV como base64
+               href = f'<a href="data:file/csv;base64,{b64}" download="df_filtrado.csv">Descargar CSV</a>'
+               st.markdown(href, unsafe_allow_html=True)
+
+              # Botón de descarga para el DataFrame filtrado como archivo Excel
+              excel_file = df_filtrado.to_excel(index=False)
+              b64 = base64.b64encode(excel_file).decode()  # Codificar el archivo Excel como base64
+              href = f'<a href="data:application/octet-stream;base64,{b64}" download="df_filtrado.xlsx">Descargar Excel</a>'
+              st.markdown(href, unsafe_allow_html=True)
 
        
 
