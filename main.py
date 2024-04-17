@@ -1265,6 +1265,23 @@ elif pestañas == "Calculadora":
                clasificado_df = clasificar_filas(df.copy())
 
                st.dataframe(clasificado_df)
+
+               import streamlit as st
+               import pandas as pd
+
+               # Obtener los valores únicos de la columna "Clasificación"
+               valores_clasificacion = df["Clasificación"].unique()
+
+               # Crear una caja de selección para elegir los valores de clasificación
+               valor_seleccionado = st.multiselect("Seleccionar valor de clasificación:", valores_clasificacion)
+
+               # Filtrar el DataFrame según el valor seleccionado
+               df_filtrado = df[df["Clasificación"].isin(valor_seleccionado)]
+
+               # Mostrar el DataFrame filtrado
+               st.write("DataFrame filtrado:")
+               st.write(df_filtrado)
+
        
 
 
