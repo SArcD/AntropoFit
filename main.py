@@ -1318,7 +1318,8 @@ elif pestañas == "Calculadora":
                           # Crear un gráfico de caja para la columna actual y el valor de clasificación actual
                           #sns.boxplot(x=columna, data=df_filtrado, ax=axs[i], label=f'Clasificación {valor}')
                           #sns.boxplot(x=columna, data=df_filtrado, ax=axs[i])
-                          sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i])
+                          #sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i])
+                          sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=ax)
 
                           # Añadir título y etiquetas al subplot
                       axs[i].set_title(f'Boxplot de {columna}')
