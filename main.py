@@ -1304,6 +1304,8 @@ elif pestañas == "Calculadora":
                if len(columnas_seleccionadas) > 0:
                   # Crear un arreglo de subplots
                   fig, axs = plt.subplots(nrows=len(columnas_seleccionadas), ncols=1, figsize=(10, 6 * len(columnas_seleccionadas)))
+                  # Aplanar los ejes
+                  axs = axs.flatten()
     
                   # Iterar sobre las columnas seleccionadas
                   for i, columna in enumerate(columnas_seleccionadas):
@@ -1321,11 +1323,7 @@ elif pestañas == "Calculadora":
                           #sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i])
                           sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs)
 
-                          # Añadir título y etiquetas al subplot
-                      #axs[i].set_title(f'Boxplot de {columna}')
-                      #axs[i].set_xlabel('Clasificación')
-                      #axs[i].set_ylabel(columna)
-                      #axs[i].legend()
+                      # Añadir título y etiquetas al subplot
                       axs.set_title(f'Boxplot de {columna}')
                       axs.set_xlabel('Clasificación')
                       axs.set_ylabel(columna)
