@@ -1326,9 +1326,9 @@ elif pestañas == "Calculadora":
                       #axs[i].set_xlabel('Clasificación')
                       #axs[i].set_ylabel(columna)
                       #axs[i].legend()
-                      ax.set_title(f'Boxplot de {columna}')
-                      ax.set_xlabel('Clasificación')
-                      ax.set_ylabel(columna)
+                      axs.set_title(f'Boxplot de {columna}')
+                      axs.set_xlabel('Clasificación')
+                      axs.set_ylabel(columna)
     
                   # Ajustar el diseño de los subplots    
                   plt.tight_layout()
