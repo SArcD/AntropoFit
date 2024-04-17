@@ -1358,10 +1358,10 @@ elif pestañas == "Calculadora":
                st.markdown(href, unsafe_allow_html=True)
 
                # Botón de descarga para el DataFrame filtrado como archivo Excel
-               excel_file = df_filtrado.to_excel(index=False)
-               b64 = base64.b64encode(excel_file).decode()  # Codificar el archivo Excel como base64
-               href = f'<a href="data:application/octet-stream;base64,{b64}" download="df_filtrado.xlsx">Descargar Excel</a>'
-               st.markdown(href, unsafe_allow_html=True)
+               # excel_file = df_filtrado.to_excel(index=False)
+               #b64 = base64.b64encode(excel_file).decode()  # Codificar el archivo Excel como base64
+               #href = f'<a href="data:application/octet-stream;base64,{b64}" download="df_filtrado.xlsx">Descargar Excel</a>'
+               #st.markdown(href, unsafe_allow_html=True)
 
        
 
