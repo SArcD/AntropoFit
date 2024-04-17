@@ -1322,10 +1322,13 @@ elif pestañas == "Calculadora":
                           sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs)
 
                           # Añadir título y etiquetas al subplot
-                      axs[i].set_title(f'Boxplot de {columna}')
-                      axs[i].set_xlabel('Clasificación')
-                      axs[i].set_ylabel(columna)
-                      axs[i].legend()
+                      #axs[i].set_title(f'Boxplot de {columna}')
+                      #axs[i].set_xlabel('Clasificación')
+                      #axs[i].set_ylabel(columna)
+                      #axs[i].legend()
+                      ax.set_title(f'Boxplot de {columna}')
+                      ax.set_xlabel('Clasificación')
+                      ax.set_ylabel(columna)
     
                   # Ajustar el diseño de los subplots    
                   plt.tight_layout()
