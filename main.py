@@ -1285,6 +1285,29 @@ elif pestañas == "Calculadora":
                # Mostrar el gráfico en Streamlit
                st.pyplot(fig)
 
+               import streamlit as st
+               import plotly.express as px
+               import plotly.graph_objects as go
+               from plotly.subplots import make_subplots
+
+               # Obtener las columnas numéricas
+               numeric_columns = clasificado_df.select_dtypes(include='number').columns
+
+               # Calcular el número de filas y columnas del panel
+               num_rows = len(numeric_columns)
+
+               # Filtrar el DataFrame para cada clasificación y crear gráficos de caja
+               for clasificacion in clasificado_df['Clasificación'].unique():
+                   df_filtrado = clasificado_df[clasificado_df['Clasificación'] == clasificacion]
+                   fig = make_subplots(rows=1, cols=len(numeric_columns), shared_yaxes=True, subplot_titles=numeric_columns)
+                   for i, column in enumerate(numeric_columns):
+                       box = px.box(df_filtrado, x='Clasificación', y=column, title=column)
+                       fig.add_trace(box['data'][0], row=1, col=i + 1)
+                   fig.update_layout(title=f'Clasificación {clasificacion}')
+                   st.plotly_chart(fig)
+
+
+
 
 
             
