@@ -1119,7 +1119,7 @@ elif pestañas == "Calculadora":
                from sklearn.tree import DecisionTreeRegressor, export_text
 
 
-               st.dataframe(df)
+               #st.dataframe(df)
                df=df.dropna()
                df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
                df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
@@ -1228,9 +1228,9 @@ elif pestañas == "Calculadora":
                # Guardar el DataFrame actualizado en un archivo Excel
                nombre_archivo_excel = "df_con_predicciones.xlsx"
                df.to_excel(nombre_archivo_excel, index=False)
-               st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
+               #st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
                df_2=df
-               df_2
+               
 
                def clasificar_filas(df):
                    clasificaciones = []
