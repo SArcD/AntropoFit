@@ -1079,8 +1079,7 @@ elif pestañas == "Predicción de Sarcopenia":
 elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
-    import pandas as pd
-
+    import pandas as pd))
     # Función para cargar un archivo
     def cargar_archivo():
         uploaded_file = st.sidebar.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
