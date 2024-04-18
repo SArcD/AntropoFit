@@ -1105,7 +1105,7 @@ elif pestañas == "Calculadora":
 
     # Llamar a la función para cargar el archivo
     df = cargar_archivo()
-    st.write("**Esta es su tabla**")
+    st.write("**Esta es su tabla:**")
     # Mostrar el DataFrame en el área principal de la aplicación
     if df is not None:
         st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
@@ -1113,9 +1113,13 @@ elif pestañas == "Calculadora":
         # Crear una barra lateral para las pestañas
         pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Calcular con una variable", "Calcular con dos variables"))
         if pestañas == "Calcular con una variable":
-               st.title("Sobre la calculadora")
                st.markdown("""
-               Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
+               La calculadora utilizará dos algoritmos de **"arboles de ajuste"** que calcularán aproximaciones para la masa 
+               muscular total del paciente y el porcentaje de grasa corporal a partir de las variables de interés (Perímetro de 
+               pantorrilla y fuerza de agarre para el cálculo de la masa muscular y pliegue cutáneo de brazo y perímetro de brazo 
+               para el porcentaje de grasa corporal. En la tabla que puede obervar abajo econtrará dos coulumnas en donde se muestran 
+               estas aproximaciones: "Musculo_pred (Kg)" y "Grasa Corporal_pred (%)"). Además, encontrará una tercer columna (llamada 
+               **"Clasificación"** en la que aquellos pacientes con el mayor grado de simulitud serán agrupados en tres conjuntos).
                """)
                import streamlit as st       
                import pandas as pd
