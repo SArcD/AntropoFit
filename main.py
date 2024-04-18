@@ -1290,8 +1290,8 @@ elif pestañas == "Calculadora":
 
                # Crear un gráfico de pastel
                fig = plt.figure(figsize=(4, 4))
-               plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
-               plt.title('Distribución de Clasificaciones')
+               plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 12})
+               plt.title('Distribución de Clasificaciones', fontsize=12)
 
                # Mostrar el gráfico en Streamlit
                st.pyplot(fig)
