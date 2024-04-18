@@ -1446,7 +1446,7 @@ elif pestañas == "Calculadora":
 
 
                 if st.form_submit_button('Agregar Paciente'):
-                    st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': CMB, 'PPantorriilla (cm)': CMP, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
+                    st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': PBrazo, 'PPantorriilla (cm)': PPantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
                     st.success('Datos del paciente agregados con éxito!')
 
 
