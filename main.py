@@ -1435,7 +1435,7 @@ elif pestañas == "Calculadora":
             with st.form('Agregar Paciente'):
                 Folio = st.text_input('Nombre del Paciente')
                 Edad (años) = st.number_input('Edad (años) ', min_value=0, max_value=150)
-                Peso (kg) = st.number_input('Peso (kg)", min_value=0.0)
+                Peso (kg) = st.number_input("Peso (kg)", min_value=0.0)
                 Altura (cm) = st.number_input('Altura (cm)', min_value=0.0)
                 Grasa (%) = st.number_input('Grasa (%)', min_value=0.0)
                 Musculo (kg) = st.number_input('Musculo (kg)', min_value=5.0)
