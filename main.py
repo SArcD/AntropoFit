@@ -1306,7 +1306,15 @@ elif pestañas == "Calculadora":
 
                # Interfaz de usuario
                st.title('Visualización de Datos por Clasificación')
-
+               st.markdown("""
+               A continuación puede comparar las caráctristicas de los pacientes que quedaron agrupados en los 
+               diferentes conjuntos. La idea detrás de esto es establecer si existen diferencias entre las características 
+               de los grupos de pacientes estudiados, con el objetivo de identificar uno o mas grupos con indicios de riesgo
+               de sarcopenia.
+               En la casilla de verificación puede seleccionar los parámetros de interés y debajo se mostrarán los diagramas 
+               de caja para los pacientes de cada grupo (una variable a la vez). 
+               """)
+               
                # Lista de selección de columnas numéricas
                columnas_seleccionadas = st.multiselect('Selecciona las columnas numéricas:', columnas_numericas)
 
