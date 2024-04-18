@@ -1434,19 +1434,19 @@ elif pestañas == "Calculadora":
                """)
             with st.form('Agregar Paciente'):
                 Folio = st.text_input('Nombre del Paciente')
-                Edad (años) = st.number_input('Edad (años) ', min_value=0, max_value=150)
-                Peso (kg) = st.number_input("Peso (kg)", min_value=0.0)
-                Altura (cm) = st.number_input('Altura (cm)', min_value=0.0)
-                Grasa (%) = st.number_input('Grasa (%)', min_value=0.0)
-                Musculo (kg) = st.number_input('Musculo (kg)', min_value=5.0)
-                PBrazo (cm) = st.number_input('PBrazo (cm)', min_value=0.0)
-                PPantorrilla (cm) = st.number_input('PPantorrilla (cm)', min_value=0.0)
-                FA (kg) = st.number_input('FA (kg)', min_value=0.0)
-                Marcha (ms-1) = st.number_input(' Marcha (ms-1)', min_value=0.0)
+                Edad = st.number_input('Edad (años) ', min_value=0, max_value=150)
+                Peso = st.number_input("Peso (kg)", min_value=0.0)
+                Altura = st.number_input('Altura (cm)', min_value=0.0)
+                Grasa = st.number_input('Grasa (%)', min_value=0.0)
+                Musculo = st.number_input('Musculo (kg)', min_value=5.0)
+                PBrazo = st.number_input('PBrazo (cm)', min_value=0.0)
+                PPantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0)
+                FA = st.number_input('FA (kg)', min_value=0.0)
+                Marcha = st.number_input(' Marcha (ms-1)', min_value=0.0)
 
 
                 if st.form_submit_button('Agregar Paciente'):
-                    st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad (años), 'Peso (kg)': Peso (kg), 'Altura (cm)': Altura (cm), 'Grasa (%)': Grasa (%), 'PBrazo (cm)': CMB, 'PPantorriilla (cm)': CMP, 'FA (kg)': FA (kg), 'Marcha (ms-1)': Marcha (ms-1), 'Agua': Agua, 'Musculo': Musculo}, ignore_index=True)
+                    st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': CMB, 'PPantorriilla (cm)': CMP, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
                     st.success('Datos del paciente agregados con éxito!')
 
 
