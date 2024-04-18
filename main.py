@@ -1385,6 +1385,35 @@ elif pestañas == "Calculadora":
                #href = f'<a href="data:application/octet-stream;base64,{b64}" download="df_filtrado.xlsx">Descargar Excel</a>'
                #st.markdown(href, unsafe_allow_html=True)
 
+               import streamlit as st
+               import pandas as pd
+               import matplotlib.pyplot as plt
+
+               # Obtener las columnas numéricas del DataFrame
+               columnas_numericas = df_filtrado.select_dtypes(include=['int', 'float']).columns.tolist()
+
+               # Interfaz de usuario
+               st.title('Histogramas de Columnas Numéricas')
+               columna_seleccionada = st.selectbox('Selecciona una columna numérica:', columnas_numericas)
+
+               # Obtener el tamaño de los bines desde un deslizador
+               tamanio_bin = st.slider('Tamaño de Bin', min_value=1, max_value=50, value=10)
+
+               # Crear una figura y un conjunto de subplots
+               fig, ax = plt.subplots()
+
+               # Dibujar el histograma con el tamaño de los bines especificado
+               ax.hist(df_filtrado[columna_seleccionada], bins=tamanio_bin)
+
+               # Agregar etiquetas y título
+               ax.set_xlabel(columna_seleccionada)
+               ax.set_ylabel('Frecuencia')
+               ax.set_title(f'Histograma de {columna_seleccionada}')
+
+               # Mostrar el histograma en Streamlit
+               st.pyplot(fig)
+
+
        
 
 
