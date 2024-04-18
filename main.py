@@ -1444,13 +1444,11 @@ elif pestañas == "Calculadora":
                 FA = st.number_input('FA (kg)', min_value=0.0)
                 Marcha = st.number_input(' Marcha (ms-1)', min_value=0.0)
 
-
                 if st.form_submit_button('Agregar Paciente'):
                     st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': PBrazo, 'PPantorriilla (cm)': PPantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
                     st.success('Datos del paciente agregados con éxito!')
 ############
-
-####
+            
             st.write("En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, escriba el número de fila a editar y cambien los valores del campo a modificar. Una vez realizados los cambios, haga clic en el botón de *Guardar cambios*.")
                 # Ingresar el número de fila a editar
             edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
@@ -1484,6 +1482,25 @@ elif pestañas == "Calculadora":
             if st.button('Mostrar Resultados'):
                 st.subheader('DataFrame Resultante')
                 st.write(st.session_state.data)
+
+            # Botón para descargar los datos en formato Excel
+            if not st.session_state.data.empty:
+                st.subheader('Descargar Datos')
+                st.write('Haga clic en el enlace a continuación para descargar los datos en formato Excel.')
+    
+                # Generar un enlace para la descarga del archivo Excel
+                output = io.BytesIO()
+                excel_writer = pd.ExcelWriter(output, engine='xlsxwriter')
+                st.session_state.data.to_excel(excel_writer, sheet_name='Datos', index=False)
+                excel_writer.save()
+    
+                # Crear el enlace de descarga
+                excel_data = output.getvalue()
+                b64 = base64.b64encode(excel_data).decode('utf-8')
+                href = f'<a href="data:application/octet-stream;base64,{b64}" download="datos_pacientes.xlsx">Descargar Excel</a>'
+                st.markdown(href, unsafe_allow_html=True)
+
+
 
 
 ############
