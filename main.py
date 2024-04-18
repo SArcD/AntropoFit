@@ -1463,7 +1463,7 @@ elif pestañas == "Calculadora":
                         st.dataframe(data_table, height=400, width=800)
 
                         Folio = st.text_input('Nombre del Paciente', value=data_table.iloc[edit_row_number]['Folio'])
-                        Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)'])
+                        Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)']))
                         Peso = st.number_input('Peso', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Peso (kg)']))
                         Altura = st.number_input('Altura', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Altura (cm)']))
                         Grasa = st.number_input('Grasa', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Grasa (%)']))
