@@ -1448,6 +1448,45 @@ elif pestañas == "Calculadora":
                 if st.form_submit_button('Agregar Paciente'):
                     st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': PBrazo, 'PPantorriilla (cm)': PPantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
                     st.success('Datos del paciente agregados con éxito!')
+############
+
+####
+                st.write("En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, escriba el número de fila a editar y cambien los valores del campo a modificar. Una vez realizados los cambios, haga clic en el botón de *Guardar cambios*.")
+                # Ingresar el número de fila a editar
+                edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
+
+                # Crear un formulario para editar datos de un paciente
+                if edit_row_number is not None:
+                    with st.form('Editar Paciente'):
+                        st.subheader('Editar Fila {}'.format(edit_row_number))
+                        data_table = st.session_state.data.copy()
+                        st.dataframe(data_table, height=400, width=800)
+
+                        Folio = st.text_input('Nombre del Paciente', value=data_table.iloc[edit_row_number]['Folio'])
+                        Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)'])
+                        Peso = st.number_input('Peso', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Peso (kg)']))
+                        Altura = st.number_input('Altura', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Altura (cm)']))
+                        Grasa = st.number_input('Grasa', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Grasa (%)']))
+                        Musculo = st.number_input('Musculo', min_value=5.0, value=float(data_table.loc[edit_row_number, 'Musculo (kg)']))
+                        PBrazo = st.number_input('CMB', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PBrazo (cm)']))
+                        PPantorrilla = st.number_input('CMP', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
+                        FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
+                        Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
+
+        
+                        if st.form_submit_button('Guardar Cambios'):
+                        # Actualiza la fila en data_table
+                            data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PPantorrilla, FA, Marcha]
+                            st.session_state.data = data_table
+                            st.success('Cambios guardados con éxito!')
+
+                # Mostrar los datos ingresados en el DataFrame
+                if st.button('Mostrar Resultados'):
+                    st.subheader('DataFrame Resultante')
+                    st.write(st.session_state.data)
+
+
+############
 
 
 
