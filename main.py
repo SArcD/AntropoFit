@@ -1427,6 +1427,39 @@ elif pestañas == "Calculadora":
                """
                    )
 
+#    - **Perímetro de brazo**, medido en centímetros (el nombre de la columna debe ser "**PBrazo (cm)**").
+#    - **Perímetro de pantorrilla**, medido en centímetros (el nombre de columna debe ser "**PPantorrilla (cm)**").
+#    - **Fuerza de agarre**, medida en kilogramos (el nombre debe ser "**FA**").
+#    - **Pliegue cutáneo de brazo**, medido en milímetros (el nombre de la columna debe ser "**PCB (mm)**")
+            
+               # Crear un DataFrame vacío para almacenar los datos de los pacientes
+               if 'data' not in st.session_state:
+                   st.session_state.data = pd.DataFrame(columns=["Folio","Edad (años)","Peso (kg)","Altura (cm)","Grasa (%)","Musculo (kg)","PBrazo (cm)","PPantorrilla (cm)",'FA (kg)',"Marcha (ms-1)"])
+
+               # Título
+               st.title('Ingreso manual de datos de pacientes')
+
+               # Crear un formulario para agregar datos de un paciente
+               st.markdown("""
+               En el siguiente espacio puede ingresar los datos de un paciente en observación. Cada una de las cajas permite teclear los resultados de las mediciones.
+               """)
+               with st.form('Agregar Paciente'):
+                   Folio = st.text_input('Nombre del Paciente')
+                   Edad (años) = st.number_input('Edad (años) ', min_value=0, max_value=150)
+                   Peso (kg) = st.number_input('Peso (kg)", min_value=0.0)
+                   Altura (cm) = st.number_input('Altura (cm)', min_value=0.0)
+                   Grasa (%) = st.number_input('Grasa (%)', min_value=0.0)
+                   Musculo (kg) = st.number_input('Musculo (kg)', min_value=5.0)
+                   PBrazo (cm) = st.number_input('PBrazo (cm)', min_value=0.0)
+                   PPantorrilla (cm) = st.number_input('PPantorrilla (cm)', min_value=0.0)
+                   FA (kg) = st.number_input('FA (kg)', min_value=0.0)
+                   Marcha (ms-1) = st.number_input(' Marcha (ms-1)', min_value=0.0)
+
+
+                   if st.form_submit_button('Agregar Paciente'):
+                       st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad (años), 'Peso (kg)': Peso (kg), 'Altura (cm)': Altura (cm), 'Grasa (%)': Grasa (%), 'PBrazo (cm)': CMB, 'PPantorriilla (cm)': CMP, 'FA (kg)': FA (kg), 'Marcha (ms-1)': Marcha (ms-1), 'Agua': Agua, 'Musculo': Musculo}, ignore_index=True)
+                       st.success('Datos del paciente agregados con éxito!')
+
 
 
 
