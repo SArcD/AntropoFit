@@ -1289,8 +1289,8 @@ elif pestañas == "Calculadora":
                valores = clasificacion_counts.values
 
                # Crear un gráfico de pastel
-               fig = plt.figure(figsize=(4, 4))
-               plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 12})
+               fig = plt.figure(figsize=(2, 2))
+               plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 10})
                plt.title('Distribución de Clasificaciones', fontsize=12)
 
                # Mostrar el gráfico en Streamlit
