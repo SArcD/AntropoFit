@@ -1079,7 +1079,8 @@ elif pestañas == "Predicción de Sarcopenia":
 elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
-    import pandas as pd))
+    import pandas as pd
+    st.write("A continuación pude cargar un archivo para la clasificación de pacientes (el formato puede ser .xlsx o.csv). Para que la calculadora puede crear aproximaciones la masa muscular, el porcentaje de grasa corporal y riesgo de sarcopenia, necesita que en su archivo se cuente con las variables:")
     # Función para cargar un archivo
     def cargar_archivo():
         uploaded_file = st.sidebar.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
