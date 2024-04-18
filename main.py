@@ -1364,7 +1364,11 @@ elif pestañas == "Calculadora":
 
                # Filtrar el DataFrame según el valor seleccionado
                df_filtrado = clasificado_df[clasificado_df["Clasificación"].isin(valor_seleccionado)]
-
+               st.markdown(
+               """
+               En esta sección puede descargar los datos de todos los pacientes clasificados dentro del mismo grupo (el cual puede seleccionar en la casilla de verificación que viene abajo).
+               """
+                          )
                # Mostrar el DataFrame filtrado
                st.write("DataFrame filtrado:")
                st.write(df_filtrado)
