@@ -25,6 +25,8 @@ pyrs
 plotly
 pillow
 pydotplus
+io
+
 
 
 
