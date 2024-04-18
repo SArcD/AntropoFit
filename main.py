@@ -1080,7 +1080,7 @@ elif pestañas == "Calculadora":
     st.title("Calculadora")
     import streamlit as st
     import pandas as pd
-    st.mardown("""
+    st.markdown("""
     A continuación pude cargar un archivo para la clasificación de pacientes (el formato puede ser .xlsx o.csv). Para que la calculadora puede crear aproximaciones la masa muscular, el porcentaje de grasa corporal y riesgo de sarcopenia, necesita que en su archivo se cuente con las variables:
     - **Perímetro de brazo**, medido en centímetros (el nombre de la columna debe ser "**PBrazo (cm)**").
     - **Perímetro de pantorrilla**, medido en centímetros (el nombre de columna debe ser "**PPantorrilla (cm)**").
