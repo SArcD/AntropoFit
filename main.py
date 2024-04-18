@@ -1105,7 +1105,7 @@ elif pestañas == "Calculadora":
 
     # Llamar a la función para cargar el archivo
     df = cargar_archivo()
-
+    st.write("Esta es su tabla")
     # Mostrar el DataFrame en el área principal de la aplicación
     if df is not None:
         st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
