@@ -1421,17 +1421,12 @@ elif pestañas == "Calculadora":
         
 
         else:
-               st.title("Sobre la calculadora")
+            st.title("Ingreso de datos en tiempo real")
                st.markdown("""
-               Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
+                   En esta sección pued ecargar datos indvidualmente y generar un archivo .xlsx o .csv con la información recolectada
                """
                    )
 
-#    - **Perímetro de brazo**, medido en centímetros (el nombre de la columna debe ser "**PBrazo (cm)**").
-#    - **Perímetro de pantorrilla**, medido en centímetros (el nombre de columna debe ser "**PPantorrilla (cm)**").
-#    - **Fuerza de agarre**, medida en kilogramos (el nombre debe ser "**FA**").
-#    - **Pliegue cutáneo de brazo**, medido en milímetros (el nombre de la columna debe ser "**PCB (mm)**")
-            
                # Crear un DataFrame vacío para almacenar los datos de los pacientes
                if 'data' not in st.session_state:
                    st.session_state.data = pd.DataFrame(columns=["Folio","Edad (años)","Peso (kg)","Altura (cm)","Grasa (%)","Musculo (kg)","PBrazo (cm)","PPantorrilla (cm)",'FA (kg)',"Marcha (ms-1)"])
