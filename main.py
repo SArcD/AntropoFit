@@ -77,18 +77,34 @@ st.write(f"Esta página ha sido visitada {counter} veces.")
 # Crear una barra lateral para las pestañas
 pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Calculadora",  "Equipo de trabajo"))
 if pestañas == "Presentación":
-       st.title("Sobre la calculadora")
+       st.title("Sobre AntropoFit")
        st.markdown("""
-       Esta aplicación tiene como objetivo servir a personal médico para el registro, análisis de datos y cribado primario de pacientes geríatricos con riesgo de sufrir de sarcopenia
+       Esta aplicación es resultado del proyecto de estancia posdoctoral "**Identificación 
+       de las etapas y tipos de sarcopenia mediante modelos predictivos como herramienta 
+       de apoyo en el diagnóstico a partir de parámetros antropométricos**", desarrollado 
+       por el Doctor en Ciencias (Astrofísica) Santiago Arceo Díaz y bajo la dirección de 
+       la Doctora Xóchitl Rosío Angélica Trujillo Trujillo. Esta estancia es gracias a la 
+       colaboración entre el Consejo Nacional de Humanidades Ciencias y Tecnología (CONAHCYT)
+       y el Centro Universitario de Investigaciones Biomédicas de la Universidad de Colima.
        
-       """
+       El lenguaje de programación que utiliza la aplización es Python (versión 3) y se beneficia
+       de librerías como pandas, Numpy y Sci-kit learn para el procesamiento de datos.
+       """         
                )
 
        #st.title("Acerca de Sarc-open-IA")
 
        st.subheader("Objetivo")
        st.markdown("""
-       El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento y análisis de datos antropométricos de adultos mayores para la determinación de dependencia funcional y sarcopenia. Es el resultado de una estancia de investigación posdoctoral, resultado de la colaboración entre el **Consejo Nacional de Humanidades Ciencia y Tecnología (CONAHCYT) y la Universidad de Colima (UCOL)** y desarrollada en **noviembre de 2023**, en la que se utilizó una base de datos antropométricos de adultos mayores para crear modelos predictivos de dependencia funcional y sarcopenia. Estos modelos representan la primera fase de una estrategia diseñada para facilitar la identificación temprana de síntomas de condiciones debilitantes en adultos mayores, utilizando técnicas de inteligencia artificial y aprendizaje automático.
+       El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento 
+       y análisis de datos antropométricos de adultos mayores para la determinación de dependencia 
+       funcional y sarcopenia. Es el resultado de una estancia de investigación posdoctoral, resultado 
+       de la colaboración entre el **Consejo Nacional de Humanidades Ciencia y Tecnología (CONAHCYT) 
+       y la Universidad de Colima (UCOL)** y desarrollada en **noviembre de 2023**, en la que se utilizó 
+       una base de datos antropométricos de adultos mayores para crear modelos predictivos de dependencia 
+       funcional y sarcopenia. Estos modelos representan la primera fase de una estrategia diseñada para 
+       facilitar la identificación temprana de síntomas de condiciones debilitantes en adultos mayores, 
+       utilizando técnicas de inteligencia artificial y aprendizaje automático.
        """)
 
        st.subheader("Ventajas y características")
