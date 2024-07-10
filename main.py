@@ -194,11 +194,11 @@ if pestañas == "Modelos con una variable":
        col1, col2 = st.columns(2)
        # Agregar un botón de descarga para el dataframe en la primera columna
        with col1:
-           download_button(df, 'dataframe.xlsx', 'Descargar como Excel')
+           download_button(df, 'muestra_antrompométrica_colima_2023.xlsx', 'Descargar como Excel')
            st.write('')
        # Agregar un botón de descarga para el dataframe en la segunda columna
        with col2:
-           download_button_CSV(df, 'dataframe.csv', 'Descargar como CSV')
+           download_button_CSV(df, 'muestra_antrompométrica_colima_2023.csv', 'Descargar como CSV')
            st.write('')
     
 
