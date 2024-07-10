@@ -147,30 +147,30 @@ if pestañas == "Modelos con una variable":
 
        with st.expander("**Claves de variables**"):
            st.markdown("""
-           - **Folio:** 
-           - **Peso (kg):**
-           - **Talla (cm):**
-           - **IMC:**
-           - **PCintura (cm):**
-           - **Pcadera (cm):**
-           - **PBrazo (cm):**
-           - **PPantorrilla (cm):**
-           - **PCB (mm):**
-           - **PCT (mm):**
-           - **PCSE (mm):**
-           - **Agua corporal (%):**
-           - **Músculo (kg):**
-           - **Grasa corporal (%):**
-           - **Gs Brazo derecho:**
-           - **Gs Brazo izquierdo:**
-           - **Gs pierna izquierda:**
-           - **Gs pierna derecha:**
-           - **Centro:**
-           - **Fuerza mano derecha:**
-           - **Fuerza mano izquierda:**
-           - **Velocidad de marcha:**
-           - **PA sistólica:**
-           - **PA diastólica:**
+           - **Folio:** identificador personal.
+           - **Peso (kg):** peso corporal total, medida en Kg.
+           - **Talla (cm):** altura de la persona, medida en centímetros.
+           - **IMC:** índice de masa corporal.
+           - **PCintura (cm):** perímetro de cintura, medido en centímetros.
+           - **Pcadera (cm):** perímetro de la cadera, medido en centímetros.
+           - **PBrazo (cm):** perímetro total del brazo, medido en centímetros. 
+           - **PPantorrilla (cm):** perímetro de la pantorrilla, medida en centímetros.
+           - **PCB (mm):** pliegue cutáneo de brazo, medido en milímetros.
+           - **PCT (mm):** pliegue cutáneo del triceps, medido en milímetros.
+           - **PCSE (mm):** pliegue cutáneo sub escapular, medido en milímetros.
+           - **Agua corporal (%):** porcentaje corporal de agua.
+           - **Músculo (kg):** peso del corporal.
+           - **Grasa corporal (%):** porcentaje corporal de grasa.
+           - **Gs Brazo derecho:** porcentaje de grasa subcutánea en el brazo derecho. 
+           - **Gs Brazo izquierdo:** porcentaje de grasa subcutánea en el brazo izquierdo.
+           - **Gs pierna izquierda:** porcentaje de grasa subcutánea en la pierna izquierda.
+           - **Gs pierna derecha:** porcentaje de grasa subctánea en la pierna derecha.
+           - **Centro:** porcentaje de grasa en la zona central del abdomen.
+           - **Fuerza mano derecha:** Fuerza de agarre en la mano derecha, medida en kg de presión.
+           - **Fuerza mano izquierda:** Fuerza de agarre en la mano izquierda, medida en kg de presión.
+           - **Velocidad de marcha:** velocidad de marcha, medida en metros sobre segundo.
+           - **PA sistólica:** Presión sanguínea sistólica, medida en milímetros de mercurio.
+           - **PA diastólica:** Presión sanguínea diastólica, medida en milímetros de mercurio.
            """)
         
        #import streamlit as st       
