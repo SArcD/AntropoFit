@@ -189,6 +189,17 @@ if pestañas == "Modelos con una variable":
                st.write("Existen datos faltantes en alguna fila.")
            else:
                st.write("No hay datos faltantes en ninguna fila.")
+
+       # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(df, 'dataframe.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(df, 'dataframe.csv', 'Descargar como CSV')
+           st.write('')
     
 
 
