@@ -111,9 +111,9 @@ if pestañas == "Presentación":
        funcional y sarcopenia. 
        """)
 
-        st.subheader("Ventajas y características")
+       st.subheader("Ventajas y características")
 
-        st.markdown("""
+       st.markdown("""
 
             - **Facilitar uso:** Queríamos que nuestra herramienta fuera fácil de usar para el personal médico, incluso si no estaban familiarizados con la inteligencia artificial o la programación. Para lograrlo, elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube.
 
