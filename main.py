@@ -147,30 +147,30 @@ if pestañas == "Modelos con una variable":
 
        with st.expander("**Claves de variables**"):
            st.markdown("""
-           - **Folio**: 
-           - **Peso (kg)**:
-           - **Talla (cm)**:
-           - **IMC**:
-           - **PCintura (cm)**:
-           - **Pcadera (cm)**:
-           - **PBrazo (cm)**:
-           - **PPantorrilla (cm)**:
-           - **PCB (mm)**:
-           - **PCT (mm)**:
-           - **PCSE (mm)**:
-           - **Agua corporal (%)**:
-           - **Músculo (kg)**:
-           - **Grasa corporal (%):
-           - Gs Brazo derecho:
-           - Gs Brazo izquierdo:
-           - Gs pierna izquierda:
-           - Gs pierna derecha:
-           - Centro:
-           - Fuerza mano derecha:
-           - Fuerza mano izquierda:
-           - Velocidad de marcha:
-           - PA sistólica:
-           - PA diastólica:
+           - **Folio:** 
+           - **Peso (kg):**
+           - **Talla (cm):**
+           - **IMC:**
+           - **PCintura (cm):**
+           - **Pcadera (cm):**
+           - **PBrazo (cm):**
+           - **PPantorrilla (cm):**
+           - **PCB (mm):**
+           - **PCT (mm):**
+           - **PCSE (mm):**
+           - **Agua corporal (%):**
+           - **Músculo (kg):**
+           - **Grasa corporal (%):**
+           - **Gs Brazo derecho:**
+           - **Gs Brazo izquierdo:**
+           - **Gs pierna izquierda:**
+           - **Gs pierna derecha:**
+           - **Centro:**
+           - **Fuerza mano derecha:**
+           - **Fuerza mano izquierda:**
+           - **Velocidad de marcha:**
+           - **PA sistólica:**
+           - **PA diastólica:**
            """)
         
        #import streamlit as st       
