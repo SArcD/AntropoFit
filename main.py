@@ -145,10 +145,21 @@ if pestañas == "Modelos con una variable":
        A continuación se muestra la base de datos de adultos mayores. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        """)
 
-       with st.expander("Claves de variables"):
+       with st.expander("**Claves de variables**"):
            st.markdown("""
-           - sss
-           - sss
+           - **Folio**: 
+           - **Peso (kg)**:
+           - **Talla (cm)**:
+           - **IMC**:
+           - **PCintura (cm)**:
+           - **Pcadera (cm)**:
+           - **PBrazo (cm)**:
+           - **PPantorrilla (cm)**:
+           - **PCB (mm)**:
+           - **PCT (mm)**:
+           - **PCSE (mm)**:
+           - **Agua corporal (%)**:
+           
            """)
         
        #import streamlit as st       
