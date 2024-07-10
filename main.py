@@ -172,10 +172,26 @@ if pestañas == "Modelos con una variable":
            - **PA sistólica:** Presión sanguínea sistólica, medida en milímetros de mercurio.
            - **PA diastólica:** Presión sanguínea diastólica, medida en milímetros de mercurio.
            """)
+
+    
         
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
        st.dataframe(df)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = df.shape
+           missing_data = df.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Existen datos faltantes en alguna fila.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
+    
+
+
        df=df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
