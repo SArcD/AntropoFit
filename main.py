@@ -159,7 +159,18 @@ if pestañas == "Modelos con una variable":
            - **PCT (mm)**:
            - **PCSE (mm)**:
            - **Agua corporal (%)**:
-           
+           - **Músculo (kg)**:
+           - **Grasa corporal (%):
+           - Gs Brazo derecho:
+           - Gs Brazo izquierdo:
+           - Gs pierna izquierda:
+           - Gs pierna derecha:
+           - Centro:
+           - Fuerza mano derecha:
+           - Fuerza mano izquierda:
+           - Velocidad de marcha:
+           - PA sistólica:
+           - PA diastólica:
            """)
         
        #import streamlit as st       
