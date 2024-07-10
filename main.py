@@ -90,21 +90,15 @@ if pestañas == "Presentación":
        st.markdown("""
        Los datos utilizados para los modelos se recolectaron a partir de un grupo de voluntarios de centros 
        de convivencia de personas adultas mayores, residentes en las Ciudades de Colima y Villa de Álvarez.
-       En la presente aplicación se crean modelos que permiten estimar variables como el porcentaje de grasa 
-       corporal y masa muscular en personas adultas mayores, permitiendo la evaluación de síndromes geriátricos 
+       **En la presente aplicación se crean modelos que permiten estimar variables como el porcentaje de grasa 
+       corporal y masa muscular en personas adultas mayores**, permitiendo la evaluación de síndromes geriátricos 
        como la sarcopenia en situaciones en las que no se cuente con el equipo de medición adecuado.
        """)
 
        st.subheader("Algoritmos y lenguaje de programación")
        st.markdown("""
-       El lenguaje de programación que utiliza la aplicación es Python (versión 3) y se beneficia
-       de librerías como pandas, Numpy y Sci-kit learn para el procesamiento de datos.
 
-       Las técnicas utilizadas para el análisis de los datos y la creación de modelos de aproximación 
-       se derivan de prácticas usuales para la depuración de datos, la creación de árboles de ajuste, 
-       la técnica de clustering jerárquico y Random Forest.
-
-       La aplicación es de libre acceso y uso gratuito para cualquier personal de atención primaria de pacientes geriátricos.
+       Elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube. Las técnicas utilizadas para el análisis de los datos y la creación de modelos de aproximación se derivan de prácticas usuales para la depuración de datos, la creación de árboles de ajuste, la técnica de clustering jerárquico y Random Forest. **La aplicación es de libre acceso y uso gratuito para cualquier personal de atención primaria de pacientes geriátricos.**
        """         
                )
 
