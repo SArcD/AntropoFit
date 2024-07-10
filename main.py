@@ -82,10 +82,9 @@ if pestañas == "Presentación":
        Esta aplicación es resultado del proyecto de estancia posdoctoral "**Identificación 
        de las etapas y tipos de sarcopenia mediante modelos predictivos como herramienta 
        de apoyo en el diagnóstico a partir de parámetros antropométricos**", desarrollado 
-       por el Doctor en Ciencias (Astrofísica) Santiago Arceo Díaz y bajo la dirección de 
-       la Doctora Xóchitl Rosío Angélica Trujillo Trujillo. Esta estancia es gracias a la 
-       colaboración entre el **Consejo Nacional de Humanidades Ciencias y Tecnología (CONAHCYT)**
-       y el **Centro Universitario de Investigaciones Biomédicas de la Universidad de Colima**.
+       por el Doctor en Ciencias (Astrofísica) Santiago Arceo Díaz, bajo la dirección de 
+       la Doctora Xóchitl Rosío Angélica Trujillo Trujillo, y con la ayuda de los colaboradores mencionados en esta sección. Esta estancia es gracias a la 
+       colaboración entre el entre el **Consejo Nacional de Humanidades Ciencia y Tecnología ([**CONAHCYT**](https://conahcyt.mx/)) y la Universidad de Colima ([**UCOL**](https://portal.ucol.mx/cuib/))**
        """)
        st.subheader("Muestra")
        st.markdown("""
