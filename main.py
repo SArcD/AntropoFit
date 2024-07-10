@@ -190,6 +190,21 @@ if pestañas == "Modelos con una variable":
            else:
                st.write("No hay datos faltantes en ninguna fila.")
 
+       # Crear un botón de descarga para el dataframe
+       def download_button(df, filename, button_text):
+           # Crear un objeto ExcelWriter
+           excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+           # Guardar el dataframe en el objeto ExcelWriter
+           df.to_excel(excel_writer, index=False)
+           # Cerrar el objeto ExcelWriter
+           excel_writer.save()
+           # Leer el archivo guardado como bytes
+           with open(filename, 'rb') as f:
+               file_bytes = f.read()
+               # Generar el enlace de descarga
+               href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
+               st.markdown(href, unsafe_allow_html=True)
+
        # Dividir la página en dos columnas
        col1, col2 = st.columns(2)
        # Agregar un botón de descarga para el dataframe en la primera columna
