@@ -139,7 +139,7 @@ if pestañas == "Presentación":
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
        st.markdown("""
-       En esta pestaña se muestra el proceso para calcular ** modelos de aproximación ** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal ** a partir de una sola variable **. En el caso de la masa muscular, se predicen valores para pacientes  a partir del perímetro de pantorrilla y en el caso de la grasa corporal se utiliza el perimetro de brazo
+       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. En el caso de la masa muscular, se predicen valores para pacientes  a partir del perímetro de pantorrilla y en el caso de la grasa corporal se utiliza el perimetro de brazo
        """)
        st.markdown("""
        A continuación se muestra la base de datos de adultos mayores. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
