@@ -226,6 +226,17 @@ if pestañas == "Modelos con una variable":
        Esta es la base de datos con parámetros antropométricos:
        """)       #st.write(data.head())
        st.dataframe(data)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = data.shape
+           missing_data = data.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Existen datos faltantes en alguna fila.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
 
 
        # Crea un modelo de regresión lineal
