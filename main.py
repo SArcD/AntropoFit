@@ -361,63 +361,63 @@ if pestañas == "Modelos con una variable":
        from sklearn.metrics import r2_score
 
        # Crea un modelo de regresión lineal
-       modelo_musculo_lr = LinearRegression()
-       modelo_musculo_lr.fit(X, y)
+       modelo_grasa_lr = LinearRegression()
+       modelo_grasa_lr.fit(X, y)
 
        # Crea un modelo de árbol de decisión
-       modelo_musculo_dt = DecisionTreeRegressor()
-       modelo_musculo_dt.fit(X, y)
+       modelo_grasa_dt = DecisionTreeRegressor()
+       modelo_grasa_dt.fit(X, y)
 
        # Crea un modelo de Random Forest
-       modelo_musculo_rf = RandomForestRegressor()
-       modelo_musculo_rf.fit(X, y)
+       modelo_grasa_rf = RandomForestRegressor()
+       modelo_grasa_rf.fit(X, y)
 
        # Realiza predicciones para diferentes valores de PPantorrilla (cm)
-       ppantorrilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100).reshape(-1, 1)
-       musculo_pred_lr = modelo_musculo_lr.predict(ppantorrilla_values)
-       musculo_pred_dt = modelo_musculo_dt.predict(ppantorrilla_values)
-       musculo_pred_rf = modelo_musculo_rf.predict(ppantorrilla_values)
+       pbrazo_values = np.linspace(min(X['PBrazo (cm)']), max(X['PBrazo (cm)']), 100).reshape(-1, 1)
+       grasa_pred_lr = modelo_grasa_lr.predict(pbrazo_values)
+       grasa_pred_dt = modelo_grasa_dt.predict(pbrazo_values)
+       grasa_pred_rf = modelo_grasa_rf.predict(pbrazo_values)
 
        # Calcula el coeficiente de determinación (R^2) para cada modelo
-       r2_musculo_lr = modelo_musculo_lr.score(X, y)
-       r2_musculo_dt = modelo_musculo_dt.score(X, y)
-       r2_musculo_rf = modelo_musculo_rf.score(X, y)
+       r2_grasa_lr = modelo_grasa_lr.score(X, y)
+       r2_grasa_dt = modelo_grasa_dt.score(X, y)
+       r2_grasa_rf = modelo_grasa_rf.score(X, y)
 
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
+       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
        fig, ax=plt.subplots()
        ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")       
-       ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
-       ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
-       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Random forest (R^2={r2_musculo_rf:.2f})')
+       ax.plot(pbrazo_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
+       ax.plot(pbrazo_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
+       ax.plot(pbrazo_values, grasa_pred_rf, color='blue', label=f'Random forest (R^2={r2_grasa_rf:.2f})')
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
 
-       ax.set_xlabel('Pantorrilla (cm)')
-       ax.set_ylabel('Masa muscular (Kg)')
-       ax.set_title('Predicciones de Masa muscular (Kg)')
+       ax.set_xlabel('Perímetro de brazo (cm)')
+       ax.set_ylabel('Porcentaje de grasa')
+       ax.set_title('Predicciones de porcentaje de grasa')
        ax.legend(fontsize='medium')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
        # Coeficientes de ajuste para el modelo de regresión lineal       
-       pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
-       intercepto_musculo_lr = modelo_musculo_lr.intercept_
-       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+       pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+       intercepto_grasa_lr = modelo_grasa_lr.intercept_
+       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
 
        # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
-       st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
-       st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
+       st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
+       st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
+       st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
 
        # Crear un modelo de árbol de decisión limitando la profundidad
-       modelo_musculo_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
-       modelo_musculo_dt_simplified.fit(X, y)
+       modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
+       modelo_grasa_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado con un tamaño de letra más grande
        figur = plt.figure(figsize=(40, 15), dpi=600)
