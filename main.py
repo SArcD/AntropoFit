@@ -363,16 +363,15 @@ if pestañas == "Modelos con una variable":
        # Asumiendo que 'df' es un DataFrame ya definido previamente
        #data = df
 
-       data = df
        # Divide tus datos en características (X) y la variable dependiente (y)
        #X = data[['PPantorrilla (cm)']]
        #y = data['Músculo (kg)']
-    
+
        # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
        X_grasa = data['PBrazo (cm)']
        y_grasa = data['Grasa Corporal (%)']
        modelo_grasa_lr = LinearRegression()
-       modelo_grasa_lr.fit(X_grasa, y_grasa)
+       #modelo_grasa_lr.fit(X_grasa, y_grasa)
 
        # Crear un modelo de árbol de decisión para Grasa Corporal (%) vs. PBrazo (cm)
        modelo_grasa_dt = DecisionTreeRegressor()
@@ -385,16 +384,16 @@ if pestañas == "Modelos con una variable":
        # Predicciones para Grasa Corporal (%)
        pbrazo_value = 30  # Cambia este valor por el que desees predecir
 
-       grasa_pred_lr = modelo_grasa_lr.predict(np.array([[pbrazo_value]]))
+       #grasa_pred_lr = modelo_grasa_lr.predict(np.array([[pbrazo_value]]))
        grasa_pred_dt = modelo_grasa_dt.predict(np.array([[pbrazo_value]]))
        grasa_pred_rf = modelo_grasa_rf.predict(np.array([[pbrazo_value]]))
 
        # Coeficientes de ajuste para el modelo de regresión lineal
-       pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+       #pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
        intercepto_grasa_lr = modelo_grasa_lr.intercept_
 
        # Coeficientes de determinación (R^2) para el modelo de regresión lineal
-       r2_grasa_lr = r2_score(y_grasa, modelo_grasa_lr.predict(X_grasa))
+       #r2_grasa_lr = r2_score(y_grasa, modelo_grasa_lr.predict(X_grasa))
 
        # Coeficientes de determinación (R^2) para el modelo de árbol de decisión
        r2_grasa_dt = modelo_grasa_dt.score(X_grasa, y_grasa)
@@ -430,7 +429,7 @@ if pestañas == "Modelos con una variable":
        st.pyplot(fig)
 
        # Coeficientes de ajuste para el modelo de regresión lineal
-       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
+       #st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
 
        # Coeficientes de determinación (R^2) para los modelos
        st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr:.2f}')
