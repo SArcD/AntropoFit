@@ -352,7 +352,6 @@ if pestañas == "Modelos con una variable":
 
        ####################
 
-
        import streamlit as st
        import numpy as np
        import matplotlib.pyplot as plt
@@ -361,15 +360,19 @@ if pestañas == "Modelos con una variable":
        from sklearn.ensemble import RandomForestRegressor
        from sklearn.metrics import r2_score
 
+       # Asumiendo que 'df' es un DataFrame ya definido previamente
        data = df
+
        # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
        X_grasa = data[['PBrazo (cm)']]
        y_grasa = data['Grasa Corporal (%)']
        modelo_grasa_lr = LinearRegression()
        modelo_grasa_lr.fit(X_grasa, y_grasa)
+
        # Crear un modelo de árbol de decisión para Grasa Corporal (%) vs. PBrazo (cm)
        modelo_grasa_dt = DecisionTreeRegressor()
        modelo_grasa_dt.fit(X_grasa, y_grasa)
+
        # Crear un modelo de Random Forest para Grasa Corporal (%) vs. PBrazo (cm)
        modelo_grasa_rf = RandomForestRegressor()
        modelo_grasa_rf.fit(X_grasa, y_grasa)
@@ -400,52 +403,49 @@ if pestañas == "Modelos con una variable":
        y_pred_grasa_rf = modelo_grasa_rf.predict(X_pred_grasa_dt)
 
        # Visualización de las predicciones
-       st.title('Predicciones de Grasa Corporal (%)')
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde).")
+       st.subheader('Predicciones de Grasa Corporal (%)')
+       st.markdown("""
+       En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores corresponden a: modelo lineal (en rojo), aproximación de Random Forest (verde) y aproximación de árbol de decisión (naranja).
+       """)
+
        fig, ax = plt.subplots()
        ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
-       ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
+       ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='orange', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
-       #ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
+       ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='red', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
 
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
+
        ax.set_xlabel('PBrazo (cm)')
        ax.set_ylabel('Grasa Corporal (%)')
        ax.set_title('Predicciones de Grasa Corporal (%)')
        ax.legend()
+
        st.pyplot(fig)
 
        # Coeficientes de ajuste para el modelo de regresión lineal
-       pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
-       intercepto_grasa_lr = modelo_grasa_lr.intercept_
-       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
+       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
 
        # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')
-       st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
-       st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
+       st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr:.2f}')
+       st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt:.2f}')
+       st.write(f'**R^2 Random Forest:** {r2_grasa_rf:.2f}')
 
        #######################
-
-       import streamlit as st
-       from sklearn.tree import DecisionTreeRegressor
-       import matplotlib.pyplot as plt
-       from sklearn.tree import plot_tree
 
        # Crear un modelo de árbol de decisión limitando la profundidad
        modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
        modelo_grasa_dt_simplified.fit(X_grasa, y_grasa)
 
        # Generar el diagrama del árbol de decisión simplificado
-       #st.set_option('deprecation.showPyplotGlobalUse', False)  # Deshabilitar el warning sobre el uso de plt.pyplot
        plt.figure(figsize=(20, 10))
        plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
        plot_tree(modelo_grasa_dt_simplified, filled=True, feature_names=X_grasa.columns)
-       ax.set_title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBrazo (cm)", fontsize=24)
+       plt.title("Árbol de Decisión Simplificado para Grasa Corporal (%) vs. PBrazo (cm)", fontsize=24)
        st.pyplot()
 
+       
        ##################################
 # Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
