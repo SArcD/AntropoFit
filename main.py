@@ -226,7 +226,7 @@ if pestañas == "Modelos con una variable":
     
        st.subheader("Modelos predictivos basados en árboles de regresión")
 
-      st.markdown("""
+       st.markdown("""
       En esta sección presetamos los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). 
       """)
 
