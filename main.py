@@ -363,7 +363,7 @@ if pestañas == "Modelos con una variable":
        # Asumiendo que 'df' es un DataFrame ya definido previamente
        #data = df
 
-       #data = df
+       data = df
        # Divide tus datos en características (X) y la variable dependiente (y)
        #X = data[['PPantorrilla (cm)']]
        #y = data['Músculo (kg)']
