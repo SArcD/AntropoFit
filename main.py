@@ -406,7 +406,9 @@ if pestañas == "Modelos con una variable":
        ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(X_grasa, modelo_grasa_lr.predict(y_grasa), color='orange', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+       ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+       #ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
+
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
        ax.set_xlabel('PBrazo (cm)')
