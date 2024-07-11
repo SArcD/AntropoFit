@@ -445,6 +445,27 @@ if pestañas == "Modelos con una variable":
            st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
            st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
 
+
+       from sklearn.model_selection import GridSearchCV
+
+       param_grid = {
+        'n_estimators': [100, 200],
+        'learning_rate': [0.01, 0.1],
+        'max_depth': [3, 4, 5]
+       }
+
+       grid_search = GridSearchCV(estimator=GradientBoostingRegressor(), param_grid=param_grid, cv=5, scoring='r2')
+       grid_search.fit(X_grasa, y_grasa)
+       best_model = grid_search.best_estimator_
+
+       # Evaluar el mejor modelo
+       r2_grasa_gb_best = best_model.score(X_grasa, y_grasa) 
+       mae_gb_best = mean_absolute_error(y_grasa, best_model.predict(X_grasa))
+
+       st.write(f'**R^2 Gradient Boosting (mejorado):** {r2_grasa_gb_best:.2f}')
+       st.write(f'**MAE Gradient Boosting (mejorado):** {mae_gb_best:.2f}')
+
+
        import streamlit as st
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
