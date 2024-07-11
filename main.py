@@ -257,7 +257,7 @@ if pestañas == "Modelos con una variable":
        y = data['Músculo (kg)']
 
        # Crea un título para la aplicación
-       st.title('Modelos de Regresión para Predicción de Músculo')
+       st.subsubheader('Modelos de Regresión para Predicción de Músculo')
 
        # Muestra una tabla con los primeros registros de los datos
        st.markdown("""
