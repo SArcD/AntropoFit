@@ -359,7 +359,10 @@ if pestañas == "Modelos con una variable":
        from sklearn.tree import DecisionTreeRegressor
        from sklearn.ensemble import RandomForestRegressor
        from sklearn.metrics import r2_score
+       X = data[['PBrazo (cm)']]
+       y = data['Grasa Corporal (%)']
 
+    
        # Crea un modelo de regresión lineal
        modelo_grasa_lr = LinearRegression()
        modelo_grasa_lr.fit(X, y)
