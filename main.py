@@ -401,12 +401,12 @@ if pestañas == "Modelos con una variable":
 
        # Visualización de las predicciones
        st.title('Predicciones de Grasa Corporal (%)')
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
+       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde).")
        fig, ax = plt.subplots()
        ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='red', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='orange', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+       ax.plot(X_grasa, modelo_grasa_lr.predict(y_grasa), color='orange', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
        ax.set_xlabel('PBrazo (cm)')
