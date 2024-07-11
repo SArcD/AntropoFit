@@ -454,17 +454,24 @@ if pestañas == "Modelos con una variable":
         'max_depth': [3, 4, 5]
        }
 
-       grid_search = GridSearchCV(estimator=GradientBoostingRegressor(), param_grid=param_grid, cv=5, scoring='r2')
-       grid_search.fit(X, y)
-       best_model = grid_search.best_estimator_
+
+       # Definir el espacio de hiperparámetros para la búsqueda
+       param_dist = {
+           'n_estimators': randint(50, 300),
+           'learning_rate': uniform(0.01, 0.2),
+           'max_depth': randint(2, 10),
+           'min_samples_split': randint(2, 20),
+           'min_samples_leaf': randint(1, 10)
+       }
+
+       # Configurar la búsqueda aleatoria con validación cruzada
+       random_search = RandomizedSearchCV(estimator=GradientBoostingRegressor(), param_distributions=param_dist, n_iter=100, cv=5, scoring='r2', random_state=42, n_jobs=-1)
+       random_search.fit(X_grasa, y_grasa)
+       best_model = random_search.best_estimator_
 
        # Evaluar el mejor modelo
-       r2_grasa_gb_best = best_model.score(X, y) 
-       mae_gb_best = mean_absolute_error(y, best_model.predict(X))
-
-       st.write(f'**R^2 Gradient Boosting (mejorado):** {r2_grasa_gb_best:.2f}')
-       st.write(f'**MAE Gradient Boosting (mejorado):** {mae_gb_best:.2f}')
-
+       r2_grasa_gb_best = best_model.score(X_grasa, y_grasa)
+       mae_gb_best = mean_absolute_error(y_grasa, best_model.predict(X_grasa))
 
        import streamlit as st
        import matplotlib.pyplot as plt
