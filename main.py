@@ -468,12 +468,12 @@ if pestañas == "Modelos con una variable":
 
        # Configurar la búsqueda aleatoria con validación cruzada
        random_search = RandomizedSearchCV(estimator=GradientBoostingRegressor(), param_distributions=param_dist, n_iter=100, cv=5, scoring='r2', random_state=42, n_jobs=-1)
-       random_search.fit(X_grasa, y_grasa)
+       random_search.fit(X, y)
        best_model = random_search.best_estimator_
 
        # Evaluar el mejor modelo
-       r2_grasa_gb_best = best_model.score(X_grasa, y_grasa)
-       mae_gb_best = mean_absolute_error(y_grasa, best_model.predict(X_grasa))
+       r2_grasa_gb_best = best_model.score(X, y)
+       mae_gb_best = mean_absolute_error(y, best_model.predict(X))
 
        import streamlit as st
        import matplotlib.pyplot as plt
