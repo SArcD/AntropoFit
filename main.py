@@ -328,7 +328,7 @@ if pestañas == "Modelos con una variable":
        intercepto_musculo_lr = modelo_musculo_lr.intercept_
        
 
-       with st.expander("**Información adicional**"):
+       with st.expander("**Coeficientes de ajuste para los modelos**"):
     
            st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
 
