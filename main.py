@@ -399,6 +399,14 @@ if pestañas == "Modelos con una variable":
        r2_grasa_rf = modelo_grasa_rf.score(X, y)
        r2_grasa_gb = modelo_grasa_gb.score(X, y)
 
+       from sklearn.metrics import mean_absolute_error
+
+       # Cálculo de los errores absolutos medios (MAE) para cada modelo
+       mae_lr = mean_absolute_error(y_grasa, modelo_grasa_lr.predict(X_grasa))
+       mae_dt = mean_absolute_error(y_grasa, modelo_grasa_dt.predict(X_grasa))
+       mae_rf = mean_absolute_error(y_grasa, modelo_grasa_rf.predict(X_grasa))
+       mae_gb = mean_absolute_error(y_grasa, modelo_grasa_gb.predict(X_grasa))
+
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
        st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
@@ -431,6 +439,11 @@ if pestañas == "Modelos con una variable":
            st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
            st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
            st.write(f'**R^2 Gradient Bosting:**{r2_grasa_gb}')
+
+           st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
+           st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
+           st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
+           st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
