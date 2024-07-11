@@ -326,12 +326,16 @@ if pestañas == "Modelos con una variable":
        # Coeficientes de ajuste para el modelo de regresión lineal       
        pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
        intercepto_musculo_lr = modelo_musculo_lr.intercept_
-       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+       
 
-       # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
-       st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
-       st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
+       with st.expander("**Información adicional**"):
+    
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+
+           # Coeficientes de determinación (R^2) para los modelos
+           st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
+           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
