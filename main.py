@@ -455,12 +455,12 @@ if pestañas == "Modelos con una variable":
        }
 
        grid_search = GridSearchCV(estimator=GradientBoostingRegressor(), param_grid=param_grid, cv=5, scoring='r2')
-       grid_search.fit(X_grasa, y_grasa)
+       grid_search.fit(X, y)
        best_model = grid_search.best_estimator_
 
        # Evaluar el mejor modelo
-       r2_grasa_gb_best = best_model.score(X_grasa, y_grasa) 
-       mae_gb_best = mean_absolute_error(y_grasa, best_model.predict(X_grasa))
+       r2_grasa_gb_best = best_model.score(X, y) 
+       mae_gb_best = mean_absolute_error(y, best_model.predict(X))
 
        st.write(f'**R^2 Gradient Boosting (mejorado):** {r2_grasa_gb_best:.2f}')
        st.write(f'**MAE Gradient Boosting (mejorado):** {mae_gb_best:.2f}')
