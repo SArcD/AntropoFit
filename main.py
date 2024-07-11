@@ -404,15 +404,17 @@ if pestañas == "Modelos con una variable":
        ax.legend(fontsize='medium')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
-       # Coeficientes de ajuste para el modelo de regresión lineal       
-       pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
-       intercepto_grasa_lr = modelo_grasa_lr.intercept_
-       st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
+       with st.expander("**Coeficientes de ajuste para los modelos**"):
+           
+           # Coeficientes de ajuste para el modelo de regresión lineal       
+           pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+           intercepto_grasa_lr = modelo_grasa_lr.intercept_
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
 
-       # Coeficientes de determinación (R^2) para los modelos
-       st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
-       st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
-       st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
+           # Coeficientes de determinación (R^2) para los modelos
+           st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
+           st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
