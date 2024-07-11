@@ -366,6 +366,8 @@ if pestañas == "Modelos con una variable":
        from sklearn.tree import DecisionTreeRegressor
        from sklearn.ensemble import RandomForestRegressor
        from sklearn.metrics import r2_score
+       from sklearn.model_selection import RandomizedSearchCV
+       from scipy.stats import uniform, randint
        X = data[['PBrazo (cm)']]
        y = data['Grasa Corporal (%)']
 
