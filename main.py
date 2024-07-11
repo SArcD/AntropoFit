@@ -15,6 +15,7 @@ import seaborn as sns
 import sklearn as sk
 import streamlit as st
 
+
 import streamlit as st
 
 # Configurar el esquema de colores personalizado
@@ -340,6 +341,8 @@ if pestañas == "Modelos con una variable":
        import streamlit as st
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+
 
        # Crear un modelo de árbol de decisión limitando la profundidad
        modelo_musculo_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
