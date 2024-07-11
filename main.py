@@ -438,7 +438,7 @@ if pestañas == "Modelos con una variable":
            st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
            st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
            st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
-           st.write(f'**R^2 Gradient Bosting:**{r2_grasa_gb}')
+           st.write(f'**R^2 Gradient Bosting:** {r2_grasa_gb}')
 
            st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
