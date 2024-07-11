@@ -379,16 +379,22 @@ if pestañas == "Modelos con una variable":
        modelo_grasa_rf = RandomForestRegressor()
        modelo_grasa_rf.fit(X, y)
 
+       # Crear un modelo de Gradient Boosting para Grasa Corporal (%) vs. PBrazo (cm)
+       modelo_grasa_gb = GradientBoostingRegressor()
+       modelo_grasa_gb.fit(X, y)
+
        # Realiza predicciones para diferentes valores de PPantorrilla (cm)
        pbrazo_values = np.linspace(min(X['PBrazo (cm)']), max(X['PBrazo (cm)']), 100).reshape(-1, 1)
        grasa_pred_lr = modelo_grasa_lr.predict(pbrazo_values)
        grasa_pred_dt = modelo_grasa_dt.predict(pbrazo_values)
        grasa_pred_rf = modelo_grasa_rf.predict(pbrazo_values)
+       grasa_pred_gb = modelo_grasa_gb.predict(pbrazo_values)
 
        # Calcula el coeficiente de determinación (R^2) para cada modelo
        r2_grasa_lr = modelo_grasa_lr.score(X, y)
        r2_grasa_dt = modelo_grasa_dt.score(X, y)
        r2_grasa_rf = modelo_grasa_rf.score(X, y)
+       r2_grasa_gb = modelo_grasa_gb.score(X, y)
 
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
@@ -398,6 +404,8 @@ if pestañas == "Modelos con una variable":
        ax.plot(pbrazo_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
        ax.plot(pbrazo_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(pbrazo_values, grasa_pred_rf, color='blue', label=f'Random forest (R^2={r2_grasa_rf:.2f})')
+       ax.plot(pbrazo_values, grasa_pred_gb, color='purple', label=f'Random forest (R^2={r2_grasa_gb:.2f})')
+
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
@@ -419,6 +427,7 @@ if pestañas == "Modelos con una variable":
            st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
            st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
            st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
+           st.write(f'**R^2 Gradient Bosting:**{r2_grasa_gb}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
