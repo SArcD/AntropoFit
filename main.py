@@ -259,7 +259,10 @@ if pestañas == "Modelos con una variable":
        # Crea un título para la aplicación
        st.subheader('Modelos de Regresión para Predicción de Músculo')
 
-      LA
+       st.markdown("""
+       s
+      
+       """)
     
        # Muestra una tabla con los primeros registros de los datos
        st.markdown("""
