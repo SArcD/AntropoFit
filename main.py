@@ -205,6 +205,14 @@ if pestañas == "Modelos con una variable":
                href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
                st.markdown(href, unsafe_allow_html=True)
 
+    # Crear un botón de descarga para el dataframe
+    def download_button_CSV(df, filename, button_text):
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+        st.markdown(href, unsafe_allow_html=True)
+
+
        # Dividir la página en dos columnas
        col1, col2 = st.columns(2)
        # Agregar un botón de descarga para el dataframe en la primera columna
