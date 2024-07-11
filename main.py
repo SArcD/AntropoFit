@@ -361,10 +361,15 @@ if pestañas == "Modelos con una variable":
        from sklearn.metrics import r2_score
 
        # Asumiendo que 'df' es un DataFrame ya definido previamente
-       data = df
+       #data = df
 
+       #data = df
+       # Divide tus datos en características (X) y la variable dependiente (y)
+       #X = data[['PPantorrilla (cm)']]
+       #y = data['Músculo (kg)']
+    
        # Crear un modelo de regresión lineal para Grasa Corporal (%) vs. PBrazo (cm)
-       X_grasa = data[['PBrazo (cm)']]
+       X_grasa = data['PBrazo (cm)']
        y_grasa = data['Grasa Corporal (%)']
        modelo_grasa_lr = LinearRegression()
        modelo_grasa_lr.fit(X_grasa, y_grasa)
@@ -412,7 +417,7 @@ if pestañas == "Modelos con una variable":
        ax.scatter(X_grasa, y_grasa, color='blue', label='Datos de Grasa Corporal (%)')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_dt, color='orange', label=f'Árbol de Decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(X_pred_grasa_dt, y_pred_grasa_rf, color='green', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='red', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
+       #ax.plot(X_grasa, modelo_grasa_lr.predict(X_grasa), color='red', label=f'Regresión Lineal (R^2={r2_grasa_lr:.2f})')
 
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
