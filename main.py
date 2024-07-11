@@ -402,10 +402,10 @@ if pestañas == "Modelos con una variable":
        from sklearn.metrics import mean_absolute_error
 
        # Cálculo de los errores absolutos medios (MAE) para cada modelo
-       mae_lr = mean_absolute_error(y_grasa, modelo_grasa_lr.predict(X_grasa))
-       mae_dt = mean_absolute_error(y_grasa, modelo_grasa_dt.predict(X_grasa))
-       mae_rf = mean_absolute_error(y_grasa, modelo_grasa_rf.predict(X_grasa))
-       mae_gb = mean_absolute_error(y_grasa, modelo_grasa_gb.predict(X_grasa))
+       mae_lr = mean_absolute_error(y, modelo_grasa_lr.predict(X))
+       mae_dt = mean_absolute_error(y, modelo_grasa_dt.predict(X))
+       mae_rf = mean_absolute_error(y, modelo_grasa_rf.predict(X))
+       mae_gb = mean_absolute_error(y, modelo_grasa_gb.predict(X))
 
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
