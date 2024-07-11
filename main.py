@@ -475,6 +475,9 @@ if pestañas == "Modelos con una variable":
        r2_grasa_gb_best = best_model.score(X, y)
        mae_gb_best = mean_absolute_error(y, best_model.predict(X))
 
+       st.write(f'**R^2 Gradient Boosting (mejorado):** {r2_grasa_gb_best:.2f}')
+       st.write(f'**MAE Gradient Boosting (mejorado):** {mae_gb_best:.2f}')
+
        import streamlit as st
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
