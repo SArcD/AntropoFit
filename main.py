@@ -227,7 +227,7 @@ if pestañas == "Modelos con una variable":
        st.subheader("Modelos predictivos basados en árboles de regresión")
 
        st.markdown("""
-      En esta sección presetamos los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). 
+      En esta sección presetamos los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Las variables predictoras para producir estos modelos fueron el perímetro de pantorrilla, en el caso de la masa muscular, y el perímetro de brazon, en el caso del porcentaje de grasa corporal. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición.
       """)
 
        df=df.dropna()
@@ -259,6 +259,8 @@ if pestañas == "Modelos con una variable":
        # Crea un título para la aplicación
        st.subheader('Modelos de Regresión para Predicción de Músculo')
 
+      LA
+    
        # Muestra una tabla con los primeros registros de los datos
        st.markdown("""
        Esta es la base de datos con parámetros antropométricos:
