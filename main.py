@@ -135,7 +135,6 @@ if pestañas == "Presentación":
 
 
 
-
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
@@ -295,28 +294,26 @@ if pestañas == "Modelos con una variable":
 
         En el campo de la ciencia de datos y el aprendizaje automático, no existe un único modelo que sea el mejor para todos los problemas. Diferentes modelos tienen distintas fortalezas y debilidades, y su rendimiento puede variar significativamente dependiendo de la naturaleza de los datos con los que se entrenan. Al utilizar varios modelos, podemos obtener una mejor comprensión de los datos y evaluar cuál modelo proporciona las predicciones más precisas.
 
-        Cómo elegir el mejor modelo
+        ***¿Cómo elegir el mejor modelo?***
         Para determinar cuál modelo es el mejor, consideramos varias métricas de rendimiento. Las dos métricas clave utilizadas en este análisis son:
 
-        Coeficiente de Determinación (R²):
-        El R² mide la proporción de la variación en la variable dependiente (masa muscular) que es explicada por la variable independiente (perímetro de pantorrilla) en el modelo.
-        Un valor de R² más alto indica que el modelo explica mejor la variabilidad de los datos.
+        ***Coeficiente de Determinación (R²):*** El R² mide la proporción de la variación en la variable dependiente (masa muscular) que es explicada por la variable independiente (perímetro de pantorrilla) en el modelo. Un valor de R² más alto indica que el modelo explica mejor la variabilidad de los datos.
 
-        Error Absoluto Medio (MAE):
-
-        El MAE mide la media de los errores absolutos entre las predicciones y los valores reales.
-        Un MAE más bajo indica que las predicciones del modelo están, en promedio, más cerca de los valores reales.
-        Consideraciones adicionales
-        Regresión Lineal: Es un modelo simple que asume una relación lineal entre las variables. Es fácil de interpretar, pero puede no capturar relaciones complejas en los datos.
-        Árbol de Decisión: Divide los datos en subconjuntos más pequeños basándose en características importantes, pero puede sobreajustarse a los datos de entrenamiento.
-        Random Forest: Combina múltiples árboles de decisión para mejorar la precisión y reducir el sobreajuste, pero puede ser más difícil de interpretar.
-        Gradient Boosting: Mejora iterativamente el modelo para corregir los errores de predicciones anteriores, ofreciendo alta precisión pero a costa de mayor complejidad y tiempo de entrenamiento.
-        Elección del mejor modelo
+        ***Error Absoluto Medio (MAE):*** El MAE mide la media de los errores absolutos entre las predicciones y los valores reales. Un MAE más bajo indica que las predicciones del modelo están, en promedio, más cerca de los valores reales.
+        
+        **Tipos de modelos**
+        - **Regresión Lineal:** Es un modelo simple que asume una relación lineal entre las variables. Es fácil de interpretar, pero puede no capturar relaciones complejas en los datos.
+        - **Árbol de Decisión:** Divide los datos en subconjuntos más pequeños basándose en características importantes, pero puede sobreajustarse a los datos de entrenamiento.
+        - **Random Forest:** Combina múltiples árboles de decisión para mejorar la precisión y reducir el sobreajuste, pero puede ser más difícil de interpretar.
+        - **Gradient Boosting:** Mejora iterativamente el modelo para corregir los errores de predicciones anteriores, ofreciendo alta precisión pero a costa de mayor complejidad y tiempo de entrenamiento.
+        
+                    
+        **Elección del mejor modelo**
         Para elegir el mejor modelo, considera el contexto y las necesidades específicas de tu análisis:
 
-        Precisión: Si necesitas el modelo más preciso, selecciona el que tenga el R² más alto y el MAE más bajo.
-        Interpretabilidad: Si necesitas entender claramente cómo el modelo toma decisiones, puede que prefieras la regresión lineal o el árbol de decisión.
-        Robustez: Para un modelo equilibrado que maneje bien los datos nuevos y no vistos, Random Forest o Gradient Boosting suelen ser buenas opciones.
+        - **Precisión:** Si necesitas el modelo más preciso, selecciona el que tenga el R² más alto y el MAE más bajo.
+        - **Interpretabilidad:** Si necesitas entender claramente cómo el modelo toma decisiones, puede que prefieras la regresión lineal o el árbol de decisión.
+        - **Robustez:** Para un modelo equilibrado que maneje bien los datos nuevos y no vistos, Random Forest o Gradient Boosting suelen ser buenas opciones.
 
         </div>            
         """, unsafe_allow_html=True)
@@ -840,7 +837,7 @@ if pestañas == "Modelos con una variable":
        # Mostrar la figura en Streamlit
        #st.pyplot(figur)
 
-       ##################################
+
        ##################################
 # Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
