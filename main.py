@@ -249,6 +249,8 @@ if pestañas == "Modelos con una variable":
        from sklearn.ensemble import RandomForestRegressor
        import numpy as np
        import matplotlib.pyplot as plt
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+
        st.set_option('deprecation.showPyplotGlobalUse', False)
 
        ########################
@@ -295,16 +297,22 @@ if pestañas == "Modelos con una variable":
        modelo_musculo_rf = RandomForestRegressor()
        modelo_musculo_rf.fit(X, y)
 
+       # Crea un modelo de Gradient boosting
+       modelo_musculo_gb = GradientBoostingRegressor()
+       modelo_musculo_gb.fit(X, y)
+
        # Realiza predicciones para diferentes valores de PPantorrilla (cm)
        ppantorrilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100).reshape(-1, 1)
        musculo_pred_lr = modelo_musculo_lr.predict(ppantorrilla_values)
        musculo_pred_dt = modelo_musculo_dt.predict(ppantorrilla_values)
        musculo_pred_rf = modelo_musculo_rf.predict(ppantorrilla_values)
-
+       musculo_pred_gb = modelo_musculo_gb.predict(ppantorrilla_values)
+    
        # Calcula el coeficiente de determinación (R^2) para cada modelo
        r2_musculo_lr = modelo_musculo_lr.score(X, y)
        r2_musculo_dt = modelo_musculo_dt.score(X, y)
        r2_musculo_rf = modelo_musculo_rf.score(X, y)
+       r2_musculo_gb = modelo_musculo_gb.score(X, y)
 
        # Grafica los datos y las predicciones para cada modelo
        st.write("Gráfico de predicciones:")
@@ -314,6 +322,8 @@ if pestañas == "Modelos con una variable":
        ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
        ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
        ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Random forest (R^2={r2_musculo_rf:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_gb, color='purple', label=f'Random forest (R^2={r2_musculo_gb:.2f})')
+    
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
            label.set_fontsize(8)
@@ -337,6 +347,7 @@ if pestañas == "Modelos con una variable":
            st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
            st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
            st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
@@ -446,37 +457,6 @@ if pestañas == "Modelos con una variable":
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
            st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
            st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
-
-
-       from sklearn.model_selection import GridSearchCV
-
-       param_grid = {
-        'n_estimators': [100, 200],
-        'learning_rate': [0.01, 0.1],
-        'max_depth': [3, 4, 5]
-       }
-
-
-       # Definir el espacio de hiperparámetros para la búsqueda
-       param_dist = {
-           'n_estimators': randint(50, 300),
-           'learning_rate': uniform(0.01, 0.2),
-           'max_depth': randint(2, 10),
-           'min_samples_split': randint(2, 20),
-           'min_samples_leaf': randint(1, 10)
-       }
-
-       # Configurar la búsqueda aleatoria con validación cruzada
-       random_search = RandomizedSearchCV(estimator=GradientBoostingRegressor(), param_distributions=param_dist, n_iter=100, cv=5, scoring='r2', random_state=42, n_jobs=-1)
-       random_search.fit(X, y)
-       best_model = random_search.best_estimator_
-
-       # Evaluar el mejor modelo
-       r2_grasa_gb_best = best_model.score(X, y)
-       mae_gb_best = mean_absolute_error(y, best_model.predict(X))
-
-       st.write(f'**R^2 Gradient Boosting (mejorado):** {r2_grasa_gb_best:.2f}')
-       st.write(f'**MAE Gradient Boosting (mejorado):** {mae_gb_best:.2f}')
 
        import streamlit as st
        import matplotlib.pyplot as plt
