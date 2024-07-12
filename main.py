@@ -140,11 +140,27 @@ if pestañas == "Presentación":
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
        st.markdown("""
-       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. En el caso de la masa muscular, se predicen valores para pacientes  a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y en el caso de la grasa corporal se utiliza el [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
-       """)
+       <div style="text-align: justify;">
+
+       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. Estos asu véz se usan en el módulo de "Estimación de riesgo de sarcopenia" (accesible en la barra lateral izquierda).
+                   
+       En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. En el caso de la masa muscular, se predicen valores para pacientes  a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y en el caso de la grasa corporal se utiliza el [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
+                   
+       los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: *'árbol de regresión simple'*, *'Random forest'* y *'Gradient boosting'*. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
+                   
+       </div>                                           
+       """, unsafe_allow_html=True)
+
+       st.header("Estimación para masa muscular y porcentaje de grasa corporal usando perímetro de pantorrilla y brazo.")
+
        st.markdown("""
-       A continuación se muestra la base de datos de adultos mayores. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
-       """)
+       <div style="text-align: justify;">
+
+       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+       
+        A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
+       </div>
+       """, unsafe_allow_html=True)
 
        with st.expander("**Claves de variables**"):
            st.markdown("""
@@ -187,7 +203,7 @@ if pestañas == "Modelos con una variable":
            st.write(f"**Número de filas**: {num_rows}")
            st.write(f"**Número de columnas**: {num_columns}")
            if missing_data:
-               st.write("Existen datos faltantes en alguna fila.")
+               st.write("Hay datos faltantes en algunas filas.")
            else:
                st.write("No hay datos faltantes en ninguna fila.")
 
@@ -225,12 +241,6 @@ if pestañas == "Modelos con una variable":
            download_button_CSV(df, 'muestra_antrompométrica_colima_2023.csv', 'Descargar como CSV')
            st.write('')
     
-       st.subheader("Modelos predictivos basados en árboles de regresión")
-
-       st.markdown("""
-      En esta sección presetamos los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Las variables predictoras para producir estos modelos fueron el perímetro de pantorrilla, en el caso de la masa muscular, y el perímetro de brazon, en el caso del porcentaje de grasa corporal. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición.
-      """)
-
        df=df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
@@ -242,35 +252,16 @@ if pestañas == "Modelos con una variable":
               'FA','Velocidad de marcha']]
        df_2=df
        
-       import streamlit as st
-       import pandas as pd
-       from sklearn.linear_model import LinearRegression
-       from sklearn.tree import DecisionTreeRegressor
-       from sklearn.ensemble import RandomForestRegressor
-       import numpy as np
-       import matplotlib.pyplot as plt
-       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-
-       st.set_option('deprecation.showPyplotGlobalUse', False)
-
-       ########################
-       data = df
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PPantorrilla (cm)']]
-       y = data['Músculo (kg)']
-
-       # Crea un título para la aplicación
-       st.subheader('Modelos de Regresión para Predicción de Músculo')
-
-       st.markdown("""
-       s
-      
-       """)
-    
        # Muestra una tabla con los primeros registros de los datos
        st.markdown("""
-       Esta es la base de datos con parámetros antropométricos:
-       """)       #st.write(data.head())
+       <div style="text-align: justify;">
+       Antes de crear los modelos, eliminamos las filas que tuvieran datos faltantes en alguna de las columnas de interés. La tabla con los datos que se usaron para los modelos se muestra a continuación:
+                   
+       </div>
+       """, unsafe_allow_html=True) 
+       
+       data = df
+
        st.dataframe(data)
        with st.expander("**Información adicional**"):
            # Mostrar información adicional sobre el DataFrame
@@ -284,6 +275,82 @@ if pestañas == "Modelos con una variable":
            else:
                st.write("No hay datos faltantes en ninguna fila.")
 
+       # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(data, 'muestra_antrompométrica_colima_2023_sin_nan.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(data, 'muestra_antrompométrica_colima_2023_sin_nan.csv', 'Descargar como CSV')
+           st.write('')
+
+
+       with st.expander("**¿Por qué predecir con mas de un modelo?**"):
+           
+
+        st.markdown("""
+        <div style="text-align: justify;">           
+
+        En el campo de la ciencia de datos y el aprendizaje automático, no existe un único modelo que sea el mejor para todos los problemas. Diferentes modelos tienen distintas fortalezas y debilidades, y su rendimiento puede variar significativamente dependiendo de la naturaleza de los datos con los que se entrenan. Al utilizar varios modelos, podemos obtener una mejor comprensión de los datos y evaluar cuál modelo proporciona las predicciones más precisas.
+
+        Cómo elegir el mejor modelo
+        Para determinar cuál modelo es el mejor, consideramos varias métricas de rendimiento. Las dos métricas clave utilizadas en este análisis son:
+
+        Coeficiente de Determinación (R²):
+        El R² mide la proporción de la variación en la variable dependiente (masa muscular) que es explicada por la variable independiente (perímetro de pantorrilla) en el modelo.
+        Un valor de R² más alto indica que el modelo explica mejor la variabilidad de los datos.
+
+        Error Absoluto Medio (MAE):
+
+        El MAE mide la media de los errores absolutos entre las predicciones y los valores reales.
+        Un MAE más bajo indica que las predicciones del modelo están, en promedio, más cerca de los valores reales.
+        Consideraciones adicionales
+        Regresión Lineal: Es un modelo simple que asume una relación lineal entre las variables. Es fácil de interpretar, pero puede no capturar relaciones complejas en los datos.
+        Árbol de Decisión: Divide los datos en subconjuntos más pequeños basándose en características importantes, pero puede sobreajustarse a los datos de entrenamiento.
+        Random Forest: Combina múltiples árboles de decisión para mejorar la precisión y reducir el sobreajuste, pero puede ser más difícil de interpretar.
+        Gradient Boosting: Mejora iterativamente el modelo para corregir los errores de predicciones anteriores, ofreciendo alta precisión pero a costa de mayor complejidad y tiempo de entrenamiento.
+        Elección del mejor modelo
+        Para elegir el mejor modelo, considera el contexto y las necesidades específicas de tu análisis:
+
+        Precisión: Si necesitas el modelo más preciso, selecciona el que tenga el R² más alto y el MAE más bajo.
+        Interpretabilidad: Si necesitas entender claramente cómo el modelo toma decisiones, puede que prefieras la regresión lineal o el árbol de decisión.
+        Robustez: Para un modelo equilibrado que maneje bien los datos nuevos y no vistos, Random Forest o Gradient Boosting suelen ser buenas opciones.
+
+        </div>            
+        """, unsafe_allow_html=True)
+
+
+       import streamlit as st
+       import pandas as pd
+       from sklearn.linear_model import LinearRegression
+       from sklearn.tree import DecisionTreeRegressor
+       from sklearn.ensemble import RandomForestRegressor
+       import numpy as np
+       import matplotlib.pyplot as plt
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+       from sklearn.metrics import mean_absolute_error
+
+
+       st.set_option('deprecation.showPyplotGlobalUse', False)
+
+       ########################
+       # Divide tus datos en características (X) y la variable dependiente (y)
+       X = data[['PPantorrilla (cm)']]
+       y = data['Músculo (kg)']
+
+       # Crea un título para la aplicación
+       st.subheader('Modelos de Regresión para Predicción de Músculo')
+
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       Como primera parte, se estimó la masa muscular de los participantes a partir del perímetro de pantorrilla. Se crearon modelos de ***regresión lineal***, ***Árbol de decisión***, ***Random Forest*** y ***Gradient Boosting***. La gráfica siguiente muestra tanto los datos extraidos (masa muscular en el eje vertical y perímetro de pantorrilla en el eje horizontal).
+                    
+       </div>
+       """, unsafe_allow_html=True)
+    
 
        # Crea un modelo de regresión lineal
        modelo_musculo_lr = LinearRegression()
@@ -314,15 +381,21 @@ if pestañas == "Modelos con una variable":
        r2_musculo_rf = modelo_musculo_rf.score(X, y)
        r2_musculo_gb = modelo_musculo_gb.score(X, y)
 
+       #Calcula el error absoluto medio para cada modelo
+       mae_lr = mean_absolute_error(y, modelo_musculo_lr.predict(X))
+       mae_dt = mean_absolute_error(y, modelo_musculo_dt.predict(X))
+       mae_rf = mean_absolute_error(y, modelo_musculo_rf.predict(X))
+       mae_gb = mean_absolute_error(y, modelo_musculo_gb.predict(X))
+
        # Grafica los datos y las predicciones para cada modelo
-       st.write("Gráfico de predicciones:")
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azule). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
+      
        fig, ax=plt.subplots()
-       ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")       
+       ax.scatter(X, y, color = 'blue', label=f"Datos de masa muscular (kg)")       
+       
        ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
        ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
-       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Random forest (R^2={r2_musculo_rf:.2f})')
-       ax.plot(ppantorrilla_values, musculo_pred_gb, color='purple', label=f'Random forest (R^2={r2_musculo_gb:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_rf, color='blue', label=f'Random Forest (R^2={r2_musculo_rf:.2f})')
+       ax.plot(ppantorrilla_values, musculo_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_musculo_gb:.2f})')
     
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
@@ -333,6 +406,13 @@ if pestañas == "Modelos con una variable":
        ax.set_title('Predicciones de Masa muscular (Kg)')
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
+
+       st.markdown("""
+       <div style="text-align: justify;">
+                              
+       En esta gráfica las mediciones de masa muscular (representadas por los puntos azules) con los modelos. Las trayectorias de cada color muestran: el modelos de ***regresión lineal*** (representado por la línea roja), el modelo de ***árbol de decisión*** (linea verde), el modelo de ***Random Forest*** (linea azul) y el modelo de ***Gradient Boosting*** (linea púrpura). En la esquina inferior derecha se muestran los *coeficientes de determinación (R^2)* correspondientes a cada modelo. En la pestaña contraible ***'Coeficientes de ajuste para los modelos'*** muestran estos coeficientes y el *Error absoluto medio (MAE)*.
+       </div>
+       """, unsafe_allow_html=True) 
 
        # Coeficientes de ajuste para el modelo de regresión lineal       
        pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
@@ -348,25 +428,57 @@ if pestañas == "Modelos con una variable":
            st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
            st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
            st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
+           st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
+           st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
+           st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
+
+
+    
 
        import streamlit as st
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
        from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       A continuación puede teclear un valor de perímetro de pantorrilla y al presionar *Enter* se muestra la estimación de masa muscular de acuerdo con cada modelo.
+                   
+       </div>
+       """, unsafe_allow_html=True)
+
+       # Input del usuario para el valor de la variable predictora
+       input_value = st.number_input(f'**Introduzca un valor para "PPantorrilla (cm)"**', min_value=float(X['PPantorrilla (cm)'].min()), max_value=float(X['PPantorrilla (cm)'].max()))
+
+       # Realiza predicciones usando el valor de entrada del usuario
+       input_array = np.array([[input_value]])
+       prediction_lr = modelo_musculo_lr.predict(input_array)[0]
+       prediction_dt = modelo_musculo_dt.predict(input_array)[0]
+       prediction_rf = modelo_musculo_rf.predict(input_array)[0]
+       prediction_gb = modelo_musculo_gb.predict(input_array)[0]
+
+       # Muestra las predicciones
+       st.write(f'**Predicción usando *Regresión Lineal*:** {prediction_lr:.2f} kg')
+       st.write(f'**Predicción usando *Árbol de Decisión*:** {prediction_dt:.2f} kg')
+       st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} kg')
+       st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
+ 
+
 
        # Crear un modelo de árbol de decisión limitando la profundidad
-       modelo_musculo_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
-       modelo_musculo_dt_simplified.fit(X, y)
+       #modelo_musculo_dt_simplified = DecisionTreeRegressor(max_depth=4)  # #Ajusta el valor de max_depth según sea necesario
+       #modelo_musculo_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado con un tamaño de letra más grande
-       figur = plt.figure(figsize=(40, 15), dpi=600)
-       plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
-       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=12)  # Ajusta el tamaño de la letra aquí
-       plt.title("Árbol de Regresión para predecir la masa muscular (kg) a partir del perímetro de pantorrilla (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
+       #figur = plt.figure(figsize=(40, 15), dpi=600)
+       #plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
+       #plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.#columns, fontsize=12)  # Ajusta el tamaño de la letra aquí
+       #plt.title("Árbol de Regresión para predecir la masa muscular (kg) a #partir del perímetro de pantorrilla (cm)", fontsize=30)  
 
        # Mostrar la figura en Streamlit
-       st.pyplot(figur)
+       #st.pyplot(figur)
 
        ####################
 
@@ -557,7 +669,7 @@ if pestañas == "Modelos con una variable":
        ax.plot(pbrazo_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
        ax.plot(pbrazo_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(pbrazo_values, grasa_pred_rf, color='blue', label=f'Random forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(pbrazo_values, grasa_pred_gb, color='purple', label=f'Random forest (R^2={r2_grasa_gb:.2f})')
+       ax.plot(pbrazo_values, grasa_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_grasa_gb:.2f})')
 
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
@@ -711,22 +823,22 @@ if pestañas == "Modelos con una variable":
 
        #####################
 
-       import streamlit as st
-       import matplotlib.pyplot as plt
-       from sklearn.tree import DecisionTreeRegressor, plot_tree
+       #import streamlit as st
+       #import matplotlib.pyplot as plt
+       #from sklearn.tree import DecisionTreeRegressor, plot_tree
 
        # Crear un modelo de árbol de decisión limitando la profundidad
-       modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
-       modelo_grasa_dt_simplified.fit(X, y)
+       #modelo_grasa_dt_simplified = DecisionTreeRegressor(max_depth=4)  # Ajusta el valor de max_depth según sea necesario
+       #modelo_grasa_dt_simplified.fit(X, y)
 
        # Generar el diagrama del árbol de decisión simplificado con un tamaño de letra más grande
-       figur = plt.figure(figsize=(40, 15), dpi=600)
-       plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
-       plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=12)  # Ajusta el tamaño de la letra aquí
-       plt.title("Árbol de Regresión para predecir el porcentaje de grasa corporal a partir del perímetro de brazo (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
+       #figur = plt.figure(figsize=(40, 15), dpi=600)
+       #plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
+       #plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.#columns, fontsize=12)  # Ajusta el tamaño de la letra aquí
+       #plt.title("Árbol de Regresión para predecir el porcentaje de grasa #corporal a partir del perímetro de brazo (cm)", fontsize=30)  # #Ajusta el tamaño de fuente del título aquí
 
        # Mostrar la figura en Streamlit
-       st.pyplot(figur)
+       #st.pyplot(figur)
 
        ##################################
        ##################################
