@@ -137,7 +137,6 @@ if pestañas == "Presentación":
 
 
 # Contenido de la pestaña 1
-# Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
        st.markdown("""
@@ -554,7 +553,7 @@ if pestañas == "Modelos con una variable":
        st.write("Gráfico de predicciones:")
        st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
        fig, ax=plt.subplots()
-       ax.scatter(X, y, color = 'blue', label="Datos de masa muscular (kg)")       
+       ax.scatter(X, y, color = 'blue', label="Datos de porcentaje de grasa corporal")       
        ax.plot(pbrazo_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
        ax.plot(pbrazo_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(pbrazo_values, grasa_pred_rf, color='blue', label=f'Random forest (R^2={r2_grasa_rf:.2f})')
@@ -565,8 +564,8 @@ if pestañas == "Modelos con una variable":
            label.set_fontsize(8)
 
        ax.set_xlabel('Perímetro de brazo (cm)')
-       ax.set_ylabel('Porcentaje de grasa')
-       ax.set_title('Predicciones de porcentaje de grasa')
+       ax.set_ylabel('Porcentaje de grasa corporal')
+       ax.set_title('Predicciones de porcentaje de grasa corporal')
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
@@ -673,7 +672,7 @@ if pestañas == "Modelos con una variable":
        st.write("Gráfico de predicciones:")
        st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores corresponden a: modelo lineal (en rojo), Random Forest (azul), árbol de decisión (verde) y Gradient Boosting (morado).")
        fig, ax = plt.subplots()
-       ax.scatter(X, y, color='blue', label="Datos de masa muscular (kg)")
+       ax.scatter(X, y, color='blue', label="Datos de porcentaje de grasa corporal")
        ax.plot(predictor_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
        ax.plot(predictor_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(predictor_values, grasa_pred_rf, color='blue', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
@@ -724,7 +723,7 @@ if pestañas == "Modelos con una variable":
        figur = plt.figure(figsize=(40, 15), dpi=600)
        plt.rc('font', size=12)  # Ajusta el tamaño de fuente aquí
        plot_tree(modelo_musculo_dt_simplified, filled=True, feature_names=X.columns, fontsize=12)  # Ajusta el tamaño de la letra aquí
-       plt.title("Árbol de Regresión para predecir la masa muscular (kg) a partir del perímetro de pantorrilla (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
+       plt.title("Árbol de Regresión para predecir el porcentaje de grasa corporal a partir del perímetro de brazo (cm)", fontsize=30)  # Ajusta el tamaño de fuente del título aquí
 
        # Mostrar la figura en Streamlit
        st.pyplot(figur)
