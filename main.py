@@ -133,24 +133,24 @@ if pestañas == "Presentación":
        """
        )
 
-
-
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
        st.markdown("""
        <div style="text-align: justify;">
 
-       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. Estos asu véz se usan en el módulo de "Estimación de riesgo de sarcopenia" (accesible en la barra lateral izquierda).
+       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. Estos a su vez se usan en el módulo de ***"Estimación de riesgo de sarcopenia"*** (accesible en la barra lateral izquierda).
                    
        En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. En el caso de la masa muscular, se predicen valores para pacientes  a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y en el caso de la grasa corporal se utiliza el [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
                    
-       los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: *'árbol de regresión simple'*, *'Random forest'* y *'Gradient boosting'*. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
+       En la segunda sección se dejan las variables predictoras a elección del usuario y con ellas se crean modelos predictivos para la masa muscular total y el porcentaje de grasa corporal.
+                   
+       Los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: *'árbol de regresión simple'*, *'Random forest'* y *'Gradient boosting'*. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
                    
        </div>                                           
        """, unsafe_allow_html=True)
 
-       st.header("Estimación para masa muscular y porcentaje de grasa corporal usando perímetro de pantorrilla y brazo.")
+       st.header("Estimación para masa muscular y porcentaje de grasa corporal usando los perímetros de pantorrilla y brazo.")
 
        st.markdown("""
        <div style="text-align: justify;">
@@ -338,13 +338,13 @@ if pestañas == "Modelos con una variable":
        y = data['Músculo (kg)']
 
        # Crea un título para la aplicación
-       st.subheader('Modelos de Regresión para Predicción de Músculo')
+       st.subheader('Predicción de la masa muscular')
 
        st.markdown("""
        <div style="text-align: justify;">
                    
-       Como primera parte, se estimó la masa muscular de los participantes a partir del perímetro de pantorrilla. Se crearon modelos de ***regresión lineal***, ***Árbol de decisión***, ***Random Forest*** y ***Gradient Boosting***. La gráfica siguiente muestra tanto los datos extraidos (masa muscular en el eje vertical y perímetro de pantorrilla en el eje horizontal).
-                    
+       Como primera parte, se estimó la masa muscular de los participantes a partir del perímetro de pantorrilla. Se crearon modelos de ***regresión lineal***, ***Árbol de decisión***, ***Random Forest*** y ***Gradient Boosting***. La gráfica siguiente muestra las mediciones y las predicciones de los modelos.
+                                       
        </div>
        """, unsafe_allow_html=True)
     
@@ -387,7 +387,7 @@ if pestañas == "Modelos con una variable":
        # Grafica los datos y las predicciones para cada modelo
       
        fig, ax=plt.subplots()
-       ax.scatter(X, y, color = 'blue', label=f"Datos de masa muscular (kg)")       
+       ax.scatter(X, y, color = 'blue', label=f"Mediciones")       
        
        ax.plot(ppantorrilla_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
        ax.plot(ppantorrilla_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
@@ -400,14 +400,14 @@ if pestañas == "Modelos con una variable":
 
        ax.set_xlabel('Pantorrilla (cm)')
        ax.set_ylabel('Masa muscular (Kg)')
-       ax.set_title('Predicciones de Masa muscular (Kg)')
+       ax.set_title('Predicciones para la masa muscular')
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
        st.markdown("""
        <div style="text-align: justify;">
                               
-       En esta gráfica las mediciones de masa muscular (representadas por los puntos azules) con los modelos. Las trayectorias de cada color muestran: el modelos de ***regresión lineal*** (representado por la línea roja), el modelo de ***árbol de decisión*** (linea verde), el modelo de ***Random Forest*** (linea azul) y el modelo de ***Gradient Boosting*** (linea púrpura). En la esquina inferior derecha se muestran los *coeficientes de determinación (R^2)* correspondientes a cada modelo. En la pestaña contraible ***'Coeficientes de ajuste para los modelos'*** muestran estos coeficientes y el *Error absoluto medio (MAE)*.
+       El **eje vertical** corresponde a la **masa muscular** y el **horizontal** al **perímetro de pantorrilla**. Las mediciones de masa muscular se registraron mediante una balanza de bioimpedancia y están representadas por los puntos azules. Las trayectorias de cada color muestran: el modelos de ***regresión lineal*** (representado por la línea roja), el modelo de ***árbol de decisión*** (linea verde), el modelo de ***Random Forest*** (linea azul) y el modelo de ***Gradient Boosting*** (linea púrpura). En la esquina inferior derecha se muestran los *coeficientes de determinación (R^2)* correspondientes a cada modelo. En la pestaña contraible ***'Coeficientes de ajuste para los modelos'*** muestran estos coeficientes y el *Error absoluto medio (MAE)*.
        </div>
        """, unsafe_allow_html=True) 
 
@@ -419,13 +419,14 @@ if pestañas == "Modelos con una variable":
        with st.expander("**Coeficientes de ajuste para los modelos**"):
     
            st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
-
+           st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr}')       
+           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
            st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
            st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
            st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
-           st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
+           st.write("***Error medio absoluto***")
+           st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
            st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
            st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
@@ -447,7 +448,7 @@ if pestañas == "Modelos con una variable":
        """, unsafe_allow_html=True)
 
        # Input del usuario para el valor de la variable predictora
-       input_value = st.number_input(f'**Introduzca un valor para "PPantorrilla (cm)"**', min_value=float(X['PPantorrilla (cm)'].min()), max_value=float(X['PPantorrilla (cm)'].max()))
+       input_value = st.number_input(f'**Introduzca un valor para el perímetro de pantorrilla**', min_value=float(X['PPantorrilla (cm)'].min()), max_value=float(X['PPantorrilla (cm)'].max()))
 
        # Realiza predicciones usando el valor de entrada del usuario
        input_array = np.array([[input_value]])
@@ -490,123 +491,40 @@ if pestañas == "Modelos con una variable":
 
 
        st.set_option('deprecation.showPyplotGlobalUse', False)
+       st.subheader("Predicción del porcentaje de grasa corporal")
+       st.markdown("""
+       <div style="text-align: justify;">
+       
+       En esta sección se crean los modelos predictivos para el porcentaje de grasa corporal. Como variable predictora se seleccionó el ***perímetro de brazo***. 
+                   
+       La siguiente gráfica muestra las mediciones y las predicciones de los modelos. Los ejes vertical y horizontal corresponden al porcentaje de grasa corporal y al perímetro de brazo, respectivamente. Los puntos verdes corresponden a las mediciones tomadas de los participantes y las curvas de diferentes colores representan las estimaciones de cada modelo: el modelo de ***Regresión lineal*** (curva roja), el modelo de ***Árbol de decisión*** (curva verde), el de ***Random Forest*** (curva azul) y el de ***Gradient Boosting*** (curva púrpura). 
+                
+       </div>
+       """, unsafe_allow_html=True)
 
        # Supongamos que 'df' es tu DataFrame ya cargado previamente
        data = df
 
        # Crear un título para la aplicación
-       st.subheader('Modelos de Regresión para Predicción de Músculo')
+       #st.subheader('Modelos de Regresión para Predicción de Músculo')
 
        # Mostrar una tabla con los primeros registros de los datos 
-       st.markdown("Esta es la base de datos con parámetros antropométricos:")
-       st.dataframe(data)
+       #st.markdown("Esta es la base de datos con parámetros antropométricos:")
+       #st.dataframe(data)
 
-       with st.expander("**Información adicional**"):
-        # Mostrar información adicional sobre el DataFrame
-        num_rows, num_columns = data.shape
-        missing_data = data.isnull().any().any()
+       #with st.expander("**Información adicional**"):
+        ## Mostrar información adicional sobre el DataFrame
+        #num_rows, num_columns = data.shape
+        #missing_data = data.isnull().any().any()
 
-        st.write(f"**Número de filas**: {num_rows}")
-        st.write(f"**Número de columnas**: {num_columns}")
-        if missing_data:
-            st.write("Existen datos faltantes en alguna fila.")
-        else:
-            st.write("No hay datos faltantes en ninguna fila.")
-
-        # Obtener las variables numéricas del DataFrame
-       numeric_columns = data.select_dtypes(include=[np.number]).columns.tolist()
-       numeric_columns.remove('Músculo (kg)')  # Remover la variable dependiente de las opciones
-
-       # Selector de la variable predictora
-       predictor = st.selectbox("Selecciona la variable predictora", numeric_columns)
-
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[[predictor]]
-       y = data['Músculo (kg)']
-
-       # Crea un modelo de regresión lineal
-       modelo_musculo_lr = LinearRegression()
-       modelo_musculo_lr.fit(X, y)
-
-       # Crea un modelo de árbol de decisión
-       modelo_musculo_dt = DecisionTreeRegressor()
-       modelo_musculo_dt.fit(X, y)
-
-       # Crea un modelo de Random Forest
-       modelo_musculo_rf = RandomForestRegressor()
-       modelo_musculo_rf.fit(X, y)
-
-       # Crea un modelo de Gradient Boosting
-       modelo_musculo_gb = GradientBoostingRegressor()
-       modelo_musculo_gb.fit(X, y)
-
-       # Realiza predicciones para diferentes valores de la variable predictora seleccionada
-       predictor_values = np.linspace(min(X[predictor]), max(X[predictor]), 100).reshape(-1, 1)
-       musculo_pred_lr = modelo_musculo_lr.predict(predictor_values)
-       musculo_pred_dt = modelo_musculo_dt.predict(predictor_values)
-       musculo_pred_rf = modelo_musculo_rf.predict(predictor_values)
-       musculo_pred_gb = modelo_musculo_gb.predict(predictor_values)
-
-       # Calcula el coeficiente de determinación (R^2) para cada modelo
-       r2_musculo_lr = modelo_musculo_lr.score(X, y)
-       r2_musculo_dt = modelo_musculo_dt.score(X, y)
-       r2_musculo_rf = modelo_musculo_rf.score(X, y)
-       r2_musculo_gb = modelo_musculo_gb.score(X, y)
-
-
-       #Calcula el error absoluto medio para cada
-       # Cálculo de los errores absolutos medios (MAE) para cada modelo
-       mae_lr = mean_absolute_error(y, modelo_musculo_lr.predict(X))
-       mae_dt = mean_absolute_error(y, modelo_musculo_dt.predict(X))
-       mae_rf = mean_absolute_error(y, modelo_musculo_rf.predict(X))
-       mae_gb = mean_absolute_error(y, modelo_musculo_gb.predict(X))
-
-
-
-       # Grafica los datos y las predicciones para cada modelo
-       st.write("Gráfico de predicciones:")
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores corresponden a: modelo lineal (en rojo), Random Forest (azul), árbol de decisión (verde) y Gradient Boosting (morado).")
-       fig, ax = plt.subplots()
-       ax.scatter(X, y, color='blue', label="Datos de masa muscular (kg)")
-       ax.plot(predictor_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
-       ax.plot(predictor_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
-       ax.plot(predictor_values, musculo_pred_rf, color='blue', label=f'Random Forest (R^2={r2_musculo_rf:.2f})')
-       ax.plot(predictor_values, musculo_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_musculo_gb:.2f})')
-
-       # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
-       for label in ax.get_xticklabels() + ax.get_yticklabels():
-        label.set_fontsize(8)
-
-       ax.set_xlabel(predictor)
-       ax.set_ylabel('Masa muscular (kg)')
-       ax.set_title('Predicciones de Masa muscular (kg)')
-       ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
-       st.pyplot(fig)
-
-       # Coeficientes de ajuste para el modelo de regresión lineal
-       pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
-       intercepto_musculo_lr = modelo_musculo_lr.intercept_
-
-       with st.expander("**Coeficientes de ajuste para los modelos**"):
-        st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr:.2f}, **Intercepto** = {intercepto_musculo_lr:.2f}')
-        # Coeficientes de determinación (R^2) para los modelos
-        st.write(f'**R^2 Ajuste Lineal:** {r2_musculo_lr:.2f}')
-        st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt:.2f}')
-        st.write(f'**R^2 Random Forest:** {r2_musculo_rf:.2f}')
-        st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb:.2f}')
-
-
-
-        st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
-        st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
-        st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
-        st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
-
-
-
-
-
-       ####################
+        #st.write(f"**Número de filas**: {num_rows}")
+        #st.write(f"**Número de columnas**: {num_columns}")
+        #if missing_data:
+        #    st.write("Existen datos faltantes en alguna fila.")
+        #else:
+        #    st.write("No hay datos faltantes en ninguna fila.")
+    
+####################
 
        import streamlit as st
        import numpy as np
@@ -659,10 +577,12 @@ if pestañas == "Modelos con una variable":
        mae_gb = mean_absolute_error(y, modelo_grasa_gb.predict(X))
 
        # Grafica los datos y las predicciones para cada modelo
-       st.write("Gráfico de predicciones:")
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
+       
+
+       #st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores correponden a: modelo lineal (en rojo), aproximación de Random Forest (azul) y aproximación de árbol de decisión (verde)")
+       
        fig, ax=plt.subplots()
-       ax.scatter(X, y, color = 'blue', label="Datos de porcentaje de grasa corporal")       
+       ax.scatter(X, y, color = 'green', label="Mediciones")       
        ax.plot(pbrazo_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
        ax.plot(pbrazo_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
        ax.plot(pbrazo_values, grasa_pred_rf, color='blue', label=f'Random forest (R^2={r2_grasa_rf:.2f})')
@@ -674,29 +594,127 @@ if pestañas == "Modelos con una variable":
 
        ax.set_xlabel('Perímetro de brazo (cm)')
        ax.set_ylabel('Porcentaje de grasa corporal')
-       ax.set_title('Predicciones de porcentaje de grasa corporal')
+       ax.set_title('Predicciones para el porcentaje de grasa corporal')
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
        with st.expander("**Coeficientes de ajuste para los modelos**"):
-           
-           # Coeficientes de ajuste para el modelo de regresión lineal       
-           pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
-           intercepto_grasa_lr = modelo_grasa_lr.intercept_
-           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
-
+    
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+           st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr}')       
-           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
-           st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
-           st.write(f'**R^2 Gradient Bosting:** {r2_grasa_gb}')
-
-           st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
+           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
+           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write("***Error medio absoluto***")
+           st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
            st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
            st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
 
-       #####################
+
+       import streamlit as st
+       import matplotlib.pyplot as plt
+       from sklearn.tree import DecisionTreeRegressor, plot_tree
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       A continuación puede teclear un valor de ***perímetro de brazo*** y al presionar *Enter* se muestra la estimación del ***porcentaje de grasa corporal*** de acuerdo con cada modelo.
+                   
+       </div>
+       """, unsafe_allow_html=True)
+
+       # Input del usuario para el valor de la variable predictora
+       input_value = st.number_input(f'**Introduzca un valor para el perímetro de brazo**', min_value=float(X['PBrazo (cm)'].min()), max_value=float(X['PBrazo (cm)'].max()))
+
+       # Realiza predicciones usando el valor de entrada del usuario
+       input_array = np.array([[input_value]])
+       prediction_lr = modelo_grasa_lr.predict(input_array)[0]
+       prediction_dt = modelo_grasa_dt.predict(input_array)[0]
+       prediction_rf = modelo_grasa_rf.predict(input_array)[0]
+       prediction_gb = modelo_grasa_gb.predict(input_array)[0]
+
+       # Muestra las predicciones
+       st.write(f'**Predicción usando *Regresión Lineal*:** {prediction_lr:.2f} kg')
+       st.write(f'**Predicción usando *Árbol de Decisión*:** {prediction_dt:.2f} kg')
+       st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} kg')
+       st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
+
+    
+       st.subheader("Predicción de masa muscular y porcentaje de grasa corporal mediante otras variables antropométricas")
+
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       En esta sección se deja a **elección del usuario** las variables que se utilizarán como predictores de ***masa muscular*** y ***porcentaje de grasa corporal***. La lista de variables posibles corresponde a las que ya de mostraron arriba (en la pestaña de ***Claves de variables***). Puede elegir las variables predictoras en cada uno de los menús desplegables. 
+                   
+       </div>
+       """, unsafe_allow_html=True)
+
+        # Obtener las variables numéricas del DataFrame
+       numeric_columns = data.select_dtypes(include=[np.number]).columns.tolist()
+       numeric_columns.remove('Músculo (kg)')  # Remover la variable dependiente de las opciones
+
+       # Selector de la variable predictora
+       predictor = st.selectbox("***Selecciona la variable predictora para la masa muscular total (kg)***", numeric_columns)
+
+       # Divide tus datos en características (X) y la variable dependiente (y)
+       X = data[[predictor]]
+       y = data['Músculo (kg)']
+
+       # Crea un modelo de regresión lineal
+       modelo_musculo_lr = LinearRegression()
+       modelo_musculo_lr.fit(X, y)
+
+       # Crea un modelo de árbol de decisión
+       modelo_musculo_dt = DecisionTreeRegressor()
+       modelo_musculo_dt.fit(X, y)
+
+       # Crea un modelo de Random Forest
+       modelo_musculo_rf = RandomForestRegressor()
+       modelo_musculo_rf.fit(X, y)
+
+       # Crea un modelo de Gradient Boosting
+       modelo_musculo_gb = GradientBoostingRegressor()
+       modelo_musculo_gb.fit(X, y)
+
+       # Realiza predicciones para diferentes valores de la variable predictora seleccionada
+
+       predictor_values = np.linspace(min(X[predictor]), max(X[predictor]), 100).reshape(-1, 1)
+       musculo_pred_lr = modelo_musculo_lr.predict(predictor_values)
+       musculo_pred_dt = modelo_musculo_dt.predict(predictor_values)
+       musculo_pred_rf = modelo_musculo_rf.predict(predictor_values)
+       musculo_pred_gb = modelo_musculo_gb.predict(predictor_values)
+
+       # Calcula el coeficiente de determinación (R^2) para cada modelo
+       r2_musculo_lr = modelo_musculo_lr.score(X, y)
+       r2_musculo_dt = modelo_musculo_dt.score(X, y)
+       r2_musculo_rf = modelo_musculo_rf.score(X, y)
+       r2_musculo_gb = modelo_musculo_gb.score(X, y)
+
+
+       #Calcula el error absoluto medio para cada
+       # Cálculo de los errores absolutos medios (MAE) para cada modelo
+       mae_lr = mean_absolute_error(y, modelo_musculo_lr.predict(X))
+       mae_dt = mean_absolute_error(y, modelo_musculo_dt.predict(X))
+       mae_rf = mean_absolute_error(y, modelo_musculo_rf.predict(X))
+       mae_gb = mean_absolute_error(y, modelo_musculo_gb.predict(X))
+
+
+       ####################
+
+       import streamlit as st
+       import numpy as np
+       import matplotlib.pyplot as plt
+       from sklearn.linear_model import LinearRegression
+       from sklearn.tree import DecisionTreeRegressor
+       from sklearn.ensemble import RandomForestRegressor
+       from sklearn.metrics import r2_score
+       from sklearn.model_selection import RandomizedSearchCV
+       from scipy.stats import uniform, randint
 
        import streamlit as st
        import pandas as pd
@@ -711,81 +729,105 @@ if pestañas == "Modelos con una variable":
        # Supongamos que 'df' es tu DataFrame ya cargado previamente
        data = df
 
-       # Crear un título para la aplicación
-       st.subheader('Modelos de Regresión para la predicción del porcentaje de grasa corporal')
-
-       # Mostrar una tabla con los primeros registros de los datos
-       st.markdown("Esta es la base de datos con parámetros antropométricos:")
-       st.dataframe(data)
-
-       with st.expander("**Información adicional**"):
-        # Mostrar información adicional sobre el DataFrame
-        num_rows, num_columns = data.shape
-        missing_data = data.isnull().any().any()
-
-        st.write(f"**Número de filas**: {num_rows}")
-        st.write(f"**Número de columnas**: {num_columns}")
-        if missing_data:
-            st.write("Existen datos faltantes en alguna fila.")
-        else:
-            st.write("No hay datos faltantes en ninguna fila.")
-
-        # Obtener las variables numéricas del DataFrame
+       # Obtener las variables numéricas del DataFrame
        numeric_columns = data.select_dtypes(include=[np.number]).columns.tolist()
-       numeric_columns.remove('Músculo (kg)')  # Remover la variable dependiente de las opciones
+       numeric_columns.remove('Grasa Corporal (%)')  # Remover la variable dependiente de las opciones
 
        # Selector de la variable predictora
-       predictor_2 = st.selectbox("Seleccione la variable predictora", numeric_columns)
+       predictor_2 = st.selectbox("***Seleccione la variable predictora para el porcentaje de grasa corporal***", numeric_columns)
 
        # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[[predictor_2]]
-       y = data['Grasa Corporal (%)']
+       X_2 = data[[predictor_2]]
+       y_2 = data['Grasa Corporal (%)']
 
        # Crea un modelo de regresión lineal
        modelo_grasa_lr = LinearRegression()
-       modelo_grasa_lr.fit(X, y)
+       modelo_grasa_lr.fit(X_2, y_2)
 
        # Crea un modelo de árbol de decisión
        modelo_grasa_dt = DecisionTreeRegressor()
-       modelo_grasa_dt.fit(X, y)
+       modelo_grasa_dt.fit(X_2, y_2)
 
        # Crea un modelo de Random Forest
        modelo_grasa_rf = RandomForestRegressor()
-       modelo_grasa_rf.fit(X, y)
+       modelo_grasa_rf.fit(X_2, y_2)
 
-       # Crea un modelo de Gradient Boosting
+       # Crear un modelo de Gradient Boosting para Grasa Corporal (%) vs. PBrazo (cm)
        modelo_grasa_gb = GradientBoostingRegressor()
-       modelo_grasa_gb.fit(X, y)
+       modelo_grasa_gb.fit(X_2, y_2)
 
-       # Realiza predicciones para diferentes valores de la variable predictora seleccionada
-       predictor_values = np.linspace(min(X[predictor_2]), max(X[predictor_2]), 100).reshape(-1, 1)
-       grasa_pred_lr = modelo_grasa_lr.predict(predictor_values)
-       grasa_pred_dt = modelo_grasa_dt.predict(predictor_values)
-       grasa_pred_rf = modelo_grasa_rf.predict(predictor_values)
-       grasa_pred_gb = modelo_grasa_gb.predict(predictor_values)
+       # Realiza predicciones para diferentes valores de PPantorrilla (cm)
+       #predictor_2_values = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
+       #predictor_2_values = np.linspace(min(X_2[predictor_2]), max(X_2[predictor_2]), 100)
+       predictor_2_values = np.linspace(min(X_2[predictor_2]), max(X_2[predictor_2]), 100).reshape(-1, 1) 
+       #predictor_values = np.linspace(min(X[predictor]), max(X[predictor]), 100).reshape(-1, 1)
+ 
+       grasa_pred_lr = modelo_grasa_lr.predict(predictor_2_values)
+       grasa_pred_dt = modelo_grasa_dt.predict(predictor_2_values)
+       grasa_pred_rf = modelo_grasa_rf.predict(predictor_2_values)
+       grasa_pred_gb = modelo_grasa_gb.predict(predictor_2_values)
 
        # Calcula el coeficiente de determinación (R^2) para cada modelo
-       r2_grasa_lr = modelo_grasa_lr.score(X, y)
-       r2_grasa_dt = modelo_grasa_dt.score(X, y)
-       r2_grasa_rf = modelo_grasa_rf.score(X, y)
-       r2_grasa_gb = modelo_grasa_gb.score(X, y)
+       r2_grasa_lr = modelo_grasa_lr.score(X_2, y_2)
+       r2_grasa_dt = modelo_grasa_dt.score(X_2, y_2)
+       r2_grasa_rf = modelo_grasa_rf.score(X_2, y_2)
+       r2_grasa_gb = modelo_grasa_gb.score(X_2, y_2)
 
-       #Calcula el error medio
+       from sklearn.metrics import mean_absolute_error
 
-       mae_lr = mean_absolute_error(y, modelo_grasa_lr.predict(X))
-       mae_dt = mean_absolute_error(y, modelo_grasa_dt.predict(X))
-       mae_rf = mean_absolute_error(y, modelo_grasa_rf.predict(X))
-       mae_gb = mean_absolute_error(y, modelo_grasa_gb.predict(X))
+       # Cálculo de los errores absolutos medios (MAE) para cada modelo
+       mae_lr = mean_absolute_error(y_2, modelo_grasa_lr.predict(X_2))
+       mae_dt = mean_absolute_error(y_2, modelo_grasa_dt.predict(X_2))
+       mae_rf = mean_absolute_error(y_2, modelo_grasa_rf.predict(X_2))
+       mae_gb = mean_absolute_error(y_2, modelo_grasa_gb.predict(X_2))
+
 
        # Grafica los datos y las predicciones para cada modelo
-       st.write("Gráfico de predicciones:")
-       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores corresponden a: modelo lineal (en rojo), Random Forest (azul), árbol de decisión (verde) y Gradient Boosting (morado).")
+       #st.write("**Gráfico de predicciones**")
+       st.write("En esta gráfica se comparan los modelos con los datos medidos (puntos azules). Las curvas de distintos colores corresponden al modelo de ***Regresión lineal*** (en rojo), ***Random Forest*** (azul), ***Árbol de decisión*** (verde) y ***Gradient Boosting*** (morado).")
        fig, ax = plt.subplots()
-       ax.scatter(X, y, color='blue', label="Datos de porcentaje de grasa corporal")
-       ax.plot(predictor_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
-       ax.plot(predictor_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
-       ax.plot(predictor_values, grasa_pred_rf, color='blue', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
-       ax.plot(predictor_values, grasa_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_grasa_gb:.2f})')
+       ax.scatter(X, y, color='blue', label="Mediciones")
+       ax.plot(predictor_values, musculo_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_musculo_lr:.2f})')
+       ax.plot(predictor_values, musculo_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_musculo_dt:.2f})')
+       ax.plot(predictor_values, musculo_pred_rf, color='blue', label=f'Random Forest (R^2={r2_musculo_rf:.2f})')
+       ax.plot(predictor_values, musculo_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_musculo_gb:.2f})')
+
+       # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
+       for label in ax.get_xticklabels() + ax.get_yticklabels():
+        label.set_fontsize(8)
+
+       ax.set_xlabel(predictor)
+       ax.set_ylabel('Masa muscular (kg)')
+       ax.set_title('Predicciones para la Masa muscular (kg)')
+       ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
+       st.pyplot(fig)
+
+       # Coeficientes de ajuste para el modelo de regresión lineal
+       pendiente_musculo_lr = modelo_musculo_lr.coef_[0]
+       intercepto_musculo_lr = modelo_musculo_lr.intercept_
+
+       with st.expander("**Coeficientes de ajuste para los modelos**"):
+    
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+           st.write("***Coeficiente de determinación***")
+           # Coeficientes de determinación (R^2) para los modelos
+           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
+           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write("***Error medio absoluto***")
+           st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
+           st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
+           st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
+           st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
+
+
+       fig, ax = plt.subplots()
+       ax.scatter(X_2, y_2, color='green', label="Mediciones")
+       ax.plot(predictor_2_values, grasa_pred_lr, color='red', label=f'Regresión lineal (R^2={r2_grasa_lr:.2f})')
+       ax.plot(predictor_2_values, grasa_pred_dt, color='green', label=f'Árbol de decisión (R^2={r2_grasa_dt:.2f})')
+       ax.plot(predictor_2_values, grasa_pred_rf, color='blue', label=f'Random Forest (R^2={r2_grasa_rf:.2f})')
+       ax.plot(predictor_2_values, grasa_pred_gb, color='purple', label=f'Gradient Boosting (R^2={r2_grasa_gb:.2f})')
 
        # Modificar el tamaño de fuente de las etiquetas de las líneas en el gráfico
        for label in ax.get_xticklabels() + ax.get_yticklabels():
@@ -793,7 +835,7 @@ if pestañas == "Modelos con una variable":
 
        ax.set_xlabel(predictor_2)
        ax.set_ylabel('Grasa Corporal (%)')
-       ax.set_title('Predicciones del porcentaje de grasa corporal')
+       ax.set_title('Predicciones para el porcentaje de grasa corporal')
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
@@ -802,20 +844,64 @@ if pestañas == "Modelos con una variable":
        intercepto_grasa_lr = modelo_grasa_lr.intercept_
 
        with st.expander("**Coeficientes de ajuste para los modelos**"):
-        st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
-        # Coeficientes de determinación (R^2) para los modelos
-        st.write(f'**R^2 Ajuste Lineal:** {r2_grasa_lr:.2f}')
-        st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt:.2f}')
-        st.write(f'**R^2 Random Forest:** {r2_grasa_rf:.2f}')
-        st.write(f'**R^2 Gradient Boosting:** {r2_grasa_gb:.2f}')
-        st.write(f'**MAE Ajuste Lineal:** {mae_lr:.2f}')
-        st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
-        st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
-        st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
+    
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
+           st.write("***Coeficiente de determinación***")
+           # Coeficientes de determinación (R^2) para los modelos
+           st.write(f'**R^2 Regresión lineal:** {r2_grasa_lr}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
+           st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_grasa_gb}')
+           st.write("***Error medio absoluto***")
+           st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
+           st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
+           st.write(f'**MAE Random Forest:** {mae_rf:.2f}')
+           st.write(f'**MAE Gradient Boosting:** {mae_gb:.2f}')
 
+       import streamlit as st
+       import matplotlib.pyplot as plt
+       from sklearn.tree import DecisionTreeRegressor, plot_tree
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       A continuación puede teclear un valor de ***perímetro de brazo*** y al presionar *Enter* se muestra la estimación del ***porcentaje de grasa corporal*** de acuerdo con cada modelo.
+                   
+       </div>
+       """, unsafe_allow_html=True)
 
+       # Input del usuario para el valor de la variable predictora
+       input_value = st.number_input(f'**Introduzca un valor para la variable predictora de masa muscular**', min_value=float(X[predictor].min()), max_value=float(X[predictor].max()))
 
+       # Realiza predicciones usando el valor de entrada del usuario
+       input_array = np.array([[input_value]])
+       prediction_lr = modelo_grasa_lr.predict(input_array)[0]
+       prediction_dt = modelo_grasa_dt.predict(input_array)[0]
+       prediction_rf = modelo_grasa_rf.predict(input_array)[0]
+       prediction_gb = modelo_grasa_gb.predict(input_array)[0]
+
+       # Muestra las predicciones
+       st.write(f'**Predicción usando *Regresión Lineal*:** {prediction_lr:.2f} kg')
+       st.write(f'**Predicción usando *Árbol de Decisión*:** {prediction_dt:.2f} kg')
+       st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} kg')
+       st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
+
+      # Input del usuario para el valor de la variable predictora
+       input_value_2 = st.number_input(f'**Introduzca un valor para la variable predictora del porcentaje de grasa corporal**', min_value=float(X_2[predictor_2].min()), max_value=float(X_2[predictor_2].max()))
+
+       # Realiza predicciones usando el valor de entrada del usuario
+       input_array = np.array([[input_value_2]])
+       prediction_lr = modelo_grasa_lr.predict(input_array)[0]
+       prediction_dt = modelo_grasa_dt.predict(input_array)[0]
+       prediction_rf = modelo_grasa_rf.predict(input_array)[0]
+       prediction_gb = modelo_grasa_gb.predict(input_array)[0]
+
+       # Muestra las predicciones
+       st.write(f'**Predicción usando *Regresión Lineal*:** {prediction_lr:.2f} %')
+       st.write(f'**Predicción usando *Árbol de Decisión*:** {prediction_dt:.2f} %')
+       st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} %')
+       st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} %')
 
 
        #####################
@@ -837,8 +923,9 @@ if pestañas == "Modelos con una variable":
        # Mostrar la figura en Streamlit
        #st.pyplot(figur)
 
-
        ##################################
+
+
 # Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
        st.title("Modelos de aproximación con dos variables independientes")
