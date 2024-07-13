@@ -876,10 +876,10 @@ if pestañas == "Modelos con una variable":
 
        # Realiza predicciones usando el valor de entrada del usuario
        input_array = np.array([[input_value]])
-       prediction_lr = modelo_grasa_lr.predict(input_array)[0]
-       prediction_dt = modelo_grasa_dt.predict(input_array)[0]
-       prediction_rf = modelo_grasa_rf.predict(input_array)[0]
-       prediction_gb = modelo_grasa_gb.predict(input_array)[0]
+       prediction_lr = modelo_musculo_lr.predict(input_array)[0]
+       prediction_dt = modelo_musculo_dt.predict(input_array)[0]
+       prediction_rf = modelo_musculo_rf.predict(input_array)[0]
+       prediction_gb = modelo_musculo_gb.predict(input_array)[0]
 
        # Muestra las predicciones
        st.write(f'**Predicción usando *Regresión Lineal*:** {prediction_lr:.2f} kg')
