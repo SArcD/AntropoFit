@@ -80,13 +80,17 @@ pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Mode
 if pestañas == "Presentación":
        st.title("Sobre AntropoFit")
        st.markdown("""
+       <div style="text-align: justify;">
+       
        Esta aplicación es resultado del proyecto de estancia posdoctoral "**Identificación 
        de las etapas y tipos de sarcopenia mediante modelos predictivos como herramienta 
        de apoyo en el diagnóstico a partir de parámetros antropométricos**", desarrollado 
        por el Doctor en Ciencias (Astrofísica) Santiago Arceo Díaz, bajo la dirección de 
        la Doctora Xóchitl Rosío Angélica Trujillo Trujillo, y con la ayuda de los colaboradores mencionados en esta sección. Esta estancia es gracias a la 
        colaboración entre el entre el **Consejo Nacional de Humanidades Ciencia y Tecnología ([**CONAHCYT**](https://conahcyt.mx/)) y la Universidad de Colima ([**UCOL**](https://portal.ucol.mx/cuib/))**
-       """)
+       </div>
+       """, unsafe_allow_html=True)
+)
        st.subheader("Muestra")
        st.markdown("""
        Los datos utilizados para los modelos se recolectaron a partir de un grupo de voluntarios de centros 
