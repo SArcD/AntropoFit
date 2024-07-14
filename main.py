@@ -123,7 +123,7 @@ if pestañas == "Presentación":
        </div>
         """,unsafe_allow_html=True)
        
-    st.subheader("Ventajas y características")
+       st.subheader("Ventajas y características")
 
        st.markdown("""       
        <div style="text-align: justify;">
