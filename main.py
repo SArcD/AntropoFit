@@ -133,6 +133,7 @@ if pestañas == "Presentación":
        """
        )
 
+
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
