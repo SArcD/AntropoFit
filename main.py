@@ -927,12 +927,126 @@ if pestañas == "Modelos con una variable":
 
 
 # Contenido de la pestaña 2
+
+       ##################################
+# Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
        st.title("Modelos de aproximación con dos variables independientes")
-       st.write("Se muestran los modelos en los que se estima grasa corporal y mas muscular usando pares de variables: perímetro de pantorrilla y fuerza de agarre, en el caso de masa muscular, y perímetro de brazo y pliegue cutáneo subescapular, en el caso del porcentaje de grasa corporal")
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       En esta sección de crean modelos predictivos para la ***masa muscular*** y el ***porcentaje de grasa corporal*** utilizando parejas de variables antropométricas. Si bien la complejidas de los modelos se incrementa, también lo hace su precisión. 
+                                
+      Los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en árboles de regresión. Dichos algoritmos son: ***'árbol de regresión simple'***, ***'Random forest'*** y ***'Gradient boosting'***. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
+                   
+       En la primera sección se muestran los modelos que utilizan el ***perímetro de pantorrilla y la fuerza de agarre*** para predecir la ***masa muscular*** y ***el perímetro de brazo y el pliegue cutáneo subescapular*** para predecir el ***porcentaje de grasa corporal.***
+                   
+       En la segunda sección se deja a elección del usuario las variables predictoras.
+                   
+       </div>
+       """, unsafe_allow_html=True)
+       
+       ##import streamlit as st       
+       #df=pd.read_excel('AM_2023_Antropo.xlsx')
+       #st.dataframe(df)
+       #df=df.dropna()
+       #df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano #izquierda']) / 2
+       #df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo #izquierdo']) / 2
+       #df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna #izquierda']) / 2
+       #df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+       #       'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)#',
+       #       'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+       #       'Grasa Corporal (%)', 'Centro',
+       #       'FA','Velocidad de marcha']]
+       
+       st.markdown("""
+       <div style="text-align: justify;">
+
+       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+       
+        A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
+       </div>
+       """, unsafe_allow_html=True)
+
+       with st.expander("**Claves de variables**"):
+           st.markdown("""
+           - **Folio:** identificador personal.
+           - **Peso (kg):** peso corporal total, medida en Kg.
+           - **Talla (cm):** altura de la persona, medida en centímetros.
+           - **IMC:** índice de masa corporal.
+           - **PCintura (cm):** perímetro de cintura, medido en centímetros.
+           - **Pcadera (cm):** perímetro de la cadera, medido en centímetros.
+           - **PBrazo (cm):** perímetro total del brazo, medido en centímetros. 
+           - **PPantorrilla (cm):** perímetro de la pantorrilla, medida en centímetros.
+           - **PCB (mm):** pliegue cutáneo de brazo, medido en milímetros.
+           - **PCT (mm):** pliegue cutáneo del triceps, medido en milímetros.
+           - **PCSE (mm):** pliegue cutáneo sub escapular, medido en milímetros.
+           - **Agua corporal (%):** porcentaje corporal de agua.
+           - **Músculo (kg):** peso del corporal.
+           - **Grasa corporal (%):** porcentaje corporal de grasa.
+           - **Gs Brazo derecho:** porcentaje de grasa subcutánea en el brazo derecho. 
+           - **Gs Brazo izquierdo:** porcentaje de grasa subcutánea en el brazo izquierdo.
+           - **Gs pierna izquierda:** porcentaje de grasa subcutánea en la pierna izquierda.
+           - **Gs pierna derecha:** porcentaje de grasa subctánea en la pierna derecha.
+           - **Centro:** porcentaje de grasa en la zona central del abdomen.
+           - **Fuerza mano derecha:** Fuerza de agarre en la mano derecha, medida en kg de presión.
+           - **Fuerza mano izquierda:** Fuerza de agarre en la mano izquierda, medida en kg de presión.
+           - **Velocidad de marcha:** velocidad de marcha, medida en metros sobre segundo.
+           - **PA sistólica:** Presión sanguínea sistólica, medida en milímetros de mercurio.
+           - **PA diastólica:** Presión sanguínea diastólica, medida en milímetros de mercurio.
+           """)
+
+    
+        
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
        st.dataframe(df)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = df.shape
+           missing_data = df.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Hay datos faltantes en algunas filas.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
+
+       # Crear un botón de descarga para el dataframe
+       def download_button(df, filename, button_text):
+           # Crear un objeto ExcelWriter
+           excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+           # Guardar el dataframe en el objeto ExcelWriter
+           df.to_excel(excel_writer, index=False)
+           # Cerrar el objeto ExcelWriter
+           excel_writer.save()
+           # Leer el archivo guardado como bytes
+           with open(filename, 'rb') as f:
+               file_bytes = f.read()
+               # Generar el enlace de descarga
+               href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
+               st.markdown(href, unsafe_allow_html=True)
+
+       # Crear un botón de descarga para el dataframe
+       def download_button_CSV(df, filename, button_text):
+           csv = df.to_csv(index=False)
+           b64 = base64.b64encode(csv.encode()).decode()
+           href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+           st.markdown(href, unsafe_allow_html=True)
+
+
+       # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(df, 'muestra_antrompométrica_colima_2023.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(df, 'muestra_antrompométrica_colima_2023.csv', 'Descargar como CSV')
+           st.write('')
+    
        df=df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
@@ -942,191 +1056,72 @@ elif pestañas == "Modelos con 2 variables":
               'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
               'Grasa Corporal (%)', 'Centro',
               'FA','Velocidad de marcha']]
+       df_2=df
+       
+       # Muestra una tabla con los primeros registros de los datos
+       st.markdown("""
+       <div style="text-align: justify;">
+       Antes de crear los modelos, eliminamos las filas que tuvieran datos faltantes en alguna de las columnas de interés. La tabla con los datos que se usaron para los modelos se muestra a continuación:
+                   
+       </div>
+       """, unsafe_allow_html=True) 
+       
        data = df
+
+       st.dataframe(data)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = data.shape
+           missing_data = data.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Existen datos faltantes en alguna fila.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
+
+       # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(data, 'muestra_antrompométrica_colima_2023_sin_nan.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(data, 'muestra_antrompométrica_colima_2023_sin_nan.csv', 'Descargar como CSV')
+           st.write('')
+
+       st.subheader("Modelos predictivos que usan fuerza de agarre y perímetro de pantorrilla.")
+       
        import streamlit as st
        import pandas as pd
-       from sklearn.linear_model import LinearRegression
-       from sklearn.metrics import r2_score
-       import numpy as np
+       from sklearn.tree import DecisionTreeRegressor, plot_tree, export_text
+       from sklearn.ensemble import RandomForestRegressor
        import matplotlib.pyplot as plt
-       from mpl_toolkits.mplot3d import Axes3D
-
-       # Divide tus datos en características (X) y la variable dependiente (y)       
-       X = data[['PPantorrilla (cm)', 'FA']]
-       y = data['Músculo (kg)']
-
-       # Crea un modelo de regresión lineal
-       modelo_musculo_lr = LinearRegression()
-       modelo_musculo_lr.fit(X, y)
-
-       # Realiza predicciones para diferentes valores de PPantorrilla (cm) y FA
-       ppantorilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100)
-       fa_values = np.linspace(min(X['FA']), max(X['FA']), 100)
-       ppantorilla_values, fa_values = np.meshgrid(ppantorilla_values, fa_values)
-       musculo_pred_lr = modelo_musculo_lr.predict(np.column_stack((ppantorilla_values.ravel(), fa_values.ravel())))
-
-       # Calcula el coeficiente de determinación (R^2) para el modelo
-       r2_musculo_lr = modelo_musculo_lr.score(X, y)
-
-       # Crear una figura 3D
-       fig = plt.figure(figsize=(12, 6))
-       ax = fig.add_subplot(111, projection='3d')
-
-       # Grafica los datos reales
-       scatter = ax.scatter(X['PPantorrilla (cm)'], X['FA'], y, label='Datos reales', c='blue')
-
-       # Grafica las predicciones del modelo
-       ax.plot_surface(ppantorilla_values, fa_values, musculo_pred_lr.reshape(ppantorilla_values.shape), alpha=0.5, color='green')
-
-       # Etiquetas de los ejes
-       ax.set_xlabel('PPantorrilla (cm)')
-       ax.set_ylabel('FA')
-       ax.set_zlabel('Músculo (kg)')
-
-       # Crear una leyenda ficticia para el gráfico
-       legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
-       ax.add_artist(legend)
-
-       # Título del gráfico
-       plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_lr:.2f})')
-
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(fig)
-
-       ################################
-
-       import streamlit as st       
-       import pandas as pd
-       from sklearn.tree import DecisionTreeRegressor
-       import numpy as np
-       import matplotlib.pyplot as plt
-       from mpl_toolkits.mplot3d import Axes3D
-
-       # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-       # Asegúrate de tener definida la variable 'data'
-
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PPantorrilla (cm)', 'FA']]
-       y = data['Músculo (kg)']
-
-       # Crea un modelo de árbol de decisión
-       modelo_musculo_dt = DecisionTreeRegressor()
-       modelo_musculo_dt.fit(X, y)
-
-       # Realiza predicciones para diferentes valores de PPantorrilla (cm) y FA
-       ppantorilla_values = np.linspace(min(X['PPantorrilla (cm)']), max(X['PPantorrilla (cm)']), 100)
-       fa_values = np.linspace(min(X['FA']), max(X['FA']), 100)
-       ppantorilla_values, fa_values = np.meshgrid(ppantorilla_values, fa_values)
-       musculo_pred_dt = modelo_musculo_dt.predict(np.column_stack((ppantorilla_values.ravel(), fa_values.ravel())))
-
-       # Calcula el coeficiente de determinación (R^2) para el modelo
-       r2_musculo_dt = modelo_musculo_dt.score(X, y)
-
-       # Crear una figura 3D
-       fig = plt.figure(figsize=(12, 6))
-       ax = fig.add_subplot(111, projection='3d')
-
-       # Grafica los datos reales
-       scatter = ax.scatter(X['PPantorrilla (cm)'], X['FA'], y, label='Datos reales', c='blue')
-
-       # Grafica las predicciones del modelo de árbol de decisión
-       ax.plot_surface(ppantorilla_values, fa_values, musculo_pred_dt.reshape(ppantorilla_values.shape), alpha=0.5, color='green')
-
-       # Etiquetas de los ejes
-       ax.set_xlabel('PPantorrilla (cm)')
-       ax.set_ylabel('FA')
-       ax.set_zlabel('Músculo (kg)')
-
-       # Crear una leyenda ficticia para el gráfico
-       legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
-       ax.add_artist(legend)
-
-       # Título del gráfico
-       plt.title(f'Músculo en función de PPantorrilla y FA (R^2={r2_musculo_dt:.2f})')
-
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(fig)
-
-       #############################
-
+       
        import streamlit as st
        import numpy as np
        import matplotlib.pyplot as plt
        from matplotlib.colors import ListedColormap
+       from sklearn.linear_model import LinearRegression
        from sklearn.tree import DecisionTreeRegressor
-
-       # Carga tus datos y define tus características (X) y la variable dependiente (y)
-       X = data[['PPantorrilla (cm)', 'FA']]
-       y = data['Músculo (kg)']
-
-       # Entrena un modelo de árbol de decisión
-       modelo_musculo_dt = DecisionTreeRegressor()
-       modelo_musculo_dt.fit(X, y)
-
-       # Define rangos de valores para PPantorrilla (cm) y FA
-       ppantorilla_range = np.linspace(X['PPantorrilla (cm)'].min(), X['PPantorrilla (cm)'].max(), 100)
-       fa_range = np.linspace(X['FA'].min(), X['FA'].max(), 100)
-       ppantorilla_grid, fa_grid = np.meshgrid(ppantorilla_range, fa_range)
-
-       # Combina las características en una matriz bidimensional
-       X_grid = np.c_[ppantorilla_grid.ravel(), fa_grid.ravel()]
-
-       # Realiza predicciones en la malla de valores
-       y_pred = modelo_musculo_dt.predict(X_grid)
-       y_pred = y_pred.reshape(ppantorilla_grid.shape)
-
-       # Crea la gráfica de superficie de decisión
-       fig = plt.figure(figsize=(10, 6))
-       contour = plt.contourf(ppantorilla_grid, fa_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
-       plt.scatter(X['PPantorrilla (cm)'], X['FA'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
-       plt.xlabel('PPantorrilla (cm)')
-       plt.ylabel('FA')
-       plt.title(f'Superficie de Decisión del Árbol de Decisión para Músculo (kg) (R^2={modelo_musculo_dt.score(X, y):.2f})')
-
-       # Agrega etiquetas con los valores de Músculo
-       cbar = plt.colorbar(contour)
-       cbar.set_label('Músculo (kg)')
-
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(fig)
-
-
-       ##################
-
-       import streamlit as st
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
        import pandas as pd
-       from sklearn.tree import DecisionTreeRegressor
-       import matplotlib.pyplot as plt
 
-       # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
+
+       st.markdown("""
+       <div style="text-align: justify;">
+                   
+       A continuación se muestran los algoritmos para el cálculo de la ***masa muscular*** en función de la ***fuerza de agarre*** y el ***perímetro de pantorrilla***. **Puede dar click en cada una de las pestañas de abajo para vizualizar una explicación de como cada algoritmo predice los datos contenidos en la muestra.** 
+                   
+       </div>
+       """, unsafe_allow_html=True)
+
+       # Supongamos que 'df' es tu DataFrame ya cargado previamente 
+       data = df
 
        # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PPantorrilla (cm)', 'FA']]
-       y = data['Músculo (kg)']
-
-       # Crea un modelo de árbol de decisión
-       modelo_musculo_dt = DecisionTreeRegressor(max_depth=4)
-       modelo_musculo_dt.fit(X, y)
-
-       # Genera el diagrama del árbol de decisión
-       fig = plt.figure(figsize=(50, 20))
-       from sklearn.tree import plot_tree
-       plot_tree(modelo_musculo_dt, filled=True, feature_names=X.columns, fontsize=20)
-       plt.title("Árbol de Decisión para Músculo (kg) vs. PPantorrilla (cm) y FA", fontsize=24)
-
-       # Mostrar el diagrama del árbol en Streamlit
-       st.pyplot(fig)
-
-       ##################
-
-       import streamlit as st
-       import pandas as pd
-       from sklearn.tree import DecisionTreeRegressor
-       from sklearn.tree import export_text
-
-# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-
-# Divide tus datos en características (X) y la variable dependiente (y)
        X = data[['PPantorrilla (cm)', 'FA']]
        y = data['Músculo (kg)']
 
@@ -1137,141 +1132,353 @@ elif pestañas == "Modelos con 2 variables":
        # Extraer las reglas de decisión
        tree_rules = export_text(modelo_musculo_dt, feature_names=list(X.columns))
 
-       # Muestra las reglas de decisión en Streamlit
-       st.text("Reglas de Decisión:")
-       st.text(tree_rules)
-
-       # Programa para que el usuario ingrese valores y obtenga una predicción
-       def predecir_musculo(ppantorrilla, fa):
-           # Realiza una predicción utilizando el modelo de árbol de decisión
-           predicción = modelo_musculo_dt.predict([[ppantorrilla, fa]])[0]
-           return predicción
-
-       # Interfaz de usuario para que el usuario ingrese valores y obtenga predicciones
-       ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ")
-       fa_input = st.number_input("Ingresa el valor de FA: ")
-
-       if st.button("Predecir Músculo", key="predict_button"):
-              predicción = predecir_musculo(ppantorrilla_input, fa_input)
-              st.write(f"Predicción de Músculo (kg): {predicción:.2f}")
+       # Crea un modelo de Random Forest
+       modelo_musculo_rf = RandomForestRegressor(n_estimators=10)
+       modelo_musculo_rf.fit(data[['PPantorrilla (cm)']], data['Músculo (kg)'])
+       # Crea un modelo de Gradient Boosting
+       modelo_musculo_gb = GradientBoostingRegressor(n_estimators=10)
+       modelo_musculo_gb.fit(data[['PPantorrilla (cm)']], data['Músculo (kg)'])
 
 
-       ###################
-       import streamlit as st
-       import pandas as pd
-       from sklearn.linear_model import LinearRegression
-       import numpy as np
-       import matplotlib.pyplot as plt
-       from mpl_toolkits.mplot3d import Axes3D
+       # Crear pestañas
+       #tab1, tab2 = st.tabs(["Árbol de Decisión Simple", "Random Forest"])
+       tab1, tab2, tab3, tab4 = st.tabs(["Regresión lineal", "Árbol de Decisión Simple", "Random Forest", "Gradient Boosting"])
+       with tab1:
+        import streamlit as st
+        import pandas as pd
+        from sklearn.linear_model import LinearRegression
+        from sklearn.metrics import mean_squared_error, r2_score
+        import matplotlib.pyplot as plt
+        import numpy as np
+        st.markdown("""
+        ### ¿Qué es la Regresión Lineal?
+        La regresión lineal es un método estadístico utilizado para modelar la relación entre una variable dependiente ($Y$) y una o más variables independientes ($X$). En este modelo, asumimos que hay una relación lineal entre las variables.
 
-       X = data[['PBrazo (cm)', 'PCB (mm)']]
-       y = data['Grasa Corporal (%)']
+        La fórmula de un modelo de regresión lineal simple es:
+        """)
 
-       # Crea un modelo de regresión lineal
-       modelo_grasa_lr = LinearRegression()
-       modelo_grasa_lr.fit(X, y)
+        st.latex(r'''
+        Y = \beta_0 + \beta_1 X + \epsilon
+        ''')
 
-       # Realiza predicciones para diferentes valores de PBrazo (cm) y PCB (mm)
-       pbrazo_values = np.linspace(min(X['PBrazo (cm)']), max(X['PBrazo (cm)']), 100)
-       pcb_values = np.linspace(min(X['PCB (mm)']), max(X['PCB (mm)']), 100)
-       pbrazo_values, pcb_values = np.meshgrid(pbrazo_values, pcb_values)
-       grasa_pred_lr = modelo_grasa_lr.predict(np.column_stack((pbrazo_values.ravel(), pcb_values.ravel())))
+        st.markdown("""
+        donde:
+        - $Y$ es la variable dependiente (la que queremos predecir).
+        - $\beta_0$ es la intersección o término constante.
+        - $\beta_1$ es el coeficiente de la variable independiente.
+        - $X$ es la variable independiente.
+        - $\epsilon$ es el término de error o residual.
 
-       # Calcula el coeficiente de determinación (R^2) para el modelo
-       r2_grasa_lr = modelo_grasa_lr.score(X, y)
+        Para múltiples variables independientes, el modelo se extiende a:
+        """)
 
-       # Crear una figura 3D para visualizar los datos y las predicciones del modelo
-       fig = plt.figure(figsize=(12, 6))
-       ax = fig.add_subplot(111, projection='3d')
+        st.latex(r'''
+        Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_n X_n + \epsilon
+        ''')
 
-       # Grafica los datos reales
-       scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, label='Datos reales', c='blue')
+#        st.markdown("""
+#            ### Aplicación a nuestro Conjunto de Datos
+#            En este ejemplo, utilizamos el perímetro de la pantorrilla (PPantorrilla) y la Fuerza de Agarre (FA) como variables independientes para predecir la masa muscular (Músculo).
 
-       # Grafica las predicciones del modelo
-       ax.plot_surface(pbrazo_values, pcb_values, grasa_pred_lr.reshape(pbrazo_values.shape), alpha=0.5, color='green')
+            #### Paso 1: Ajuste del Modelo
+#            Primero, ajustamos un modelo de regresión lineal a nuestros datos.
+#            """)
 
-       # Etiquetas de los ejes
-       ax.set_xlabel('PBrazo (cm)')
-       ax.set_ylabel('PCB (mm)')
-       ax.set_zlabel('Grasa Corporal (%)')
 
-       # Crear una leyenda ficticia para el gráfico
-       legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
-       ax.add_artist(legend)
+#        with st.expander("coeficientes del modelo"):
+#            # Divide tus datos en características (X) y la variable dependiente (y)
+#            X = data[['PPantorrilla (cm)', 'FA']]
+#            y = data['Músculo (kg)']
 
-       # Título del gráfico
-       plt.title(f'Grasa corporal en función de PBrazo y PCB (R^2={r2_grasa_lr:.2f})')
+#            # Crear el modelo de regresión lineal
+#            modelo_musculo_lr = LinearRegression()
+#            modelo_musculo_lr.fit(X, y)
 
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(fig)
+#            # Realizar predicciones
+#            y_pred = modelo_musculo_lr.predict(X)
+
+#            # Calcular el coeficiente de determinación (R^2)
+#            r2 = r2_score(y, y_pred)
+#            mse = mean_squared_error(y, y_pred)
+#            rmse = np.sqrt(mse)
+
+#            # Mostrar los coeficientes del modelo
+#            st.write("### Coeficientes del Modelo de Regresión Lineal:")
+#            st.write(f"- Intercepto (\\(\\beta_0\\)): {modelo_musculo_lr.intercept_}")
+#            st.write(f"- Coeficiente para PPantorrilla (\\(\\beta_1\\)): {modelo_musculo_lr.coef_[0]}")
+#            st.write(f"- Coeficiente para FA (\\(\\beta_2\\)): {modelo_musculo_lr.coef_[1]}")
+
+#            # Mostrar las métricas de evaluación del modelo
+#            st.write("### Métricas de Evaluación del Modelo:")
+#            st.write(f"- Coeficiente de Determinación (R²): {r2:.2f}")
+#            st.write(f"- Error Cuadrático Medio (MSE): {mse:.2f}")
+#            st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {rmse:.2f}")
+
+        # Gráfica de las predicciones vs los valores reales
+        #st.write("### Gráfica de las Predicciones vs los Valores Reales")
+        #fig, ax = plt.subplots()
+        #ax.scatter(y, y_pred, edgecolors=(0, 0, 0))
+        #ax.plot([y.min(), y.max()], [y.min(), y.max()], 'k--', lw=4)
+        #ax.set_xlabel('Valores Reales')
+        #ax.set_ylabel('Predicciones')
+        #ax.set_title('Comparación de Valores Reales vs Predicciones')
+        #st.pyplot(fig)
+
+        #st.write("""
+        ### Predicción de Masa Muscular
+        #Utiliza los controles a continuación para ingresar los valores de PPantorrilla (cm) y FA, y el modelo de regresión lineal te proporcionará una predicción de la masa muscular.
+        #""")
+
+        # Interfaz de usuario para predicciones
+        #ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ", min_value=20.0, max_value=50.0, value=30.0, step=0.1)
+        #fa_input = st.number_input("Ingresa el valor de FA: ", min_value=30.0, max_value=80.0, value=55.0, step=0.1)
+
+        #if st.button("Predecir Músculo"):
+        #    prediccion = modelo_musculo_lr.predict([[ppantorrilla_input, fa_input]])[0]
+        #    st.write(f"### Predicción de Músculo (kg): {prediccion:.2f}")
+
+
+
+       with tab2:
+        st.markdown("""
+
+        Un árbol de decisión es un modelo predictivo que utiliza un conjunto de reglas basadas en las características de los datos para hacer predicciones. En un árbol de decisión, los datos se dividen en subconjuntos más pequeños basados en una característica que proporciona la mayor ganancia de información. Cada nodo del árbol representa una característica de los datos, cada rama representa un resultado de la característica y cada hoja representa una predicción.
+
+        - Variables predictoras: PPantorrilla y FA.
+        - Variable a predecir: Masa muscular (Músculo).
+        El árbol de decisión sigue un camino desde la raíz hasta una hoja, aplicando reglas en cada nodo y decidiendo la predicción final basada en la hoja en la que termina.
+
+        """)
+        
+        st.markdown("""
+        ### Árbol de Decisión Simple
+        El siguiente diagrama muestra el árbol de decisión simple que se utilizó para predecir la masa muscular basada en el perímetro de la pantorrilla (PPantorrilla) y la Fuerza de Agarre (FA).
+        """)
+
+        # Genera el diagrama del árbol de decisión
+        fig = plt.figure(figsize=(20, 10))
+        plot_tree(modelo_musculo_dt, filled=True, feature_names=X.columns, fontsize=10)
+        plt.title("Árbol de Decisión para Músculo (kg) vs. PPantorrilla (cm) y FA", fontsize=14)
+        st.pyplot(fig)
+
+
+       with tab3: 
+        
+        st.markdown("""
+        El Random Forest es un modelo de conjunto que construye múltiples árboles de decisión y los combina para mejorar la precisión y evitar el sobreajuste. Cada árbol en el bosque es entrenado con un subconjunto diferente de los datos (mediante bootstrap) y considera un subconjunto aleatorio de características para dividir en cada nodo. La predicción final es la media de las predicciones de todos los árboles individuales.
+
+        - Variables predictoras: PPantorrilla.
+        - Variable a predecir: Masa muscular (Músculo).
+        El modelo Random Forest agrega la robustez de múltiples árboles de decisión, haciendo que sea menos susceptible al sobreajuste y proporcionando predicciones más precisas en general.
+
+        """)
+        
+        
+        st.markdown("""
+        ### Visualización de Random Forest
+        A continuación, se muestra uno de los árboles del modelo Random Forest. Puedes seleccionar el índice del árbol que deseas visualizar.
+        """)
+
+        # Visualización de uno de los árboles en el Random Forest
+        if modelo_musculo_rf.n_estimators > 0:
+            tree_index = st.number_input("Selecciona el índice del árbol a visualizar (0 a n_estimators-1):", min_value=0, max_value=modelo_musculo_rf.n_estimators-1, value=0, step=1)
+            tree = modelo_musculo_rf.estimators_[tree_index]
+
+            fig, ax = plt.subplots(figsize=(20, 10))
+            plot_tree(tree, feature_names=['PPantorrilla (cm)'], filled=True, ax=ax, fontsize=10)
+            st.pyplot(fig)
+        else:
+            st.write("No hay árboles en el Random Forest.")
+
+       with tab4:
+        
+        st.markdown("""
+
+        El Gradient Boosting es otro modelo de conjunto que construye árboles de decisión de manera secuencial, cada uno intentando corregir los errores del árbol anterior. Cada árbol se ajusta a los residuos del árbol anterior en lugar de los valores originales. La predicción final es la suma de las predicciones de todos los árboles ajustados.
+
+        - Variables predictoras: PPantorrilla.
+        - Variable a predecir: Masa muscular (Músculo).
+        El Gradient Boosting es potente y a menudo proporciona una alta precisión, pero puede ser más propenso al sobreajuste si no se regula correctamente.
+
+        """)
+        
+        st.markdown("""
+            ### Visualización de Gradient Boosting
+            A continuación, se muestra uno de los árboles del modelo Gradient Boosting. Puedes seleccionar el índice del árbol que deseas visualizar.
+            """)
+
+        # Visualización de uno de los árboles en el Gradient Boosting
+        if modelo_musculo_gb.n_estimators > 0:
+         tree_index = st.number_input("Seleccionar el índice del modelo árbol a visualizar (0 a n_estimators-1):", min_value=0, max_value=modelo_musculo_gb.n_estimators-1, value=0, step=1)
+         tree = modelo_musculo_gb.estimators_[tree_index][0]  # Cada estimador es una lista de un solo árbol
+
+         fig, ax = plt.subplots(figsize=(20, 10))
+         plot_tree(tree, feature_names=['PPantorrilla (cm)'], filled=True, ax=ax, fontsize=10)
+         st.pyplot(fig)
+        else:
+         st.write("No hay árboles en el Gradient Boosting.")
+
+
+
+
+       st.markdown("""
+       <div style="text-align: justify;">
+       
+       Abajo puede ver las predicciones que cada modelo hace sobre el conjunto de datos. Los **gráficos de superficie** muestran los puntos que corresponden a las mediciones de ***fuerza de agarre*** y al ***perímetro de pantorrilla*** (representados por los puntos de distintos colores). El color de cada punto corresponde al rango de ***masa muscular*** al que corresponde dicho punto. En cuanto a los modelos, las zonas de cada color corresponden a los rangos que predicen. Se considera que el modelo es acertado en la predicción de masa muscular siempre que el color de la zona coincide con las de los puntos que están en ella. **Arriba de cada gráfico de superficie se muestra el coeficiente de determinación del modelo.**
+       
+       </div>
+       """, unsafe_allow_html=True)
+
        
        
-       ###################
+       data = df
 
-       import streamlit as st
-       import pandas as pd
-       from sklearn.tree import DecisionTreeRegressor
-       import numpy as np
-       import matplotlib.pyplot as plt
-       from mpl_toolkits.mplot3d import Axes3D
-
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PBrazo (cm)', 'PCB (mm)']]
-       y = data['Grasa Corporal (%)']
-
-       # Crea un modelo de árbol de decisión
-       modelo_grasa_dt = DecisionTreeRegressor()
-       modelo_grasa_dt.fit(X, y)
-
-       # Realiza predicciones para diferentes valores de PBrazo (cm) y PCB (mm)
-       pbrazo_values = np.linspace(min(X['PBrazo (cm)']), max(X['PBrazo (cm)']), 100)
-       pcb_values = np.linspace(min(X['PCB (mm)']), max(X['PCB (mm)']), 100)
-       pbrazo_values, pcb_values = np.meshgrid(pbrazo_values, pcb_values)
-       grasa_pred_dt = modelo_grasa_dt.predict(np.column_stack((pbrazo_values.ravel(), pcb_values.ravel())))
-
-       # Calcula el coeficiente de determinación (R^2) para el modelo
-       r2_grasa_dt = modelo_grasa_dt.score(X, y)
-
-       # Crear una figura 3D para visualizar los datos y las predicciones del modelo
-       fig = plt.figure(figsize=(12, 6))
-       ax = fig.add_subplot(111, projection='3d')
-       
-       # Grafica los datos reales
-       scatter = ax.scatter(X['PBrazo (cm)'], X['PCB (mm)'], y, label='Datos reales', c='blue')
-
-       # Grafica las predicciones del modelo
-       ax.plot_surface(pbrazo_values, pcb_values, grasa_pred_dt.reshape(pbrazo_values.shape), alpha=0.5, color='green')
-
-       # Etiquetas de los ejes
-       ax.set_xlabel('PBrazo (cm)')
-       ax.set_ylabel('PCB (mm)')
-       ax.set_zlabel('Grasa Corporal (%)')
-
-       # Crear una leyenda ficticia para el gráfico
-       legend = ax.legend(*scatter.legend_elements(), title="Datos reales")
-       ax.add_artist(legend)
-
-       # Título del gráfico
-       plt.title(f'Grasa Corporal en función de PBrazo (cm) y PCB (mm) (R^2={r2_grasa_dt:.2f})')
-
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(fig)
-
-       #################
 
        import streamlit as st
        import numpy as np
        import matplotlib.pyplot as plt
        from matplotlib.colors import ListedColormap
+       from sklearn.linear_model import LinearRegression
        from sklearn.tree import DecisionTreeRegressor
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+       import pandas as pd
 
-       # Carga tus datos y define tus características (X) y la variable dependiente (y)
+       X = data[['PPantorrilla (cm)', 'FA']]
+       y = data['Músculo (kg)']
+
+       # Define rangos de valores para PPantorrilla (cm) y FA
+       ppantorilla_range = np.linspace(X['PPantorrilla (cm)'].min(), X['PPantorrilla (cm)'].max(), 100)
+       fa_range = np.linspace(X['FA'].min(), X['FA'].max(), 100)
+       ppantorilla_grid, fa_grid = np.meshgrid(ppantorilla_range, fa_range)
+
+       # Combina las características en una matriz bidimensional
+       X_grid = np.c_[ppantorilla_grid.ravel(), fa_grid.ravel()]
+
+       # Lista de modelos y sus nombres
+       modelos = {
+            'Regresión Lineal': LinearRegression(),
+            'Árbol de Decisión': DecisionTreeRegressor(),
+            'Random Forest': RandomForestRegressor(),
+            'Gradient Boosting': GradientBoostingRegressor()
+        }
+
+       # Entrenar y predecir con cada modelo
+       predicciones = {}
+       r2_scores = {}
+
+       for nombre, modelo in modelos.items():
+            modelo.fit(X, y)
+            y_pred = modelo.predict(X_grid)
+            y_pred = y_pred.reshape(ppantorilla_grid.shape)
+            predicciones[nombre] = y_pred
+            r2_scores[nombre] = modelo.score(X, y)
+
+       # Crear pestañas en Streamlit
+       tabs = st.tabs(list(modelos.keys()))
+
+       for i, nombre in enumerate(modelos.keys()):
+            with tabs[i]:
+                st.header(f"{nombre}")
+                y_pred = predicciones[nombre]
+                fig = plt.figure(figsize=(10, 6))
+                contour = plt.contourf(ppantorilla_grid, fa_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+                plt.scatter(X['PPantorrilla (cm)'], X['FA'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+                plt.xlabel('PPantorrilla (cm)')
+                plt.ylabel('FA')
+                plt.title(f'Superficie de Decisión de {nombre} para Músculo (kg) (R^2={r2_scores[nombre]:.2f})')
+                cbar = plt.colorbar(contour)
+                cbar.set_label('Músculo (kg)')
+                st.pyplot(fig)
+
+
+       # Divide tus datos en características (X) y la variable dependiente (y) 
+       X = data[['PPantorrilla (cm)', 'FA']]
+       y = data['Músculo (kg)']
+
+       # Crear y ajustar los modelos 
+       modelo_musculo_lr = LinearRegression()
+       modelo_musculo_lr.fit(X, y)
+
+       modelo_musculo_dt = DecisionTreeRegressor()
+       modelo_musculo_dt.fit(X, y)
+
+       modelo_musculo_rf = RandomForestRegressor()
+       modelo_musculo_rf.fit(X, y)
+
+       modelo_musculo_gb = GradientBoostingRegressor()
+       modelo_musculo_gb.fit(X, y)
+
+       # Realizar predicciones
+       y_pred_lr = modelo_musculo_lr.predict(X)
+       y_pred_dt = modelo_musculo_dt.predict(X)
+       y_pred_rf = modelo_musculo_rf.predict(X)
+       y_pred_gb = modelo_musculo_gb.predict(X)
+
+       # Calcular el coeficiente de determinación (R^2) y RMSE para cada modelo
+       metrics = {
+        "Linear Regression": {
+        "r2": r2_score(y, y_pred_lr),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_lr))
+            },
+        "Decision Tree": {
+        "r2": r2_score(y, y_pred_dt),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_dt))
+            },
+        "Random Forest": {
+        "r2": r2_score(y, y_pred_rf),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_rf))
+            },
+        "Gradient Boosting": {
+        "r2": r2_score(y, y_pred_gb),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_gb))
+            }
+        }
+
+       # Mostrar las métricas de evaluación del modelo
+       with st.expander("**Métricas de Evaluación del Modelo:**"):
+        #st.write("### Métricas de Evaluación del Modelo:")
+        for model, values in metrics.items():
+            st.write(f"**{model}**")
+            st.write(f"- Coeficiente de Determinación (R²): {values['r2']:.2f}")
+            st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
+
+       # Interfaz de usuario para predicciones
+       st.write("### Predicción de Masa Muscular")
+       ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ", min_value=20.0, max_value=50.0, value=30.0, step=0.1)
+       fa_input = st.number_input("Ingresa el valor de FA: ", min_value=30.0, max_value=80.0, value=55.0, step=0.1)
+
+       if st.button("Predecir Músculo"):
+            prediccion_lr = modelo_musculo_lr.predict([[ppantorrilla_input, fa_input]])[0]
+            prediccion_dt = modelo_musculo_dt.predict([[ppantorrilla_input, fa_input]])[0]
+            prediccion_rf = modelo_musculo_rf.predict([[ppantorrilla_input, fa_input]])[0]
+            prediccion_gb = modelo_musculo_gb.predict([[ppantorrilla_input, fa_input]])[0]
+
+            st.write(f"### Predicciones de Músculo (kg):")
+            st.write(f"- **Regresión Lineal**: {prediccion_lr:.2f} kg")
+            st.write(f"- **Árbol de Decisión**: {prediccion_dt:.2f} kg")
+            st.write(f"- **Random Forest**: {prediccion_rf:.2f} kg")
+            st.write(f"- **Gradient Boosting**: {prediccion_gb:.2f} kg")
+
+
+
+       ######################       
+       ######################
+
+       import streamlit as st
+       import numpy as np
+       import matplotlib.pyplot as plt
+       from matplotlib.colors import ListedColormap
+       from sklearn.linear_model import LinearRegression 
+       from sklearn.tree import DecisionTreeRegressor
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+       from sklearn.metrics import mean_squared_error, r2_score 
+       import pandas as pd
+
+       # Supongamos que 'df' es tu DataFrame ya cargado previamente
+       data = df
+
        X = data[['PBrazo (cm)', 'PCB (mm)']]
        y = data['Grasa Corporal (%)']
-
-       # Entrena un modelo de árbol de decisión       
-       modelo_grasa_dt = DecisionTreeRegressor()
-       modelo_grasa_dt.fit(X, y)
 
        # Define rangos de valores para PBrazo (cm) y PCB (mm)
        pbrazo_range = np.linspace(X['PBrazo (cm)'].min(), X['PBrazo (cm)'].max(), 100)
@@ -1281,103 +1488,376 @@ elif pestañas == "Modelos con 2 variables":
        # Combina las características en una matriz bidimensional
        X_grid = np.c_[pbrazo_grid.ravel(), pcb_grid.ravel()]
 
-       # Realiza predicciones en la malla de valores
-       y_pred = modelo_grasa_dt.predict(X_grid)
-       y_pred = y_pred.reshape(pbrazo_grid.shape)
+       # Lista de modelos y sus nombres
+       modelos = {
+        'Regresión Lineal': LinearRegression(),
+        'Árbol de Decisión': DecisionTreeRegressor(),
+        'Random Forest': RandomForestRegressor(),
+        'Gradient Boosting': GradientBoostingRegressor()
+        }
 
-       # Crea la gráfica de superficie de decisión
-       figu = plt.figure(figsize=(10, 6))
-       #ax = figu.add_subplot(111, projection='3d')
-       contour = plt.contourf(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
-       plt.scatter(X['PBrazo (cm)'], X['PCB (mm)'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
-       plt.xlabel('PBrazo (cm)')
-       plt.ylabel('PCB (mm)')
-       #plt.title('Grasa Corporal (%)')
-       cbar = plt.colorbar(contour)
-       cbar.set_label('Grasa Corporal (%)')
+       # Entrenar y predecir con cada modelo
+       predicciones = {}
+       r2_scores = {}
 
-       # Título del gráfico
-       plt.title(f'Superficie de Decisión del Árbol de Decisión para Grasa Corporal (%) (R^2={r2_grasa_dt:.2f})')
+       for nombre, modelo in modelos.items():
+            modelo.fit(X, y)
+            y_pred = modelo.predict(X_grid)
+            y_pred = y_pred.reshape(pbrazo_grid.shape)
+            predicciones[nombre] = y_pred
+            r2_scores[nombre] = modelo.score(X, y)
 
-       # Mostrar el gráfico en Streamlit
-       st.pyplot(figu)
+       # Crear pestañas en Streamlit
+       tabs = st.tabs(list(modelos.keys()))
 
-       ###################3
+       for i, nombre in enumerate(modelos.keys()):
+        with tabs[i]:
+            st.header(f"{nombre}")
+            y_pred = predicciones[nombre]
+            fig = plt.figure(figsize=(10, 6))
+            contour = plt.contourf(pbrazo_grid, pcb_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+            plt.scatter(X['PBrazo (cm)'], X['PCB (mm)'], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+            plt.xlabel('PBrazo (cm)')
+            plt.ylabel('PCB (mm)')
+            plt.title(f'Superficie de Decisión de {nombre} para Grasa Corporal (%) (R^2={r2_scores[nombre]:.2f})')
+            cbar = plt.colorbar(contour)
+            cbar.set_label('Grasa Corporal (%)')
+            st.pyplot(fig)
 
-       import streamlit as st
-       import pandas as pd
-       from sklearn.tree import DecisionTreeRegressor
-       import matplotlib.pyplot as plt
-       from io import StringIO
+       # Crear y ajustar los modelos 
+       modelo_grasa_lr = LinearRegression() 
+       modelo_grasa_lr.fit(X, y)
 
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PBrazo (cm)', 'PCB (mm)']]
-       y = data['Grasa Corporal (%)']
-
-       # Crea un modelo de árbol de decisión
-       modelo_grasa_dt = DecisionTreeRegressor(max_depth=4)
+       modelo_grasa_dt = DecisionTreeRegressor()
        modelo_grasa_dt.fit(X, y)
 
-       # Genera el diagrama del árbol de decisión       
-       plt.figure(figsize=(70, 25))
-       from sklearn.tree import plot_tree
-       plot_tree(modelo_grasa_dt, filled=True, feature_names=X.columns, fontsize=20)
-       plt.title("Árbol de Decisión para Grasa Corporal (%) vs. PBrazo (cm) y PCB (mm)", fontsize=24)
+       modelo_grasa_rf = RandomForestRegressor()
+       modelo_grasa_rf.fit(X, y)
 
-       # Mostrar el diagrama del árbol en Streamlit
-       st.pyplot(plt)
+       modelo_grasa_gb = GradientBoostingRegressor() 
+       modelo_grasa_gb.fit(X, y)
 
-       ################
+       # Realizar predicciones
+       y_pred_lr = modelo_grasa_lr.predict(X)
+       y_pred_dt = modelo_grasa_dt.predict(X)
+       y_pred_rf = modelo_grasa_rf.predict(X)
+       y_pred_gb = modelo_grasa_gb.predict(X)
+
+       # Calcular el coeficiente de determinación (R^2) y RMSE para cada modelo
+       metrics = {
+            "Linear Regression": {
+            "r2": r2_score(y, y_pred_lr),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_lr))
+            },
+            "Decision Tree": {
+            "r2": r2_score(y, y_pred_dt),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_dt))
+            },
+            "Random Forest": {
+            "r2": r2_score(y, y_pred_rf),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_rf))
+            },
+            "Gradient Boosting": {
+            "r2": r2_score(y, y_pred_gb),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_gb))
+            }
+        }
+
+       # Mostrar las métricas de evaluación del modelo
+       with st.expander("**Métricas de Evaluación del Modelo:**"):
+        for model, values in metrics.items():
+            st.write(f"**{model}**")
+            st.write(f"- Coeficiente de Determinación (R²): {values['r2']:.2f}")
+            st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
+
+       # Interfaz de usuario para predicciones
+       st.write("### Predicción de Grasa Corporal")
+       pbrazo_input = st.number_input("Ingresa el valor de PBrazo (cm): ", min_value=20.0, max_value=50.0, value=30.0, step=0.1)
+       pcb_input = st.number_input("Ingresa el valor de PCB (mm): ", min_value=0.0, max_value=50.0, value=20.0, step=0.1)
+
+       if st.button("Predecir Grasa Corporal"):
+        prediccion_lr = modelo_grasa_lr.predict([[pbrazo_input, pcb_input]])[0]
+        prediccion_dt = modelo_grasa_dt.predict([[pbrazo_input, pcb_input]])[0]
+        prediccion_rf = modelo_grasa_rf.predict([[pbrazo_input, pcb_input]])[0]
+        prediccion_gb = modelo_grasa_gb.predict([[pbrazo_input, pcb_input]])[0]
+
+        st.write(f"### Predicciones de Grasa Corporal (%):")
+        st.write(f"- **Regresión Lineal**: {prediccion_lr:.2f} %")
+        st.write(f"- **Árbol de Decisión**: {prediccion_dt:.2f} %")
+        st.write(f"- **Random Forest**: {prediccion_rf:.2f} %")
+        st.write(f"- **Gradient Boosting**: {prediccion_gb:.2f} %")
+
+############################################3333
 
        import streamlit as st
-       import pandas as pd
+       import numpy as np
+       import matplotlib.pyplot as plt
+       from matplotlib.colors import ListedColormap
+       from sklearn.linear_model import LinearRegression
        from sklearn.tree import DecisionTreeRegressor
-       from sklearn.tree import export_text
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+       import pandas as pd
 
-       # Programa para que el usuario ingrese valores y obtenga una predicción
-       def predecir_grasa_corporal(pbrazo, pcb):
-           # Crea un modelo de árbol de decisión
-           modelo_grasa_dt = DecisionTreeRegressor(max_depth=4)
-           modelo_grasa_dt.fit(X, y)
 
-           # Realiza una predicción utilizando el modelo de árbol de decisión
-           predicción = modelo_grasa_dt.predict([[pbrazo, pcb]])[0]
+       # Supongamos que 'df' es tu DataFrame ya cargado previamente
+       data = df
 
-           return predicción
+       # Filtrar las columnas numéricas
+       columnas_numericas = data.select_dtypes(include=[np.number]).columns
 
-       # Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-       # Asumiendo que los datos están en formato CSV
+       # Seleccionar las variables independientes
+       st.write("### Selección de Variables Independientes") 
+       var_indep_1 = st.selectbox("Selecciona la primera variable independiente:", columnas_numericas)
+       var_indep_2 = st.selectbox("Selecciona la segunda variable independiente:", columnas_numericas)
 
-       # Divide tus datos en características (X) y la variable dependiente (y)
-       X = data[['PBrazo (cm)', 'PCB (mm)']]
+       X = data[[var_indep_1, var_indep_2]]
+
+       y = data['Músculo (kg)']
+
+       ppantorilla_range = np.linspace(X[var_indep_1].min(), X[var_indep_1].max(), 100)
+       fa_range = np.linspace(X[var_indep_2].min(), X[var_indep_2].max(), 100)
+       ppantorilla_grid, fa_grid = np.meshgrid(ppantorilla_range, fa_range)
+
+
+
+       # Combina las características en una matriz bidimensional
+       X_grid = np.c_[ppantorilla_grid.ravel(), fa_grid.ravel()]
+
+       # Lista de modelos y sus nombres
+       modelos = {
+            'Regresión Lineal': LinearRegression(),
+            'Árbol de Decisión': DecisionTreeRegressor(),
+            'Random Forest': RandomForestRegressor(),
+            'Gradient Boosting': GradientBoostingRegressor()
+        }
+
+       # Entrenar y predecir con cada modelo
+       predicciones = {}
+       r2_scores = {}
+
+       for nombre, modelo in modelos.items():
+            modelo.fit(X, y)
+            y_pred = modelo.predict(X_grid)
+            y_pred = y_pred.reshape(ppantorilla_grid.shape)
+            predicciones[nombre] = y_pred
+            r2_scores[nombre] = modelo.score(X, y)
+
+       # Crear pestañas en Streamlit
+       tabs = st.tabs(list(modelos.keys()))
+
+       for i, nombre in enumerate(modelos.keys()):
+            with tabs[i]:
+                st.header(f"{nombre}")
+                y_pred = predicciones[nombre]
+                fig = plt.figure(figsize=(10, 6))
+                contour = plt.contourf(ppantorilla_grid, fa_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+                plt.scatter(X[var_indep_1], X[var_indep_2], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+                plt.xlabel(var_indep_1)
+                plt.ylabel(var_indep_2)
+                plt.title(f'Superficie de Decisión de {nombre} para Músculo (kg) (R^2={r2_scores[nombre]:.2f})')
+                cbar = plt.colorbar(contour)
+                cbar.set_label('Músculo (kg)')
+                st.pyplot(fig)
+
+
+       # Divide tus datos en características (X) y la variable dependiente (y) 
+       X = data[[var_indep_1, var_indep_2]]
+       y = data['Músculo (kg)']
+
+       # Crear y ajustar los modelos 
+       modelo_musculo_lr = LinearRegression()
+       modelo_musculo_lr.fit(X, y)
+
+       modelo_musculo_dt = DecisionTreeRegressor()
+       modelo_musculo_dt.fit(X, y)
+
+       modelo_musculo_rf = RandomForestRegressor()
+       modelo_musculo_rf.fit(X, y)
+
+       modelo_musculo_gb = GradientBoostingRegressor()
+       modelo_musculo_gb.fit(X, y)
+
+       # Realizar predicciones
+       y_pred_lr = modelo_musculo_lr.predict(X)
+       y_pred_dt = modelo_musculo_dt.predict(X)
+       y_pred_rf = modelo_musculo_rf.predict(X)
+       y_pred_gb = modelo_musculo_gb.predict(X)
+
+       # Calcular el coeficiente de determinación (R^2) y RMSE para cada modelo
+       metrics = {
+        "Linear Regression": {
+        "r2": r2_score(y, y_pred_lr),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_lr))
+            },
+        "Decision Tree": {
+        "r2": r2_score(y, y_pred_dt),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_dt))
+            },
+        "Random Forest": {
+        "r2": r2_score(y, y_pred_rf),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_rf))
+            },
+        "Gradient Boosting": {
+        "r2": r2_score(y, y_pred_gb),
+        "rmse": np.sqrt(mean_squared_error(y, y_pred_gb))
+            }
+        }
+
+       # Mostrar las métricas de evaluación del modelo
+       with st.expander("**Métricas de Evaluación del Modelo:**"):
+        #st.write("### Métricas de Evaluación del Modelo:")
+        for model, values in metrics.items():
+            st.write(f"**{model}**")
+            st.write(f"- Coeficiente de Determinación (R²): {values['r2']:.2f}")
+            st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
+
+       # Interfaz de usuario para predicciones
+       st.write("### Predicción de Masa Muscular")
+       var_indep_1_input = st.number_input(f"Ingresa el valor de {var_indep_1}: ", min_value=float(X[var_indep_1].min()), max_value=float(X[var_indep_1].max()), value=float(X[var_indep_1].mean()), step=0.1)
+       var_indep_2_input = st.number_input(f"Ingresa el valor de {var_indep_2}: ", min_value=float(X[var_indep_2].min()), max_value=float(X[var_indep_2].max()), value=float(X[var_indep_2].mean()), step=0.1)
+ 
+
+       if st.button("Predicción para la masa muscular (kg)"):
+            prediccion_lr = modelo_musculo_lr.predict([[var_indep_1_input, var_indep_2_input]])[0]
+            prediccion_dt = modelo_musculo_dt.predict([[var_indep_1_input, var_indep_2_input]])[0]
+            prediccion_rf = modelo_musculo_rf.predict([[var_indep_1_input, var_indep_2_input]])[0]
+            prediccion_gb = modelo_musculo_gb.predict([[var_indep_1_input, var_indep_2_input]])[0]
+
+            st.write(f"### Predicciones de Músculo (kg):")
+            st.write(f"- **Regresión Lineal**: {prediccion_lr:.2f} kg")
+            st.write(f"- **Árbol de Decisión**: {prediccion_dt:.2f} kg")
+            st.write(f"- **Random Forest**: {prediccion_rf:.2f} kg")
+            st.write(f"- **Gradient Boosting**: {prediccion_gb:.2f} kg")
+
+
+
+################################################
+
+       import streamlit as st
+       import numpy as np
+       import matplotlib.pyplot as plt
+       from matplotlib.colors import ListedColormap
+       from sklearn.linear_model import LinearRegression
+       from sklearn.tree import DecisionTreeRegressor
+       from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+       from sklearn.metrics import mean_squared_error, r2_score
+       import pandas as pd
+
        y = data['Grasa Corporal (%)']
 
-       # Extraer las reglas de decisión
-       tree_rules = export_text(modelo_grasa_dt, feature_names=list(X.columns))
+       # Definir rangos de valores para las variables independientes
+       var_indep_1_range = np.linspace(X[var_indep_1].min(), X[var_indep_1].max(), 100)
+       var_indep_2_range = np.linspace(X[var_indep_2].min(), X[var_indep_2].max(), 100)
+       var_indep_1_grid, var_indep_2_grid = np.meshgrid(var_indep_1_range, var_indep_2_range)
 
-       # Mostrar las reglas de decisión en Streamlit
-       st.text("Reglas de Decisión:")
-       st.text(tree_rules)
+       # Combina las características en una matriz bidimensional
+       X_grid = np.c_[var_indep_1_grid.ravel(), var_indep_2_grid.ravel()]
 
-       # Interfaz de usuario para ingresar valores y obtener predicciones
-       #st.sidebar.header("Ingrese los valores para la predicción:")
-       #pbrazo_input = st.sidebar.number_input("PBrazo (cm):", min_value=0.0)
-       #pcb_input = st.sidebar.number_input("PCB (mm):", min_value=0.0)
-       pbrazo_input = st.number_input("Ingresa el valor del perimetro de brazo (cm): ")
-       pcb_input = st.number_input("Ingresa el valor del pliegue subcutaneo escapular (mm): ")
+       # Lista de modelos y sus nombres
+       modelos = {
+        'Regresión Lineal': LinearRegression(),
+        'Árbol de Decisión': DecisionTreeRegressor(),
+        'Random Forest': RandomForestRegressor(),
+        'Gradient Boosting': GradientBoostingRegressor()
+       }
+
+       # Entrenar y predecir con cada modelo
+       predicciones = {}
+       r2_scores = {}
+
+       for nombre, modelo in modelos.items():
+        modelo.fit(X, y)
+        y_pred = modelo.predict(X_grid)
+        y_pred = y_pred.reshape(var_indep_1_grid.shape)
+        predicciones[nombre] = y_pred
+        r2_scores[nombre] = modelo.score(X, y)
+
+       # Crear pestañas en Streamlit
+       tabs = st.tabs(list(modelos.keys()))
+
+       for i, nombre in enumerate(modelos.keys()):
+        with tabs[i]:
+            st.header(f"{nombre}")
+            y_pred = predicciones[nombre]
+            fig = plt.figure(figsize=(10, 6))
+            contour = plt.contourf(var_indep_1_grid, var_indep_2_grid, y_pred, cmap=ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF']))
+            plt.scatter(X[var_indep_1], X[var_indep_2], c=y, cmap=ListedColormap(['#FF0000', '#00FF00', '#0000FF']))
+            plt.xlabel(var_indep_1)
+            plt.ylabel(var_indep_2)
+            plt.title(f'Superficie de Decisión de {nombre} para Grasa Corporal (%) (R^2={r2_scores[nombre]:.2f})')
+            cbar = plt.colorbar(contour)
+            cbar.set_label('Grasa Corporal (%)')
+            st.pyplot(fig)
+
+# Divide tus datos en características (X) y la variable dependiente (y) 
+#X = data[[var_indep_1, var_indep_2]]
+#y = data['Grasa Corporal (%)']
+
+       # Crear y ajustar los modelos 
+       modelo_grasa_lr = LinearRegression()
+       modelo_grasa_lr.fit(X, y)
+
+       modelo_grasa_dt = DecisionTreeRegressor()
+       modelo_grasa_dt.fit(X, y)
+ 
+       modelo_grasa_rf = RandomForestRegressor()
+       modelo_grasa_rf.fit(X, y)
+
+       modelo_grasa_gb = GradientBoostingRegressor()
+       modelo_grasa_gb.fit(X, y)
+
+       # Realizar predicciones
+       y_pred_lr = modelo_grasa_lr.predict(X)
+       y_pred_dt = modelo_grasa_dt.predict(X)
+       y_pred_rf = modelo_grasa_rf.predict(X)
+       y_pred_gb = modelo_grasa_gb.predict(X)
+
+       # Calcular el coeficiente de determinación (R^2) y RMSE para cada modelo
+       metrics = {
+         "Regresión Lineal": {
+            "r2": r2_score(y, y_pred_lr),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_lr))
+         },
+        "Árbol de Decisión": {
+            "r2": r2_score(y, y_pred_dt),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_dt))
+         },
+        "Random Forest": {
+            "r2": r2_score(y, y_pred_rf),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_rf))
+         },
+        "Gradient Boosting": {
+            "r2": r2_score(y, y_pred_gb),
+            "rmse": np.sqrt(mean_squared_error(y, y_pred_gb))
+         }
+       }
+
+       # Mostrar las métricas de evaluación del modelo
+       with st.expander("**Métricas de Evaluación del Modelo:**"):
+        for model, values in metrics.items():
+            st.write(f"**{model}**")
+            st.write(f"- Coeficiente de Determinación (R²): {values['r2']:.2f}")
+            st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
+
+       # Interfaz de usuario para predicciones
+       st.write("### Predicción de Grasa Corporal")
+       var_indep_1_input = st.number_input(f"Ingresa el valor para {var_indep_1}: ", min_value=float(X[var_indep_1].min()), max_value=float(X[var_indep_1].max()), value=float(X[var_indep_1].mean()), step=0.1)
+       var_indep_2_input = st.number_input(f"Ingresa el valor para {var_indep_2}: ", min_value=float(X[var_indep_2].min()), max_value=float(X[var_indep_2].max()), value=float(X[var_indep_2].mean()), step=0.1)
+
+       if st.button("Prediga el porcentaje de Grasa Corporal"):
+        prediccion_lr = modelo_grasa_lr.predict([[var_indep_1_input, var_indep_2_input]])[0]
+        prediccion_dt = modelo_grasa_dt.predict([[var_indep_1_input, var_indep_2_input]])[0]
+        prediccion_rf = modelo_grasa_rf.predict([[var_indep_1_input, var_indep_2_input]])[0]
+        prediccion_gb = modelo_grasa_gb.predict([[var_indep_1_input, var_indep_2_input]])[0]
+
+        st.write(f"### Predicciones de Grasa Corporal (%):")
+        st.write(f"- **Regresión Lineal**: {prediccion_lr:.2f} %")
+        st.write(f"- **Árbol de Decisión**: {prediccion_dt:.2f} %")
+        st.write(f"- **Random Forest**: {prediccion_rf:.2f} %")
+        st.write(f"- **Gradient Boosting**: {prediccion_gb:.2f} %")
 
 
-#if st.button("Predicción"):
-#       predicción = predecir_grasa_corporal(pbrazo_input, pcb_input)
-#       st.write(f"Predicción de Grasa Corporal (%): {predicción:.2f}")
 
-
-       # Usando la opción 'key' para el botón para asegurar que se active después de que se ingresen los valores
-       if st.button("Predicción", key="predicto_button"):
-           predicción = predecir_grasa_corporal(pbrazo_input, pcb_input)
-           st.write(f"Predicción de Grasa Corporal (%): {predicción:.2f}")
-
-       ###################
 
 
 # Contenido de la pestaña 3
