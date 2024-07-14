@@ -90,7 +90,6 @@ if pestañas == "Presentación":
        colaboración entre el entre el **Consejo Nacional de Humanidades Ciencia y Tecnología ([**CONAHCYT**](https://conahcyt.mx/)) y la Universidad de Colima ([**UCOL**](https://portal.ucol.mx/cuib/))**
        </div>
        """, unsafe_allow_html=True)
-)
        st.subheader("Muestra")
        st.markdown("""
        Los datos utilizados para los modelos se recolectaron a partir de un grupo de voluntarios de centros 
