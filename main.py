@@ -91,13 +91,17 @@ if pestañas == "Presentación":
        </div>
        """, unsafe_allow_html=True)
        st.subheader("Muestra")
+       
        st.markdown("""
+       <div style="text-align: justify;">
+       
        Los datos utilizados para los modelos se recolectaron a partir de un grupo de voluntarios de centros 
        de convivencia de personas adultas mayores, residentes en las Ciudades de Colima y Villa de Álvarez.
        **En la presente aplicación se crean modelos que permiten estimar variables como el porcentaje de grasa 
        corporal y masa muscular en personas adultas mayores**, permitiendo la evaluación de síndromes geriátricos 
        como la sarcopenia en situaciones en las que no se cuente con el equipo de medición adecuado.
-       """)
+       </div>
+       """, unsafe_allow_html=True)
 
        st.subheader("Algoritmos y lenguaje de programación")
        st.markdown("""
