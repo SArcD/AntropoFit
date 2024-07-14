@@ -114,14 +114,16 @@ if pestañas == "Presentación":
        #st.title("Acerca de Sarc-open-IA")
 
        st.subheader("Objetivo")
-       st.markdown("""
+       st.markdown("""       
+       <div style="text-align: justify;">
        
        El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento 
        y análisis de datos antropométricos de adultos mayores para la determinación de dependencia 
        funcional y sarcopenia. 
-       """)
-
-       st.subheader("Ventajas y características")
+       </div>
+        """,unsafe_allow_html=True)
+       
+    st.subheader("Ventajas y características")
 
        st.markdown("""       
        <div style="text-align: justify;">
