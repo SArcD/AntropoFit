@@ -2338,7 +2338,7 @@ elif pestañas == "Registro de datos":
 
        # Cargar datos y entrenar modelo
        df = pd.read_excel('AM_2023_Antropo.xlsx')
-       st.dataframe(df)
+       #st.dataframe(df)
 
        df = df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
@@ -2360,21 +2360,26 @@ elif pestañas == "Registro de datos":
        modelo_grasa_gb = GradientBoostingRegressor()
        modelo_grasa_gb.fit(X_2, y_2)
 
-       # Código de la aplicación
-       st.title("Ingreso de datos en tiempo real")
+
        st.markdown("""
-    En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada.
-""")
+    <div style=text-align:justify>
+                   
+    En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa coporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
+    <div>
+""", unsafe_allow_html=True)
 
        # Crear un DataFrame vacío para almacenar los datos de los pacientes
        if 'data' not in st.session_state:
         st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)"])
 
        # Título
-       st.title('Ingreso manual de datos de pacientes')
+       st.subheader('Ingreso manual de datos de pacientes')
        st.markdown("""
-       En el siguiente espacio puede ingresar los datos de un paciente en observación. Cada una de las cajas permite teclear los resultados de las mediciones. Si no conoce los valores para la Masa muscular o la fuerza escriba 0.0 en esos campos y seleccione la opción de abajo para calcularlos.
-""")
+       <div style=text-align:justify>
+                   
+       En el siguiente espacio puede ingresar los datos de una persona bajo observación. Cada una de las cajas permite teclear los resultados de las mediciones. **Si no conoce los valores para la masa muscular o el porcentaje de grasa corporal deje estos campos en 0.0 y los modelos predictivos los calcularán**.
+       </div>
+""", unsafe_allow_html=True)
 
        with st.form('Agregar Paciente'):
         Folio = st.text_input('Nombre del Paciente')
@@ -2406,8 +2411,13 @@ elif pestañas == "Registro de datos":
        import io
        import base64
        import pickle
-       st.write("En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, escriba el número de fila a editar y cambien los valores del campo a modificar. Una vez realizados los cambios, haga clic en el botón de *Guardar cambios*.")
-                # Ingresar el número de fila a editar
+       st.markdown("""
+       <div style=text-align:justify>
+                   
+       En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, **escriba el número de fila a editar y cambien los valores del campo a modificar**. Una vez realizados los cambios, haga clic en el botón de ***'Guardar cambios'***.
+       <div>""", unsafe_allow_html=True)
+
+       # Ingresar el número de fila a editar
        edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
 
                 # Crear un formulario para editar datos de un paciente
@@ -2415,7 +2425,7 @@ elif pestañas == "Registro de datos":
             with st.form('Editar Paciente'):
                     st.subheader('Editar Fila {}'.format(edit_row_number))
                     data_table = st.session_state.data.copy()
-                    st.dataframe(data_table, height=400, width=800)
+                    st.dataframe(data_table, use_container_width=True)
 
                     Folio = st.text_input('Nombre del Paciente', value=data_table.iloc[edit_row_number]['Folio'])
                     Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)']))
@@ -2457,6 +2467,9 @@ elif pestañas == "Registro de datos":
                 b64 = base64.b64encode(excel_data).decode('utf-8')
                 href = f'<a href="data:application/octet-stream;base64,{b64}" download="datos_pacientes.xlsx">Descargar Excel</a>'
                 st.markdown(href, unsafe_allow_html=True)
+
+
+
 
 
 
