@@ -2491,7 +2491,7 @@ elif pestañas == "Registro de datos":
         
                     if st.form_submit_button('Guardar Cambios'):
                         # Actualiza la fila en data_table
-                        data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PCB, Pantorrilla, FA, Marcha]
+                        data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PCB, Pantorrilla, FA, Marcha, Clasificación]
                         st.session_state.data = data_table
                         st.success('Cambios guardados con éxito!')
 
