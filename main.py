@@ -76,7 +76,7 @@ st.write(f"Esta página ha sido visitada {counter} veces.")
 
 
 # Crear una barra lateral para las pestañas
-pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Calculadora",  "Equipo de trabajo"))
+pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Registro de datos",  "Equipo de trabajo"))
 if pestañas == "Presentación":
        st.title("Sobre AntropoFit")
        st.markdown("""
@@ -90,11 +90,11 @@ if pestañas == "Presentación":
        colaboración entre el entre el **Consejo Nacional de Humanidades Ciencia y Tecnología ([**CONAHCYT**](https://conahcyt.mx/)) y la Universidad de Colima ([**UCOL**](https://portal.ucol.mx/cuib/))**
        </div>
        """, unsafe_allow_html=True)
+
        st.subheader("Muestra")
-       
        st.markdown("""
-       <div style="text-align: justify;">
-       
+       <div style="text-align: justify">
+                   
        Los datos utilizados para los modelos se recolectaron a partir de un grupo de voluntarios de centros 
        de convivencia de personas adultas mayores, residentes en las Ciudades de Colima y Villa de Álvarez.
        **En la presente aplicación se crean modelos que permiten estimar variables como el porcentaje de grasa 
@@ -104,50 +104,51 @@ if pestañas == "Presentación":
        """, unsafe_allow_html=True)
 
        st.subheader("Algoritmos y lenguaje de programación")
-       st.markdown("""       
-       <div style="text-align: justify;">
-       
-        Elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y             [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube. Las técnicas utilizadas para el análisis de los datos y la creación de modelos de aproximación se derivan de prácticas usuales para la depuración de datos, la creación de árboles de ajuste, la técnica de clustering jerárquico y Random Forest. **La aplicación es de libre acceso y uso gratuito para cualquier personal de atención primaria de pacientes geriátricos.**
+       st.markdown("""
+       <div style = "text-align: justify">
+                   
+       Elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube. Las técnicas utilizadas para el análisis de los datos y la creación de modelos de aproximación se derivan de prácticas usuales para la depuración de datos, la creación de árboles de ajuste, la técnica de clustering jerárquico y Random Forest. **La aplicación es de libre acceso y uso gratuito para cualquier personal de atención primaria de pacientes geriátricos.**
        </div>
        """, unsafe_allow_html=True)
 
        #st.title("Acerca de Sarc-open-IA")
 
        st.subheader("Objetivo")
-       st.markdown("""       
-       <div style="text-align: justify;">
-       
+       st.markdown("""
+       <div style="text-align: justify">
+                               
        El objetivo de esta aplicación es asistir al personal médico en la captura, almacenamiento 
        y análisis de datos antropométricos de adultos mayores para la determinación de dependencia 
-       funcional y sarcopenia. 
-       </div>
-        """,unsafe_allow_html=True)
-       
+       funcional y sarcopenia.
+       </div>             
+       """,unsafe_allow_html=True)
+
        st.subheader("Ventajas y características")
 
-       st.markdown("""       
-       <div style="text-align: justify;">
+       st.markdown("""
+       <div style="text-align: justify">
+                   
+        - **Facilitar uso:** Queríamos que nuestra herramienta fuera fácil de usar para el personal médico, incluso si no estaban familiarizados con la inteligencia artificial o la programación. Para lograrlo, elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube.
 
-            - **Facilitar uso:** Queríamos que nuestra herramienta fuera fácil de usar para el personal médico, incluso si no estaban familiarizados con la inteligencia artificial o la programación. Para lograrlo, elegimos el lenguaje de programación [**Python**](https://docs.python.org/es/3/tutorial/) y las plataformas [**Streamlit**](https://streamlit.io/) y [**GitHub**](https://github.com/). Estas opciones permiten una fácil visualización y manipulación de la aplicación, además de almacenar los algoritmos en la nube.
+        - **Interfaz amigable:** El resultado es una interfaz gráfica que permite a los médicos ingresar los datos antropométricos de los pacientes y ver gráficas útiles para el análisis estadístico. También ofrece un diagnóstico en tiempo real de la sarcopenia, y todo esto se hace utilizando cajas de texto y deslizadores para ingresar y manipular los datos.
 
-            - **Interfaz amigable:** El resultado es una interfaz gráfica que permite a los médicos ingresar los datos antropométricos de los pacientes y ver gráficas útiles para el análisis estadístico. También ofrece un diagnóstico en tiempo real de la sarcopenia, y todo esto se hace utilizando cajas de texto y deslizadores para ingresar y manipular los datos.
-
-            - **Accesibilidad total:** El personal médico puede descargar de forma segura las gráficas y los archivos generados por la aplicación. Además, pueden acceder a ella desde cualquier dispositivo con conexión a internet, ya sea un teléfono celular, una computadora, tablet o laptop.
+        - **Accesibilidad total:** El personal médico puede descargar de  forma segura las gráficas y los archivos generados por la aplicación. Además, pueden acceder a ella desde cualquier dispositivo con conexión a internet, ya sea un teléfono celular, una computadora, tablet o laptop.
         </div>
-        """,unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
        st.subheader("Método")
-       st.markdown("""       
-       <div style="text-align: justify;">
-       
+       st.markdown("""
+       <div style="text-align:justify">
+                   
        A partir de datos registrados entre septiembre y octubre el año 2023 en una muestra de adultos mayores que residen en la Zona Metropolitana, Colima, Villa de Álvarez, México, se procedió al desarrollo de modelos predictivos mediante el algoritmo [**Random Forest**](https://cienciadedatos.net/documentos/py08_random_forest_python). En este caso, se crearon modelos que permiten estimar la [**masa muscular**](https://www.scielo.cl/scielo.php?pid=S0717-75182008000400003&script=sci_arttext&tlng=en) (medida en kilogramos) y el [**porcentaje corporal de grasa**](https://ve.scielo.org/scielo.php?pid=S0004-06222007000400008&script=sci_arttext) a partir de distintas medidas antropométricas. 
        
        Los modelos generados muestran un grado aceptable de coincidencia con las mediciones de estos parámetros, que típicamente requieren de balanzas de bioimpedancia y/o absorciometría de rayos X de energía dual. Una vez con las aproximaciones para masa muscular y porcentaje de grasa corporal, se estima el grado de riesgo de padecer sarcopenia para cada paciente mediante el uso del algoritmo de clustering jerarquico. 
        
        Estas condiciones de diagnóstico fueron propuestas con el objetivo de minimizar la cantidad de parámetros antropométricos y establecer puntos de corte que puedan ser validados por personal médico capacitado. **Este enfoque se asemeja a lo que se conoce en inteligencia artificial como un sistema experto, ya que los modelos resultantes requieren validación por parte de especialistas.**
        </div>
-       """, unsafe_allow_html=True
-       )
+                   """,unsafe_allow_html=True)
+
+
 
 
 # Contenido de la pestaña 1
@@ -156,13 +157,13 @@ if pestañas == "Modelos con una variable":
        st.markdown("""
        <div style="text-align: justify;">
 
-       En esta pestaña se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. Estos a su vez se usan en el módulo de ***"Estimación de riesgo de sarcopenia"*** (accesible en la barra lateral izquierda).
+       En este modulo se muestra el proceso para calcular **modelos de aproximación** a la masa muscular, medida en kilogramos, y el porcentaje de grasa corporal **a partir de una sola variable**. Estos modelos se usan también en el módulo de ***"Estimación de riesgo de sarcopenia"*** para la predicción de riesgo de sarcopenia a partir de parámetros antropométricos (accesible en la barra lateral izquierda).
                    
-       En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. En el caso de la masa muscular, se predicen valores para pacientes  a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y en el caso de la grasa corporal se utiliza el [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
+       En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. **Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición**. La masa muscular se predice a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y el porcentaje de grasa corporal a partir del [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
                    
        En la segunda sección se dejan las variables predictoras a elección del usuario y con ellas se crean modelos predictivos para la masa muscular total y el porcentaje de grasa corporal.
                    
-       Los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: *'árbol de regresión simple'*, *'Random forest'* y *'Gradient boosting'*. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
+       Los modelos predictivos para masa muscular y porcentaje de grasa corporal se obtienen a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: ***'árbol de regresión simple'***, ***'Random forest'*** y ***'Gradient boosting'***. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
                    
        </div>                                           
        """, unsafe_allow_html=True)
@@ -177,6 +178,29 @@ if pestañas == "Modelos con una variable":
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
        """, unsafe_allow_html=True)
+
+       import streamlit as st
+
+       # Usar HTML y CSS para crear un recuadro con color de fondo
+       st.markdown(
+    """
+    <style>
+    .recuadro {
+        background-color: #ADD8E6;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    </style>
+    <div class="recuadro">
+        <h2>Título del Recuadro</h2>
+        <p>Este es un recuadro con un color de fondo personalizado.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
        with st.expander("**Claves de variables**"):
            st.markdown("""
@@ -479,7 +503,8 @@ if pestañas == "Modelos con una variable":
        st.write(f'**Predicción usando *Árbol de Decisión*:** {prediction_dt:.2f} kg')
        st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} kg')
        st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
- 
+
+
 
 
        # Crear un modelo de árbol de decisión limitando la profundidad
@@ -941,11 +966,6 @@ if pestañas == "Modelos con una variable":
        #st.pyplot(figur)
 
        ##################################
-
-
-# Contenido de la pestaña 2
-
-       ##################################
 # Contenido de la pestaña 2
 elif pestañas == "Modelos con 2 variables":
        st.title("Modelos de aproximación con dos variables independientes")
@@ -1181,8 +1201,8 @@ elif pestañas == "Modelos con 2 variables":
         st.markdown("""
         donde:
         - $Y$ es la variable dependiente (la que queremos predecir).
-        - $\beta_0$ es la intersección o término constante.
-        - $\beta_1$ es el coeficiente de la variable independiente.
+        - $\bbeta_0$ es la intersección o término constante.
+        - $\bbeta_1$ es el coeficiente de la variable independiente.
         - $X$ es la variable independiente.
         - $\epsilon$ es el término de error o residual.
 
@@ -1876,15 +1896,126 @@ elif pestañas == "Modelos con 2 variables":
 
 
 
+####################################333
+                ###
+
+
 
 # Contenido de la pestaña 3
 elif pestañas == "Predicción de Sarcopenia":
+       #st.markdown("<a name='seccion-1'></a>", unsafe_allow_html=True)
+
+       st.markdown("<a name = 'S3'></a>", unsafe_allow_html=True)
        st.title("Estimación de sarcopenia")       
-       st.write("Se usan los resultados de los modelos aproximados y el algoritmo de clustering jerárquico para estimar sarcopenia")
+       st.markdown("""
+       <div style="text-align: justify;">
+                                      
+       En esta sección se calcula el ***riesgo de sarcopenia*** a partir de cuatro medidas antropométricas: el ***porcentaje de grasa corporal***, ***la masa muscular***, ***la velocidad de marcha*** y ***la fuerza de agarre.***
+
+       El nivel de riesgo se obtuvo siguiendo el proceso descrito en el artículo [**"Sistema de Cribado Primario para la Sarcopenia en Personas Adultas Mayores Basado en Inteligencia Artificial"**](https://www.scielo.org.mx/scielo.php?script=sci_abstract&pid=S0188-95322023000400053&lng=es&nrm=iso&tlng=es).
+       </div>            
+                   """, unsafe_allow_html=True)
+       
+       st.markdown("""
+       <div style="text-align: justify;">
+
+       Los modelos fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recolecten mas datos.                              
+       
+        A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
+       </div>
+       """, unsafe_allow_html=True)
+
+       with st.expander("**Claves de variables**"):
+           st.markdown("""
+           - **Folio:** identificador personal.
+           - **Peso (kg):** peso corporal total, medida en Kg.
+           - **Talla (cm):** altura de la persona, medida en centímetros.
+           - **IMC:** índice de masa corporal.
+           - **PCintura (cm):** perímetro de cintura, medido en centímetros.
+           - **Pcadera (cm):** perímetro de la cadera, medido en centímetros.
+           - **PBrazo (cm):** perímetro total del brazo, medido en centímetros. 
+           - **PPantorrilla (cm):** perímetro de la pantorrilla, medida en centímetros.
+           - **PCB (mm):** pliegue cutáneo de brazo, medido en milímetros.
+           - **PCT (mm):** pliegue cutáneo del triceps, medido en milímetros.
+           - **PCSE (mm):** pliegue cutáneo sub escapular, medido en milímetros.
+           - **Agua corporal (%):** porcentaje corporal de agua.
+           - **Músculo (kg):** peso del corporal.
+           - **Grasa corporal (%):** porcentaje corporal de grasa.
+           - **Gs Brazo derecho:** porcentaje de grasa subcutánea en el brazo derecho. 
+           - **Gs Brazo izquierdo:** porcentaje de grasa subcutánea en el brazo izquierdo.
+           - **Gs pierna izquierda:** porcentaje de grasa subcutánea en la pierna izquierda.
+           - **Gs pierna derecha:** porcentaje de grasa subctánea en la pierna derecha.
+           - **Centro:** porcentaje de grasa en la zona central del abdomen.
+           - **Fuerza mano derecha:** Fuerza de agarre en la mano derecha, medida en kg de presión.
+           - **Fuerza mano izquierda:** Fuerza de agarre en la mano izquierda, medida en kg de presión.
+           - **Velocidad de marcha:** velocidad de marcha, medida en metros sobre segundo.
+           - **PA sistólica:** Presión sanguínea sistólica, medida en milímetros de mercurio.
+           - **PA diastólica:** Presión sanguínea diastólica, medida en milímetros de mercurio.
+           """)
+
 
        #import streamlit as st       
        df=pd.read_excel('AM_2023_Antropo.xlsx')
        st.dataframe(df)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = df.shape
+           missing_data = df.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Hay datos faltantes en algunas filas.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
+
+       # Crear un botón de descarga para el dataframe
+       def download_button(df, filename, button_text):
+           # Crear un objeto ExcelWriter
+           excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+           # Guardar el dataframe en el objeto ExcelWriter
+           df.to_excel(excel_writer, index=False)
+           # Cerrar el objeto ExcelWriter
+           excel_writer.save()
+           # Leer el archivo guardado como bytes
+           with open(filename, 'rb') as f:
+               file_bytes = f.read()
+               # Generar el enlace de descarga
+               href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
+               st.markdown(href, unsafe_allow_html=True)
+
+       # Crear un botón de descarga para el dataframe
+       def download_button_CSV(df, filename, button_text):
+           csv = df.to_csv(index=False)
+           b64 = base64.b64encode(csv.encode()).decode()
+           href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+           st.markdown(href, unsafe_allow_html=True)
+
+           # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(df, 'muestra_antrompométrica_colima_2023.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(df, 'muestra_antrompométrica_colima_2023.csv', 'Descargar como CSV')
+           st.write('')
+
+
+       st.markdown("""
+       <div style="text-align:justify">
+                               
+       Antes de crear los modelos, eliminamos las filas que tuvieran datos faltantes en alguna de las columnas de interés. Utilizando el algoritmo descrito en [**SARC-OPEN-IA**](https://1introsarcopeniapy-prsmum5dlbfejjg3mmgspu.streamlit.app/), se establece una clasificación de nivel de riesgo de sarcopenia para cada participante, a partir de sus datos antropométricos. La tabla con los participantes clasificados se muestra a continuación: 
+       </div>
+       """, unsafe_allow_html=True)
+
+
+
+
+
+
+
        df=df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
@@ -1929,15 +2060,56 @@ elif pestañas == "Predicción de Sarcopenia":
            df["Clasificación"] = clasificaciones
            return df
 
-# Carga tus datos desde reduced_df_2 (reemplaza 'data.csv' con tu propio DataFrame)
-# Asumiendo que los datos están en formato CSV
-
 # Utiliza la función para clasificar las filas de tu DataFrame
-# Reemplaza 'N_df' con tu DataFrame
+
        clasificado_df = clasificar_filas(N_df.copy())
 
-# Ahora, en el DataFrame original, tendrás una nueva columna llamada "Clasificación" con las clasificaciones correspondientes.
-       st.dataframe(clasificado_df)
+# En el DataFrame original, nueva columna llamada "Clasificación" con las clasificaciones correspondientes.
+       st.dataframe(clasificado_df, use_container_width=True)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = df.shape
+           missing_data = df.isnull().any().any()
+
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Hay datos faltantes en algunas filas.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
+
+       # Crear un botón de descarga para el dataframe
+       def download_button(df, filename, button_text):
+           # Crear un objeto ExcelWriter
+           excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+           # Guardar el dataframe en el objeto ExcelWriter
+           df.to_excel(excel_writer, index=False)
+           # Cerrar el objeto ExcelWriter
+           excel_writer.save()
+           # Leer el archivo guardado como bytes
+           with open(filename, 'rb') as f:
+               file_bytes = f.read()
+               # Generar el enlace de descarga
+               href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
+               st.markdown(href, unsafe_allow_html=True)
+
+       # Crear un botón de descarga para el dataframe
+       def download_button_CSV(df, filename, button_text):
+           csv = df.to_csv(index=False)
+           b64 = base64.b64encode(csv.encode()).decode()
+           href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+           st.markdown(href, unsafe_allow_html=True)
+
+           # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(df, 'muestra_antrompométrica_evaluada_colima_2023.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(df, 'muestra_antrompométrica_evaluada_colima_2023.csv', 'Descargar como CSV')
+           st.write('')
 
 ##########################3
 
@@ -1954,11 +2126,15 @@ elif pestañas == "Predicción de Sarcopenia":
        # Crear un gráfico de pastel
        fig = plt.figure(figsize=(8, 8))
        plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140)
-       plt.title('Distribución de Clasificaciones')
+       plt.title('Participantes agrupados de acuerdo con nivel de riesgo específico.')
+      
+       st.markdown("""
+       De acuerdo con las medidas antropométricas, los participantes se dsitribuyen en grupos distintos (llamados simplemente **Grupo 1**, **Grupo 2**, **Grupo 3**, etc).
+       """)
 
        # Mostrar el gráfico en Streamlit
        st.pyplot(fig)
-
+ 
        ###############
 
 
@@ -1981,13 +2157,18 @@ elif pestañas == "Predicción de Sarcopenia":
                box = px.box(df_filtrado, x='Clasificación', y=column, title=column)
                fig.add_trace(box['data'][0], row=1, col=i + 1)
            fig.update_layout(title=f'Clasificación {clasificacion}')
-           st.plotly_chart(fig)
+           #st.plotly_chart(fig)
 
 ######################3
 
        import streamlit as st
        import plotly.express as px
-
+       st.markdown("""
+       <div style="text-align:justify">
+                   
+       A continuación mostramos diagramas de caja en los que se comparan cada uno de los grupos de interés. Cada diagrama corresponde a una parámetro de interés: **"Masa muscular"**, **"Porcentaje de grasa corporal"**, **"Fuerza de agarre"** y **"velocidad de marcha"**. En cada gráfico el eje horizontal corresponde a los grupos y el vertical a cada uno de los parámetros ya mencionados.
+       </div>
+       """,unsafe_allow_html=True)
        # Obtener las columnas numéricas
        numeric_columns = clasificado_df.select_dtypes(include='number').columns
 
@@ -2002,564 +2183,236 @@ elif pestañas == "Predicción de Sarcopenia":
        ############################
 
 
-       import streamlit as st
-       import pandas as pd
+       #import streamlit as st
+       #import pandas as pd
 
        # Función para calcular el músculo
-       def calcular_musculo(fa, ppantorrilla):
-           if fa <= 27.90:
-               if ppantorrilla <= 34.55:
-                   if fa <= 15.77:
-                       if ppantorrilla <= 32.00:
-                           return 35.42
-                       else:
-                           return 37.38
-                   else:
-                       if fa <= 16.38:
-                           return 58.30
-                       else:
-                           return 37.63
-               else:
-                   if fa <= 15.25:
-                       return 51.90
-                   else:
-                       if ppantorrilla <= 41.25:
-                           return 40.96
-                       else:
-                           return 50.20
-           else:
-               if fa <= 32.80:
-                   if ppantorrilla <= 36.45:
-                       if ppantorrilla <= 34.95:
-                           return 52.20
-                       else:
-                           return 52.70
-                   else:
-                       return 47.10
-               else:
-                   if ppantorrilla <= 36.75:
-                       return 54.20
-                   else:
-                       if fa <= 36.27:
-                           return 61.10
-                       else:
-                           return 60.00
+       #def calcular_musculo(fa, ppantorrilla):
+       #    if fa <= 27.90:
+       #        if ppantorrilla <= 34.55:
+       #            if fa <= 15.77:
+       #                if ppantorrilla <= 32.00:
+       #                    return 35.42
+       #                else:
+       #                    return 37.38
+       #            else:
+       #                if fa <= 16.38:
+       #                    return 58.30
+       #                else:
+       #                    return 37.63
+       #        else:
+       #            if fa <= 15.25:
+       #                return 51.90
+       #            else:
+       #                if ppantorrilla <= 41.25:
+       #                    return 40.96
+       #                else:
+       #                    return 50.20
+       #    else:
+       #        if fa <= 32.80:
+       #            if ppantorrilla <= 36.45:
+       #                if ppantorrilla <= 34.95:
+       #                    return 52.20
+       #                else:
+       #                    return 52.70
+       #            else:
+       #                return 47.10
+       #        else:
+       #            if ppantorrilla <= 36.75:
+       #                return 54.20
+       #            else:
+       #                if fa <= 36.27:
+       #                    return 61.10
+       #                else:
+       #                    return 60.00
 
        # Función para calcular la grasa corporal
-       def calcular_grasa(pbrazo, pcb):
-           if pcb <= 9.50:
-               if pbrazo <= 27.65:
-                   if pbrazo <= 24.75:
-                       if pcb <= 6.50:
-                           return 26.50
-                       else:
-                           return 26.40
-                   else:
-                       if pcb <= 6.50:
-                           return 34.70
-                       else:
-                           return 30.37
-               else:
-                   if pcb <= 7.50:
-                       if pbrazo <= 30.75:
-                           return 20.60
-                       else:
-                           return 27.07
-                   else:
-                       if pbrazo <= 29.15:
-                           return 27.90
-                       else:
-                           return 30.80
-           else:
-               if pbrazo <= 28.75:
-                   if pcb <= 11.00:
-                       if pbrazo <= 27.65:
-                           return 35.40
-                       else:
-                           return 34.50
-                   else:
-                       if pbrazo <= 25.85:
-                           return 31.50
-                       else:
-                           return 28.75
-               else:
-                   if pbrazo <= 35.25:
-                       if pcb <= 18.50:
-                           return 37.19
-                       else:
-                           return 30.60
-                   else:
-                       if pcb <= 19.00:
-                           return 44.70
-                       else:
-                           return 37.60
+       #def calcular_grasa(pbrazo, pcb):
+       #    if pcb <= 9.50:
+       #        if pbrazo <= 27.65:
+       #            if pbrazo <= 24.75:
+       #                if pcb <= 6.50:
+       #                    return 26.50
+       #                else:
+       #                    return 26.40
+       #            else:
+       #                if pcb <= 6.50:
+       #                    return 34.70
+       #                else:
+       #                    return 30.37
+       #        else:
+       #            if pcb <= 7.50:
+       #                if pbrazo <= 30.75:
+       #                    return 20.60
+       #                else:
+       #                    return 27.07
+       #            else:
+       #                if pbrazo <= 29.15:
+       #                    return 27.90
+       #                else:
+       #                    return 30.80
+       #    else:
+       #        if pbrazo <= 28.75:
+       #            if pcb <= 11.00:
+       #                if pbrazo <= 27.65:
+       #                    return 35.40
+       #                else:
+       #                    return 34.50
+       #            else:
+       #                if pbrazo <= 25.85:
+       #                    return 31.50
+       #                else:
+       #                    return 28.75
+       #        else:
+       #            if pbrazo <= 35.25:
+       #                if pcb <= 18.50:
+       #                    return 37.19
+       #                else:
+       #                    return 30.60
+       #            else:
+       #                if pcb <= 19.00:
+       #                    return 44.70
+       #                else:
+       #                    return 37.60
 
        # Aplicar las funciones a las columnas correspondientes de df
-       df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
-       df['Grasa Corporal_pred (%)'] = df.apply(lambda row: calcular_grasa(row['PBrazo (cm)'], row['PCB (mm)']), axis=1)
+       #df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
+       #df['Grasa Corporal_pred (%)'] = df.apply(lambda row: calcular_grasa(row['PBrazo (cm)'], row['PCB (mm)']), axis=1)
 
-       # Guardar el DataFrame actualizado en un archivo Excel
-       nombre_archivo_excel = "df_con_predicciones.xlsx"
-       df.to_excel(nombre_archivo_excel, index=False)
-       st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
-       df_2
+
        clasificar_filas(df_2)
-       df_2
+       st.dataframe(df_2, use_container_width=True)
 
-       import streamlit as st
-       import pandas as pd
-       import numpy as np
-       from sklearn.preprocessing import StandardScaler
-       from sklearn.cluster import AgglomerativeClustering
+       # En el DataFrame original, nueva columna llamada "Clasificación" con las clasificaciones correspondientes.
+       #st.dataframe(clasificado_df, use_container_width=True)
+       with st.expander("**Información adicional**"):
+           # Mostrar información adicional sobre el DataFrame
+           num_rows, num_columns = df.shape
+           missing_data = df.isnull().any().any()
 
-       N_df_filtro = df_2[df_2['Clasificación'] == 1.0]
-       # Cargar los datos en un dataframe
-       # Elimina la columna "Clasificación" del DataFrame N_df_filtro
-       N_df_filtro = N_df_filtro.drop(columns=['Clasificación'])
-       data_2023 = N_df_filtro
+           st.write(f"**Número de filas**: {num_rows}")
+           st.write(f"**Número de columnas**: {num_columns}")
+           if missing_data:
+               st.write("Hay datos faltantes en algunas filas.")
+           else:
+               st.write("No hay datos faltantes en ninguna fila.")
 
-       # Seleccionar solo las columnas numéricas
-       numeric_data_2023 = data_2023.select_dtypes(include='number')
-
-       # Eliminar valores no numéricos
-       numeric_data_2023 = numeric_data_2023.dropna()
-
-       # Normalizar los datos
-       scaler = StandardScaler()
-       normalized_data_2023 = scaler.fit_transform(numeric_data_2023)
-       
-       # Obtener los valores máximos y mínimos de las columnas originales
-       min_values = np.min(numeric_data_2023, axis=0)
-       max_values = np.max(numeric_data_2023, axis=0)
-
-       # Aplicar hierarchical clustering
-       clustering = AgglomerativeClustering(n_clusters=3, metric='euclidean', linkage='ward')
-       labels_2023 = clustering.fit_predict(normalized_data_2023)
-
-       # Agregar las etiquetas al dataframe original
-       data_2023['Cluster'] = labels_2023
-
-       # Guardar el dataframe con las etiquetas en un archivo Excel
-       nombre_archivo_excel = "data_2023_clustered.xlsx"
-       data_2023.to_excel(nombre_archivo_excel, index=False)
-       st.write(f"Se ha guardado el DataFrame con etiquetas en {nombre_archivo_excel}")
-
-       # Filtrar el DataFrame para la clasificación 1.0
-       df_clasif_0 = data_2023[data_2023['Cluster'] == 0.0]
-
-       # Filtrar el DataFrame para la clasificación 2.0
-       df_clasif_1 = data_2023[data_2023['Cluster'] == 1.0]
-
-       # Filtrar el DataFrame para la clasificación 2.0
-       df_clasif_2 = data_2023[data_2023['Cluster'] == 2.0]
-
-       # Guardar los DataFrames en archivos Excel
-       df_clasif_0.to_excel('clasificacion_0.xlsx', index=False)
-       df_clasif_1.to_excel('clasificacion_1.xlsx', index=False)
-       df_clasif_2.to_excel('clasificacion_2.xlsx', index=False)
-
-       import streamlit as st
-       import pandas as pd
-       import plotly.express as px
-
-       # Obtener las columnas numéricas
-       numeric_columns = data_2023.select_dtypes(include='number').columns
-
-       # Obtener las clasificaciones únicas
-       clasificaciones_unicas = data_2023['Cluster'].unique()
-
-       # Calcular el número de filas y columnas del panel
-       num_rows = len(numeric_columns)
-
-       # Filtrar el DataFrame para cada parámetro y crear un único gráfico de caja para cada uno
-       for column in numeric_columns:
-           fig = px.box(data_2023, x='Cluster', y=column, title=column, notched=True, points='all')
-           st.plotly_chart(fig)
-           
-elif pestañas == "Calculadora":
-    st.title("Calculadora")
-    import streamlit as st
-    import pandas as pd
-    st.markdown("""
-    A continuación pude cargar un archivo para la clasificación de pacientes (el formato puede ser .xlsx o.csv). Para que la calculadora puede crear aproximaciones la masa muscular, el porcentaje de grasa corporal y riesgo de sarcopenia, necesita que en su archivo se cuente con las variables:
-    - **Perímetro de brazo**, medido en centímetros (el nombre de la columna debe ser "**PBrazo (cm)**").
-    - **Perímetro de pantorrilla**, medido en centímetros (el nombre de columna debe ser "**PPantorrilla (cm)**").
-    - **Fuerza de agarre**, medida en kilogramos (el nombre debe ser "**FA**").
-    - **Pliegue cutáneo de brazo**, medido en milímetros (el nombre de la columna debe ser "**PCB (mm)**")
-    """)
-    # Función para cargar un archivo
-    def cargar_archivo():
-        uploaded_file = st.sidebar.file_uploader("Cargar archivo", type=["xlsx", "xls", "csv"])
-        if uploaded_file is not None:
-            try:
-                if uploaded_file.name.endswith('.csv'):
-                    # Leer el archivo CSV en un DataFrame de pandas
-                    df = pd.read_csv(uploaded_file)
-                else:
-                    # Leer el archivo Excel en un DataFrame de pandas
-                    df = pd.read_excel(uploaded_file)
-                st.write("¡Archivo cargado correctamente!")
-                return df  # Devolver el DataFrame cargado
-            except Exception as e:
-                st.error(f"Error al cargar el archivo: {e}")
-
-    # Llamar a la función para cargar el archivo
-    df = cargar_archivo()
-    st.write("**Esta es su tabla:**")
-    # Mostrar el DataFrame en el área principal de la aplicación
-    if df is not None:
-        st.dataframe(df)  # Mostrar el DataFrame cargado en el área principal
-
-        # Crear una barra lateral para las pestañas
-        pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Calcular con una variable", "Calcular con dos variables"))
-        if pestañas == "Calcular con una variable":
-               st.markdown("""
-               La calculadora utilizará dos algoritmos de **"arboles de ajuste"** que calcularán aproximaciones para la masa 
-               muscular total del paciente y el porcentaje de grasa corporal a partir de las variables de interés (Perímetro de 
-               pantorrilla y fuerza de agarre para el cálculo de la masa muscular y pliegue cutáneo de brazo y perímetro de brazo 
-               para el porcentaje de grasa corporal. En la tabla que puede obervar abajo econtrará dos coulumnas en donde se muestran 
-               estas aproximaciones: "Musculo_pred (Kg)" y "Grasa Corporal_pred (%)"). Además, encontrará una tercer columna (llamada 
-               **"Clasificación"** en la que aquellos pacientes con el mayor grado de simulitud serán agrupados en tres conjuntos).
-               """)
-               import streamlit as st       
-               import pandas as pd
-               from sklearn.tree import DecisionTreeRegressor
-               import numpy as np
-               import matplotlib.pyplot as plt
-               from mpl_toolkits.mplot3d import Axes3D
-               from sklearn.tree import DecisionTreeRegressor, export_text
-
-
-               #st.dataframe(df)
-               df=df.dropna()
-               df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
-               df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
-               df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
-               df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
-                      'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
-                      'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
-                      'Grasa Corporal (%)', 'Centro',
-                      'FA','Velocidad de marcha']]
-
-            
-               data=df
-               # Función para calcular el músculo
-               def calcular_musculo(fa, ppantorrilla):
-                   if fa <= 27.90:
-                       if ppantorrilla <= 34.55:
-                           if fa <= 15.77:
-                               if ppantorrilla <= 32.00:
-                                   return 35.42
-                               else:
-                                   return 37.38
-                           else:
-                               if fa <= 16.38:
-                                   return 58.30
-                               else:
-                                   return 37.63
-                       else:
-                           if fa <= 15.25:
-                               return 51.90
-                           else:
-                               if ppantorrilla <= 41.25:
-                                   return 40.96
-                               else:
-                                   return 50.20
-                   else:
-                       if fa <= 32.80:
-                           if ppantorrilla <= 36.45:
-                               if ppantorrilla <= 34.95:
-                                   return 52.20
-                               else:
-                                   return 52.70
-                           else:
-                               return 47.10
-                       else:
-                           if ppantorrilla <= 36.75:
-                               return 54.20
-                           else:
-                               if fa <= 36.27:
-                                   return 61.10
-                               else:
-                                   return 60.00
-
-               # Función para calcular la grasa corporal
-               def calcular_grasa(pbrazo, pcb):
-                   if pcb <= 9.50:
-                       if pbrazo <= 27.65:
-                           if pbrazo <= 24.75:
-                               if pcb <= 6.50:
-                                   return 26.50
-                               else:
-                                   return 26.40
-                           else:
-                               if pcb <= 6.50:
-                                   return 34.70
-                               else:
-                                   return 30.37
-                       else:
-                           if pcb <= 7.50:
-                               if pbrazo <= 30.75:
-                                   return 20.60
-                               else:
-                                   return 27.07
-                           else:
-                               if pbrazo <= 29.15:
-                                   return 27.90
-                               else:
-                                   return 30.80
-                   else:
-                       if pbrazo <= 28.75:
-                           if pcb <= 11.00:
-                               if pbrazo <= 27.65:
-                                   return 35.40
-                               else:
-                                   return 34.50
-                           else:
-                               if pbrazo <= 25.85:
-                                   return 31.50
-                               else:
-                                   return 28.75
-                       else:
-                           if pbrazo <= 35.25:
-                               if pcb <= 18.50:
-                                   return 37.19
-                               else:
-                                   return 30.60
-                           else:
-                               if pcb <= 19.00:
-                                   return 44.70
-                               else:
-                                   return 37.60
-
-               # Aplicar las funciones a las columnas correspondientes de df
-               df['Musculo_pred (kg)'] = df.apply(lambda row: calcular_musculo(row['FA'], row['PPantorrilla (cm)']), axis=1)
-               df['Grasa Corporal_pred (%)'] = df.apply(lambda row: calcular_grasa(row['PBrazo (cm)'], row['PCB (mm)']), axis=1)
-
-               # Guardar el DataFrame actualizado en un archivo Excel
-               nombre_archivo_excel = "df_con_predicciones.xlsx"
-               df.to_excel(nombre_archivo_excel, index=False)
-               #st.write(f"Se ha guardado el DataFrame actualizado en {nombre_archivo_excel}")
-               df_2=df
-               
-
-               def clasificar_filas(df):
-                   clasificaciones = []
-                   for _, fila in df.iterrows():
-                       if fila['FA'] <= 23.90:
-                           if fila['Músculo (kg)'] <= 62.81:
-                               if fila['Grasa Corporal (%)'] <= 43.65:
-                                   if fila['Velocidad de marcha'] <= 0.55:
-                                       clasificacion = 3.0
-                                   else:
-                                       if fila['Velocidad de marcha'] <= 0.75:
-                                           clasificacion = 1.0
-                                       else:
-                                           clasificacion = 1.0
-                               else:
-                                   clasificacion = 3.0
-                           else:
-                               clasificacion = 0.0
-                       else:
-                           if fila['FA'] <= 32.60:
-                               if fila['Músculo (kg)'] <= 61.80:
-                                   clasificacion = 2.0
-                               else:
-                                   clasificacion = 0.0
-                           else:
-                               clasificacion = 2.0
-                       clasificaciones.append(clasificacion)
-                   df["Clasificación"] = clasificaciones
-                   return df
-
-
-               clasificado_df = clasificar_filas(df.copy())
-
-               st.dataframe(clasificado_df)
-
-            
-               import streamlit as st
-               import matplotlib.pyplot as plt
-
-               # Contar la cantidad de pacientes en cada clasificación
-               clasificacion_counts = clasificado_df['Clasificación'].value_counts()
-
-               # Obtener las etiquetas de las clasificaciones y sus valores
-               etiquetas = clasificacion_counts.index
-               valores = clasificacion_counts.values
-
-               # Crear un gráfico de pastel
-               fig = plt.figure(figsize=(2, 2))
-               plt.pie(valores, labels=etiquetas, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 10})
-               plt.title('Distribución de Clasificaciones', fontsize=12)
-
-               # Mostrar el gráfico en Streamlit
-               st.pyplot(fig)
-
-               import streamlit as st
-               import pandas as pd
-               import matplotlib.pyplot as plt
-               import seaborn as sns
-
-               # Obtener las columnas numéricas
-               columnas_numericas = clasificado_df.select_dtypes(include=['int', 'float']).columns.tolist()
-
-               # Interfaz de usuario
-               st.title('Visualización de Datos por Clasificación')
-               st.markdown("""
-               A continuación puede comparar las caráctristicas de los pacientes que quedaron agrupados en los 
-               diferentes conjuntos. La idea detrás de esto es establecer si existen diferencias entre las características 
-               de los grupos de pacientes estudiados, con el objetivo de identificar uno o mas grupos con indicios de riesgo
-               de sarcopenia.
-               En la casilla de verificación puede seleccionar los parámetros de interés y debajo se mostrarán los diagramas 
-               de caja para los pacientes de cada grupo (una variable a la vez). 
-               """)
-               
-               # Lista de selección de columnas numéricas
-               columnas_seleccionadas = st.multiselect('Selecciona las columnas numéricas:', columnas_numericas)
-
-               # Verificar si se han seleccionado columnas
-               if len(columnas_seleccionadas) > 0:
-                  # Crear un arreglo de subplots
-                  fig, axs = plt.subplots(nrows=len(columnas_seleccionadas), ncols=1, figsize=(10, 6 * len(columnas_seleccionadas)))
-                  # Aplanar los ejes
-                  axs = np.ravel(axs)
-    
-                  # Iterar sobre las columnas seleccionadas
-                  for i, columna in enumerate(columnas_seleccionadas):
-                      # Obtener los valores únicos de la columna 'Clasificación'
-                      valores_clasificacion = clasificado_df['Clasificación'].unique()
-        
-                      # Iterar sobre los valores de clasificación
-                      for valor in valores_clasificacion:
-                      # Filtrar el DataFrame por el valor de clasificación
-                          df_filtrado = clasificado_df[clasificado_df['Clasificación'] == valor]
-            
-                          # Crear un gráfico de caja para la columna actual y el valor de clasificación actual
-                          #sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i], label=f'Clasificación {valor}')
-                          sns.boxplot(x='Clasificación', y=columna, data=df_filtrado, ax=axs[i], hue='Clasificación')
-
-                      # Añadir título y etiquetas al subplot
-                      axs[i].set_title(f'Boxplot de {columna}')
-                      axs[i].set_xlabel('Clasificación')
-                      axs[i].set_ylabel(columna)
-    
-                  # Ajustar el diseño de los subplots    
-                  plt.tight_layout()
-    
-                  # Mostrar los subplots en Streamlit
-                  st.pyplot(fig)
-               else:
-                  st.write('Por favor, selecciona al menos una columna numérica.')
-
-
-               import streamlit as st
-               import pandas as pd
-
-               # Obtener los valores únicos de la columna "Clasificación"
-               valores_clasificacion = clasificado_df["Clasificación"].unique()
-
-               # Crear una caja de selección para elegir los valores de clasificación
-               valor_seleccionado = st.multiselect("Seleccionar valor de clasificación:", valores_clasificacion)
-
-               # Filtrar el DataFrame según el valor seleccionado
-               df_filtrado = clasificado_df[clasificado_df["Clasificación"].isin(valor_seleccionado)]
-               st.markdown(
-               """
-               En esta sección puede descargar los datos de todos los pacientes clasificados dentro del mismo grupo (el cual puede seleccionar en la casilla de verificación que viene abajo).
-               """
-                          )
-               # Mostrar el DataFrame filtrado
-               st.write("DataFrame filtrado:")
-               st.write(df_filtrado)
-
-               # Botón de descarga para el DataFrame filtrado como archivo Excel
-               csv_file = df_filtrado.to_csv(index=False)
-               b64 = base64.b64encode(csv_file.encode()).decode()  # Codificar el archivo CSV como base64
-               href = f'<a href="data:file/csv;base64,{b64}" download="df_filtrado.csv">Descargar CSV</a>'
+       # Crear un botón de descarga para el dataframe
+       def download_button(df, filename, button_text):
+           # Crear un objeto ExcelWriter
+           excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+           # Guardar el dataframe en el objeto ExcelWriter
+           df.to_excel(excel_writer, index=False)
+           # Cerrar el objeto ExcelWriter
+           excel_writer.save()
+           # Leer el archivo guardado como bytes
+           with open(filename, 'rb') as f:
+               file_bytes = f.read()
+               # Generar el enlace de descarga
+               href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
                st.markdown(href, unsafe_allow_html=True)
 
-               # Botón de descarga para el DataFrame filtrado como archivo Excel
-               # excel_file = df_filtrado.to_excel(index=False)
-               #b64 = base64.b64encode(excel_file).decode()  # Codificar el archivo Excel como base64
-               #href = f'<a href="data:application/octet-stream;base64,{b64}" download="df_filtrado.xlsx">Descargar Excel</a>'
-               #st.markdown(href, unsafe_allow_html=True)
+       # Crear un botón de descarga para el dataframe
+       def download_button_CSV(df, filename, button_text):
+           csv = df.to_csv(index=False)
+           b64 = base64.b64encode(csv.encode()).decode()
+           href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+           st.markdown(href, unsafe_allow_html=True)
 
-               import streamlit as st
-               import pandas as pd
-               import matplotlib.pyplot as plt
+           # Dividir la página en dos columnas
+       col1, col2 = st.columns(2)
+       # Agregar un botón de descarga para el dataframe en la primera columna
+       with col1:
+           download_button(df_2, 'muestra_antrompométrica_con_nivel_de_riesgo_de_sarcopenia.xlsx', 'Descargar como Excel')
+           st.write('')
+       # Agregar un botón de descarga para el dataframe en la segunda columna
+       with col2:
+           download_button_CSV(df_2, 'muestra_antrompométrica_con_nivel_de_riesgo_de_sarcopenia.csv', 'Descargar como CSV')
+           st.write('')
 
-               # Obtener las columnas numéricas del DataFrame
-               columnas_numericas = df_filtrado.select_dtypes(include=['int', 'float']).columns.tolist()
+elif pestañas == "Registro de datos":
+       st.title("Ingreso de datos en tiempo real")
+       import streamlit as st
+       import pandas as pd
+       from sklearn.ensemble import GradientBoostingRegressor
 
-               # Interfaz de usuario
-               st.title('Histogramas de Columnas Numéricas')
-               columna_seleccionada = st.selectbox('Selecciona una columna numérica:', columnas_numericas)
+       # Cargar datos y entrenar modelo
+       df = pd.read_excel('AM_2023_Antropo.xlsx')
+       st.dataframe(df)
 
-               # Obtener el tamaño de los bines desde un deslizador
-               tamanio_bin = st.slider('Tamaño de Bin', min_value=1, max_value=50, value=10)
+       df = df.dropna()
+       df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
+       df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
+       df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
 
-               # Crear una figura y un conjunto de subplots
-               fig, ax = plt.subplots()
+       df = df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
+         'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
+         'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+         'Grasa Corporal (%)', 'Centro', 'FA', 'Velocidad de marcha']]
 
-               # Dibujar el histograma con el tamaño de los bines especificado
-               ax.hist(df_filtrado[columna_seleccionada], bins=tamanio_bin)
+       X = df[['PPantorrilla (cm)', 'FA']]
+       y = df['Músculo (kg)']
+       X_2 = df[['PBrazo (cm)', 'PCB (mm)']]
+       y_2 = df['Grasa Corporal (%)']
+       # Crear y entrenar el modelo de Gradient Boosting
+       modelo_musculo_gb = GradientBoostingRegressor()
+       modelo_musculo_gb.fit(X, y)
+       modelo_grasa_gb = GradientBoostingRegressor()
+       modelo_grasa_gb.fit(X_2, y_2)
 
-               # Agregar etiquetas y título
-               ax.set_xlabel(columna_seleccionada)
-               ax.set_ylabel('Frecuencia')
-               ax.set_title(f'Histograma de {columna_seleccionada}')
+       # Código de la aplicación
+       st.title("Ingreso de datos en tiempo real")
+       st.markdown("""
+    En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada.
+""")
 
-               # Mostrar el histograma en Streamlit
-               st.pyplot(fig)
+       # Crear un DataFrame vacío para almacenar los datos de los pacientes
+       if 'data' not in st.session_state:
+        st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)"])
+
+       # Título
+       st.title('Ingreso manual de datos de pacientes')
+       st.markdown("""
+       En el siguiente espacio puede ingresar los datos de un paciente en observación. Cada una de las cajas permite teclear los resultados de las mediciones. Si no conoce los valores para la Masa muscular o la fuerza escriba 0.0 en esos campos y seleccione la opción de abajo para calcularlos.
+""")
+
+       with st.form('Agregar Paciente'):
+        Folio = st.text_input('Nombre del Paciente')
+        Edad = st.number_input('Edad (años) ', min_value=0, max_value=150)
+        Peso = st.number_input("Peso (kg)", min_value=0.0)
+        Altura = st.number_input('Altura (cm)', min_value=0.0)
+        Grasa = st.number_input('Grasa (%)', min_value=0.0)
+        Musculo = st.number_input('Músculo (kg)', min_value=0.0)
+        PBrazo = st.number_input('PBrazo (cm)', min_value=0.0)
+        PCB = st.number_input('PCB (mm)', min_value=0.0)
+        Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0)
+        FA = st.number_input('FA (kg)', min_value=0.0)
+        Marcha = st.number_input(' Marcha (ms-1)', min_value=0.0)
+
+        if st.form_submit_button('Agregar Paciente'):
+        # Si Musculo es 0.0, usar el modelo para predecir
+            if Musculo == 0.0:
+                Musculo = modelo_musculo_gb.predict([[Pantorrilla, FA]])[0]
+            if Grasa == 0.0:
+                Grasa = modelo_grasa_gb.predict([[PBrazo, PCB]])[0]
+            # Agregar los datos del paciente al DataFrame en session_state
+            st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Músculo (kg)': Musculo, 'PBrazo (cm)': PBrazo, 'PCB (mm)':PCB, 'PPantorrilla (cm)': Pantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
+            st.success('Datos del paciente agregados con éxito!')
 
 
-        else:
-            st.title("Ingreso de datos en tiempo real")
-            st.markdown("""
-                   En esta sección pued ecargar datos indvidualmente y generar un archivo .xlsx o .csv con la información recolectada
-               """
-                   )
-
-            # Crear un DataFrame vacío para almacenar los datos de los pacientes
-            if 'data' not in st.session_state:
-                st.session_state.data = pd.DataFrame(columns=["Folio","Edad (años)","Peso (kg)","Altura (cm)","Grasa (%)","Musculo (kg)","PBrazo (cm)","PPantorrilla (cm)",'FA (kg)',"Marcha (ms-1)"])
-
-               # Título
-            st.title('Ingreso manual de datos de pacientes')
-
-               # Crear un formulario para agregar datos de un paciente
-            st.markdown("""
-            En el siguiente espacio puede ingresar los datos de un paciente en observación. Cada una de las cajas permite teclear los resultados de las mediciones.
-               """)
-            with st.form('Agregar Paciente'):
-                Folio = st.text_input('Nombre del Paciente')
-                Edad = st.number_input('Edad (años) ', min_value=0, max_value=150)
-                Peso = st.number_input("Peso (kg)", min_value=0.0)
-                Altura = st.number_input('Altura (cm)', min_value=0.0)
-                Grasa = st.number_input('Grasa (%)', min_value=0.0)
-                Musculo = st.number_input('Musculo (kg)', min_value=5.0)
-                PBrazo = st.number_input('PBrazo (cm)', min_value=0.0)
-                PPantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0)
-                FA = st.number_input('FA (kg)', min_value=0.0)
-                Marcha = st.number_input(' Marcha (ms-1)', min_value=0.0)
-
-                if st.form_submit_button('Agregar Paciente'):
-                    st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Musculo': Musculo, 'PBrazo (cm)': PBrazo, 'PPantorriilla (cm)': PPantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
-                    st.success('Datos del paciente agregados con éxito!')
 ############
-            import streamlit as st
-            import pandas as pd
-            import io
-            import base64
-            import pickle
-            st.write("En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, escriba el número de fila a editar y cambien los valores del campo a modificar. Una vez realizados los cambios, haga clic en el botón de *Guardar cambios*.")
+       import streamlit as st
+       import pandas as pd
+       import io
+       import base64
+       import pickle
+       st.write("En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, escriba el número de fila a editar y cambien los valores del campo a modificar. Una vez realizados los cambios, haga clic en el botón de *Guardar cambios*.")
                 # Ingresar el número de fila a editar
-            edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
+       edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
 
                 # Crear un formulario para editar datos de un paciente
-            if edit_row_number is not None:
-                with st.form('Editar Paciente'):
+       if edit_row_number is not None:
+            with st.form('Editar Paciente'):
                     st.subheader('Editar Fila {}'.format(edit_row_number))
                     data_table = st.session_state.data.copy()
                     st.dataframe(data_table, height=400, width=800)
@@ -2569,16 +2422,17 @@ elif pestañas == "Calculadora":
                     Peso = st.number_input('Peso', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Peso (kg)']))
                     Altura = st.number_input('Altura', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Altura (cm)']))
                     Grasa = st.number_input('Grasa', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Grasa (%)']))
-                    Musculo = st.number_input('Musculo', min_value=5.0, value=float(data_table.loc[edit_row_number, 'Musculo (kg)']))
-                    PBrazo = st.number_input('CMB', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PBrazo (cm)']))
-                    PPantorrilla = st.number_input('CMP', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
+                    Musculo = st.number_input('Músculo (kg)', min_value=5.0, value=float(data_table.loc[edit_row_number, 'Músculo (kg)']))
+                    PBrazo = st.number_input('PBrazo (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PBrazo (cm)']))
+                    PCB = st.number_input('PCB (mm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PCB (mm)']))
+                    Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
                     FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
                     Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
 
         
                     if st.form_submit_button('Guardar Cambios'):
                         # Actualiza la fila en data_table
-                        data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PPantorrilla, FA, Marcha]
+                        data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PCB, Pantorrilla, FA, Marcha]
                         st.session_state.data = data_table
                         st.success('Cambios guardados con éxito!')
 
