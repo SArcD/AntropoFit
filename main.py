@@ -2487,6 +2487,8 @@ elif pestañas == "Registro de datos":
                     Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
                     FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
                     Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
+                    #Clasificación = st.number_input('Clasificación', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
+                    Clasificación = st.text_input('Clasificación', value=data_table.loc[edit_row_number, 'Clasificación'])
 
         
                     if st.form_submit_button('Guardar Cambios'):
