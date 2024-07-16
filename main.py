@@ -2354,32 +2354,61 @@ elif pestañas == "Registro de datos":
        y = df['Músculo (kg)']
        X_2 = df[['PBrazo (cm)', 'PCB (mm)']]
        y_2 = df['Grasa Corporal (%)']
-       # Crear y entrenar el modelo de Gradient Boosting
+
+       # Crear y entrenar los modelos de Gradient Boosting
        modelo_musculo_gb = GradientBoostingRegressor()
        modelo_musculo_gb.fit(X, y)
        modelo_grasa_gb = GradientBoostingRegressor()
        modelo_grasa_gb.fit(X_2, y_2)
 
+       def clasificar_filas(df):
+        clasificaciones = []
+        for _, fila in df.iterrows():
+            if fila['FA'] <= 23.90:
+                if fila['Músculo (kg)'] <= 62.81:
+                    if fila['Grasa Corporal (%)'] <= 43.65:
+                        if fila['Velocidad de marcha'] <= 0.55:
+                            clasificacion = 3.0
+                        else:
+                            if fila['Velocidad de marcha'] <= 0.75:
+                                clasificacion = 1.0
+                            else:
+                                clasificacion = 1.0
+                    else:
+                        clasificacion = 3.0
+                else:
+                    clasificacion = 0.0
+            else:
+                if fila['FA'] <= 32.60:
+                    if fila['Músculo (kg)'] <= 61.80:
+                        clasificacion = 2.0
+                    else:
+                        clasificacion = 0.0
+                else:
+                    clasificacion = 2.0
+            clasificaciones.append(clasificacion)
+        df["Clasificación"] = clasificaciones
+        return df
 
+
+       st.title("Ingreso de datos en tiempo real")
        st.markdown("""
-    <div style=text-align:justify>
-                   
-    En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa coporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
-    <div>
-""", unsafe_allow_html=True)
+       <div style=text-align:justify>
+       En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa corporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
+       <div>
+       """, unsafe_allow_html=True)
 
        # Crear un DataFrame vacío para almacenar los datos de los pacientes
        if 'data' not in st.session_state:
-        st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)"])
+        st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)", "Clasificación"])
 
        # Título
        st.subheader('Ingreso manual de datos de pacientes')
        st.markdown("""
        <div style=text-align:justify>
-                   
-       En el siguiente espacio puede ingresar los datos de una persona bajo observación. Cada una de las cajas permite teclear los resultados de las mediciones. **Si no conoce los valores para la masa muscular o el porcentaje de grasa corporal deje estos campos en 0.0 y los modelos predictivos los calcularán**.
+        En el siguiente espacio puede ingresar los datos de una persona bajo observación. Cada una de las cajas permite teclear los resultados de las mediciones. **Si no conoce los valores para la masa muscular o el porcentaje de grasa corporal deje estos campos en 0.0 y los modelos predictivos los calcularán**.
        </div>
-""", unsafe_allow_html=True)
+       """, unsafe_allow_html=True)
 
        with st.form('Agregar Paciente'):
         Folio = st.text_input('Nombre del Paciente')
@@ -2392,17 +2421,37 @@ elif pestañas == "Registro de datos":
         PCB = st.number_input('PCB (mm)', min_value=0.0)
         Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0)
         FA = st.number_input('FA (kg)', min_value=0.0)
-        Marcha = st.number_input(' Marcha (ms-1)', min_value=0.0)
+        Marcha = st.number_input('Marcha (ms-1)', min_value=0.0)
 
         if st.form_submit_button('Agregar Paciente'):
-        # Si Musculo es 0.0, usar el modelo para predecir
+            # Si Musculo es 0.0, usar el modelo para predecir
             if Musculo == 0.0:
                 Musculo = modelo_musculo_gb.predict([[Pantorrilla, FA]])[0]
             if Grasa == 0.0:
                 Grasa = modelo_grasa_gb.predict([[PBrazo, PCB]])[0]
+
+            # Crear un DataFrame temporal para clasificación
+            temp_df = pd.DataFrame({'FA': [FA], 'Músculo (kg)': [Musculo], 'Grasa Corporal (%)': [Grasa], 'Velocidad de marcha': [Marcha]})
+            temp_df = clasificar_filas(temp_df)
+            clasificacion = temp_df.loc[0, 'Clasificación']
+
+            # Asignar etiquetas
+            if clasificacion == 1.0:
+                etiqueta_clasificacion = "Riesgo de sarcopenia"
+            elif clasificacion == 0.0:
+                etiqueta_clasificacion = "Sin riesgo"
+            else:
+                etiqueta_clasificacion = "Obesidad"
+
             # Agregar los datos del paciente al DataFrame en session_state
-            st.session_state.data = st.session_state.data.append({'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 'Grasa (%)': Grasa, 'Músculo (kg)': Musculo, 'PBrazo (cm)': PBrazo, 'PCB (mm)':PCB, 'PPantorrilla (cm)': Pantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha}, ignore_index=True)
+            st.session_state.data = st.session_state.data.append({
+                'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 
+                'Grasa (%)': Grasa, 'Músculo (kg)': Musculo, 'PBrazo (cm)': PBrazo, 'PCB (mm)': PCB, 
+                'PPantorrilla (cm)': Pantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha, 
+                'Clasificación': etiqueta_clasificacion
+            }, ignore_index=True)
             st.success('Datos del paciente agregados con éxito!')
+
 
 
 ############
