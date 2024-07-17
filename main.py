@@ -2369,7 +2369,7 @@ elif pestañas == "Registro de datos":
         return df
 
 
-       st.title("Ingreso de datos en tiempo real")
+       #st.title("Ingreso de datos en tiempo real")
        st.markdown("""
        <div style=text-align:justify>
        En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa corporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
