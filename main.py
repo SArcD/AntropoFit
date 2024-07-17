@@ -2372,6 +2372,7 @@ elif pestañas == "Registro de datos":
        #st.title("Ingreso de datos en tiempo real")
        st.markdown("""
        <div style=text-align:justify>
+       
        En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa corporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
        <div>
        """, unsafe_allow_html=True)
@@ -2384,6 +2385,7 @@ elif pestañas == "Registro de datos":
        st.subheader('Ingreso manual de datos de pacientes')
        st.markdown("""
        <div style=text-align:justify>
+       
         En el siguiente espacio puede ingresar los datos de una persona bajo observación. Cada una de las cajas permite teclear los resultados de las mediciones. **Si no conoce los valores para la masa muscular o el porcentaje de grasa corporal deje estos campos en 0.0 y los modelos predictivos los calcularán**.
        </div>
        """, unsafe_allow_html=True)
