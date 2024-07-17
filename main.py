@@ -179,28 +179,6 @@ if pestañas == "Modelos con una variable":
        </div>
        """, unsafe_allow_html=True)
 
-       import streamlit as st
-
-       # Usar HTML y CSS para crear un recuadro con color de fondo
-       st.markdown(
-    """
-    <style>
-    .recuadro {
-        background-color: #ADD8E6;
-        padding: 20px;
-        border-radius: 5px;
-        margin: 20px 0;
-    }
-    </style>
-    <div class="recuadro">
-        <h2>Título del Recuadro</h2>
-        <p>Este es un recuadro con un color de fondo personalizado.</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
 
        with st.expander("**Claves de variables**"):
            st.markdown("""
