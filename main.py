@@ -173,7 +173,7 @@ if pestañas == "Modelos con una variable":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
@@ -977,7 +977,7 @@ elif pestañas == "Modelos con 2 variables":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
@@ -1897,7 +1897,7 @@ elif pestañas == "Predicción de Sarcopenia":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recolecten mas datos.                              
+       Los modelos fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recolecten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
