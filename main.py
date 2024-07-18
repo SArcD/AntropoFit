@@ -154,7 +154,7 @@ if pestañas == "Modelos con una variable":
        st.markdown("""
        <div style="text-align: justify;">
 
-       En este modulo se muestra el proceso para calcular **modelos de aproximación** a la [**masa muscular**](#Calculadora_de_masa_muscular), medida en kilogramos, y el [**porcentaje de grasa corporal**](#Calculadora de grasa corporal) **a partir de una sola variable**. Estos modelos se usan también en el módulo de ***"Predicción de sarcopenia"*** para la predicción de riesgo de sarcopenia a partir de parámetros antropométricos (accesible en la barra lateral izquierda). Si quiere ir directo a la sección donde se calcula masa muscular y porcentaje de grasa corporal d
+       En este modulo se muestra el proceso para calcular **modelos de aproximación** a la [**masa muscular**](#Calculadora_de_masa_muscular), medida en kilogramos, y el [**porcentaje de grasa corporal**](#Calculadora_de_grasa_corporal) **a partir de una sola variable**. Estos modelos se usan también en el módulo de ***"Predicción de sarcopenia"*** para la predicción de riesgo de sarcopenia a partir de parámetros antropométricos (accesible en la barra lateral izquierda). Si quiere ir directo a la sección donde se calcula masa muscular y porcentaje de grasa corporal d
                    
        En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. **Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición**. La masa muscular se predice a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y el porcentaje de grasa corporal a partir del [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
                    
@@ -912,8 +912,8 @@ if pestañas == "Modelos con una variable":
 
        # Sección objetivo
        st.markdown("## Calculadora de grasa corporal", unsafe_allow_html=True)
-       st.markdown('<a name="Calculadora de grasa corporal"></a>', unsafe_allow_html=True)
-
+       st.markdown('<a name="Calculadora_de_grasa_corporal"></a>', unsafe_allow_html=True)
+ 
       # Input del usuario para el valor de la variable predictora
        input_value_2 = st.number_input(f'**Introduzca un valor para la variable predictora del porcentaje de grasa corporal**', min_value=float(X_2[predictor_2].min()), max_value=float(X_2[predictor_2].max()))
 
