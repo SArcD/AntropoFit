@@ -882,8 +882,8 @@ if pestañas == "Modelos con una variable":
        
        
        # Sección objetivo
-       st.markdown("## Calculadora_de_masa_muscular", unsafe_allow_html=True)
-       st.markdown('<a name="Calculadora de masa muscular"></a>', unsafe_allow_html=True)
+       st.markdown("## Calculadora de masa muscular", unsafe_allow_html=True)
+       st.markdown('<a name="Calculadora_de_masa_muscular"></a>', unsafe_allow_html=True)
 
 
        st.markdown("""
