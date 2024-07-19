@@ -235,8 +235,9 @@ if pestañas == "Modelos con una variable":
        #import streamlit as st       
        #df=pd.read_excel('AM_2023_Antropo.xlsx')
        df=pd.read_excel('ANTRO_AM_DIF_COLIMA.xlsx')
+       df = df.drop("Nombre", axis=1)
 
-       st.dataframe(df)
+       st.dataframe(df, use_container_width=True)
        with st.expander("**Información adicional**"):
            # Mostrar información adicional sobre el DataFrame
            num_rows, num_columns = df.shape
