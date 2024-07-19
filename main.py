@@ -148,6 +148,9 @@ if pestañas == "Presentación":
        </div>
                    """,unsafe_allow_html=True)
 
+
+
+
 # Contenido de la pestaña 1
 if pestañas == "Modelos con una variable":
        st.title("Modelos de aproximación de una sola variable independiente")
@@ -155,10 +158,10 @@ if pestañas == "Modelos con una variable":
        <div style="text-align: justify;">
 
        En este modulo se muestra el proceso para calcular **modelos de aproximación** a la [**masa muscular**](#Calculadora_de_masa_muscular), medida en kilogramos, y el [**porcentaje de grasa corporal**](#Calculadora_de_grasa_corporal) **a partir de una sola variable**. Estos modelos se usan también en el módulo de ***"Predicción de sarcopenia"*** para la predicción de riesgo de sarcopenia a partir de parámetros antropométricos (accesible en la barra lateral izquierda).
+
+       En la primera sección se muestran los modelos para la [**predicción de la masa muscular**](#Calculadora_de_masa_muscular) y [**el porcentaje de grasa corporal**](#Calculadora_de_grasa_corporal)mediante variables predefinidas. **Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición**. La masa muscular se predice a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y el porcentaje de grasa corporal a partir del [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
                    
-       En la primera sección se muestran los modelos para la predicción de masa muscular y grasa mediante variables predefinidas. **Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición**. La masa muscular se predice a partir del [**perímetro de pantorrilla**](https://scielo.isciii.es/pdf/nh/v33n3/10_original9.pdf) y el porcentaje de grasa corporal a partir del [**perímetro de brazo**](https://www.sciencedirect.com/science/article/pii/S0212656709006416).
-                   
-       En la segunda sección se dejan las variables predictoras a elección del usuario y con ellas se crean modelos predictivos para la masa muscular total y el porcentaje de grasa corporal.
+       En la segunda sección se dejan las variables predictoras a [**elección del usuario**](#Predicción_de_masa_muscular_y_porcentaje_de_grasa_corporal_mediante_otras_variables_antropométricas) y con ellas se crean modelos predictivos para la masa muscular total y el porcentaje de grasa corporal.
                    
        Los modelos predictivos para masa muscular y porcentaje de grasa corporal se obtienen a partir de diversos algoritmos basados en [**árboles de regresión**](https://www.researchgate.net/publication/242370834_Classification_and_Regression_Trees_An_Introduction). Dichos algoritmos son: ***'árbol de regresión simple'***, ***'Random forest'*** y ***'Gradient boosting'***. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
                    
@@ -170,11 +173,33 @@ if pestañas == "Modelos con una variable":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
        """, unsafe_allow_html=True)
+
+       import streamlit as st
+
+       # Usar HTML y CSS para crear un recuadro con color de fondo
+#       st.markdown(
+#    """
+#    <style>
+#    .recuadro {
+#        background-color: #ADD8E6;
+#        padding: 20px;
+#        border-radius: 5px;
+#        margin: 20px 0;
+#    }
+#    </style>
+#    <div class="recuadro">
+#        <h2>Título del Recuadro</h2>
+#        <p>Este es un recuadro con un color de fondo personalizado.</p>
+#    </div>
+#    """,
+#    unsafe_allow_html=True
+#)
+
 
 
        with st.expander("**Claves de variables**"):
@@ -208,7 +233,9 @@ if pestañas == "Modelos con una variable":
     
         
        #import streamlit as st       
-       df=pd.read_excel('AM_2023_Antropo.xlsx')
+       #df=pd.read_excel('AM_2023_Antropo.xlsx')
+       df=pd.read_excel('ANTRO_AM_DIF_COLIMA.xlsx')
+
        st.dataframe(df)
        with st.expander("**Información adicional**"):
            # Mostrar información adicional sobre el DataFrame
@@ -262,7 +289,7 @@ if pestañas == "Modelos con una variable":
        df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
        df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
               'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
-              'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+              'Agua Corporal (%)', 'Músculo (kg)',
               'Grasa Corporal (%)', 'Centro',
               'FA','Velocidad de marcha']]
        df_2=df
@@ -434,13 +461,13 @@ if pestañas == "Modelos con una variable":
 
        with st.expander("**Coeficientes de ajuste para los modelos**"):
     
-           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr:.2f}, **Intercepto** = {intercepto_musculo_lr:.2f}')
            st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
-           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
-           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
-           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr:.2f}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt:.2f}')
+           st.write(f'**R^2 Random Forest:** {r2_musculo_rf:.2f}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb:.2f}')
            st.write("***Error medio absoluto***")
            st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
@@ -454,17 +481,21 @@ if pestañas == "Modelos con una variable":
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
        from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+    
+    
 
+       st.markdown("## Calculadora de masa muscular", unsafe_allow_html=True)
+       st.markdown('<a name="Calculadora_de_masa_muscular"></a>', unsafe_allow_html=True)
        st.markdown("""
        <div style="text-align: justify;">
                    
-       A continuación puede teclear un valor de perímetro de pantorrilla y al presionar *Enter* se muestra la estimación de masa muscular de acuerdo con cada modelo.
+       A continuación puede teclear un valor de perímetro de pantorrilla (medido en centímetros) y al presionar *Enter* se muestra la estimación de masa muscular de acuerdo con cada modelo (en kilogramos).
                    
        </div>
        """, unsafe_allow_html=True)
 
        # Input del usuario para el valor de la variable predictora
-       input_value = st.number_input(f'**Introduzca un valor para el perímetro de pantorrilla**', min_value=float(X['PPantorrilla (cm)'].min()), max_value=float(X['PPantorrilla (cm)'].max()))
+       input_value = st.number_input(f'**Introduzca un valor para el perímetro de pantorrilla (cm)**', min_value=float(X['PPantorrilla (cm)'].min()), max_value=float(X['PPantorrilla (cm)'].max()))
 
        # Realiza predicciones usando el valor de entrada del usuario
        input_array = np.array([[input_value]])
@@ -615,15 +646,21 @@ if pestañas == "Modelos con una variable":
        ax.legend(fontsize='xx-small', loc='best')  # Modifica el tamaño de letra de las leyendas
        st.pyplot(fig)
 
+       # Coeficientes de ajuste para el modelo de regresión lineal       
+       pendiente_grasa_lr = modelo_grasa_lr.coef_[0]
+       intercepto_grasa_lr = modelo_grasa_lr.intercept_
+       
+
+
        with st.expander("**Coeficientes de ajuste para los modelos**"):
     
-           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
            st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
-           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
-           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
-           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write(f'**R^2 Regresión lineal:** {r2_grasa_lr:.2f}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt:.2f}')
+           st.write(f'**R^2 Random Forest:** {r2_grasa_rf:.2f}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_grasa_gb:.2f}')
            st.write("***Error medio absoluto***")
            st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
@@ -636,16 +673,20 @@ if pestañas == "Modelos con una variable":
        from sklearn.tree import DecisionTreeRegressor, plot_tree
        from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
+
+
+       st.markdown("## Calculadora de grasa corporal", unsafe_allow_html=True)
+       st.markdown('<a name="Calculadora_de_grasa_corporal"></a>', unsafe_allow_html=True)
        st.markdown("""
        <div style="text-align: justify;">
                    
-       A continuación puede teclear un valor de ***perímetro de brazo*** y al presionar *Enter* se muestra la estimación del ***porcentaje de grasa corporal*** de acuerdo con cada modelo.
+       A continuación puede teclear un valor de ***perímetro de brazo*** (medido en centímetros) y al presionar *Enter* se muestra la estimación del ***porcentaje de grasa corporal*** de acuerdo con cada modelo.
                    
        </div>
        """, unsafe_allow_html=True)
 
        # Input del usuario para el valor de la variable predictora
-       input_value = st.number_input(f'**Introduzca un valor para el perímetro de brazo**', min_value=float(X['PBrazo (cm)'].min()), max_value=float(X['PBrazo (cm)'].max()))
+       input_value = st.number_input(f'**Introduzca un valor para el perímetro de brazo (cm)**', min_value=float(X['PBrazo (cm)'].min()), max_value=float(X['PBrazo (cm)'].max()))
 
        # Realiza predicciones usando el valor de entrada del usuario
        input_array = np.array([[input_value]])
@@ -661,7 +702,11 @@ if pestañas == "Modelos con una variable":
        st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
 
     
-       st.subheader("Predicción de masa muscular y porcentaje de grasa corporal mediante otras variables antropométricas")
+
+       st.markdown("## Predicción de masa muscular y porcentaje de grasa corporal mediante otras variables antropométricas", unsafe_allow_html=True)
+       st.markdown('<a name="Predicción_de_masa_muscular_y_porcentaje_de_grasa_corporal_mediante_otras_variables_antropométricas"></a>', unsafe_allow_html=True)
+       
+       #st.subheader("Predicción de masa muscular y porcentaje de grasa corporal mediante otras variables antropométricas")
 
        st.markdown("""
        <div style="text-align: justify;">
@@ -825,13 +870,13 @@ if pestañas == "Modelos con una variable":
 
        with st.expander("**Coeficientes de ajuste para los modelos**"):
     
-           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr}, **Intercepto** = {intercepto_musculo_lr}')
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_musculo_lr:.2f}, **Intercepto** = {intercepto_musculo_lr:.2f}')
            st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr}')       
-           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt}')
-           st.write(f'**R^2 Random Forest:** {r2_musculo_rf}')
-           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb}')
+           st.write(f'**R^2 Regresión lineal:** {r2_musculo_lr:.2f}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_musculo_dt:.2f}')
+           st.write(f'**R^2 Random Forest:** {r2_musculo_rf:.2f}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_musculo_gb:.2f}')
            st.write("***Error medio absoluto***")
            st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
@@ -862,13 +907,13 @@ if pestañas == "Modelos con una variable":
 
        with st.expander("**Coeficientes de ajuste para los modelos**"):
     
-           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr}, **Intercepto** = {intercepto_grasa_lr}')
+           st.write(f'**Ajuste Lineal: Pendiente =** {pendiente_grasa_lr:.2f}, **Intercepto** = {intercepto_grasa_lr:.2f}')
            st.write("***Coeficiente de determinación***")
            # Coeficientes de determinación (R^2) para los modelos
-           st.write(f'**R^2 Regresión lineal:** {r2_grasa_lr}')       
-           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt}')
-           st.write(f'**R^2 Random Forest:** {r2_grasa_rf}')
-           st.write(f'**R^2 Gradient Boosting:** {r2_grasa_gb}')
+           st.write(f'**R^2 Regresión lineal:** {r2_grasa_lr:.2f}')       
+           st.write(f'**R^2 Árbol de Decisión:** {r2_grasa_dt:.2f}')
+           st.write(f'**R^2 Random Forest:** {r2_grasa_rf:.2f}')
+           st.write(f'**R^2 Gradient Boosting:** {r2_grasa_gb:.2f}')
            st.write("***Error medio absoluto***")
            st.write(f'**MAE Regresión lineal:** {mae_lr:.2f}')
            st.write(f'**MAE Árbol de Decisión:** {mae_dt:.2f}')
@@ -879,12 +924,6 @@ if pestañas == "Modelos con una variable":
        import matplotlib.pyplot as plt
        from sklearn.tree import DecisionTreeRegressor, plot_tree
        from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-       
-       
-       # Sección objetivo
-       st.markdown("## Calculadora de masa muscular", unsafe_allow_html=True)
-       st.markdown('<a name="Calculadora_de_masa_muscular"></a>', unsafe_allow_html=True)
-
 
        st.markdown("""
        <div style="text-align: justify;">
@@ -910,10 +949,6 @@ if pestañas == "Modelos con una variable":
        st.write(f'**Predicción usando *Random Forest*:** {prediction_rf:.2f} kg')
        st.write(f'**Predicción usando *Gradient Boosting*:** {prediction_gb:.2f} kg')
 
-       # Sección objetivo
-       st.markdown("## Calculadora de grasa corporal", unsafe_allow_html=True)
-       st.markdown('<a name="Calculadora_de_grasa_corporal"></a>', unsafe_allow_html=True)
- 
       # Input del usuario para el valor de la variable predictora
        input_value_2 = st.number_input(f'**Introduzca un valor para la variable predictora del porcentaje de grasa corporal**', min_value=float(X_2[predictor_2].min()), max_value=float(X_2[predictor_2].max()))
 
@@ -957,13 +992,13 @@ elif pestañas == "Modelos con 2 variables":
        st.markdown("""
        <div style="text-align: justify;">
                    
-       En esta sección de crean modelos predictivos para la ***masa muscular*** y el ***porcentaje de grasa corporal*** utilizando parejas de variables antropométricas. Si bien la complejidas de los modelos se incrementa, también lo hace su precisión. 
+       En esta sección de crean modelos predictivos para la [**masa muscular**](#Calculadora_de_masa_muscular_2_variables) y el [**porcentaje de grasa corporal**](#Calculadora_de_grasa_corporal_2_variables) utilizando parejas de variables antropométricas. Si bien la complejidad de los modelos se incrementa, también lo hace su precisión. 
                                 
-      Los modelos predictivos para masa muscular y porcentaje de grasa corporal hechos a partir de diversos algoritmos basados en árboles de regresión. Dichos algoritmos son: ***'árbol de regresión simple'***, ***'Random forest'*** y ***'Gradient boosting'***. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo se incluyeron modelos de ajuste lineal para establecer un punto de comparación con los modelos de árbol.
+       Los modelos predictivos para la masa muscular y el porcentaje de grasa corporal fueron hechos a partir de diversos algoritmos basados en árboles de regresión. Dichos algoritmos son: ***'árbol de regresión simple'***, ***'Random forest'*** y ***'Gradient boosting'***. Si bien, la precisión de los modelos es limitada, presentan la ventaja de solo requerir variables atropométricas que pueden registrarse mediante una cinta métrica, un dinamómetro y un plicómetro, permitiendo una estimación en casos en los que no se cuenta de otros intrumentos de medición. Así mismo, se incluyeron modelos de regresión lineal para establecer un punto de comparación.
                    
        En la primera sección se muestran los modelos que utilizan el ***perímetro de pantorrilla y la fuerza de agarre*** para predecir la ***masa muscular*** y ***el perímetro de brazo y el pliegue cutáneo subescapular*** para predecir el ***porcentaje de grasa corporal.***
                    
-       En la segunda sección se deja a elección del usuario las variables predictoras.
+       En la segunda sección se deja a [**elección del usuario**](#Predicción_de_masa_muscular_y_porcentaje_de_grasa_corporal_2v) las variables predictoras.
                    
        </div>
        """, unsafe_allow_html=True)
@@ -984,7 +1019,7 @@ elif pestañas == "Modelos con 2 variables":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recoleten mas datos.                              
+        Los modelos que aquí se muestran fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**. Se espera que este sesgo se reduzca cuando se recolecten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
@@ -1021,7 +1056,9 @@ elif pestañas == "Modelos con 2 variables":
     
         
        #import streamlit as st       
-       df=pd.read_excel('AM_2023_Antropo.xlsx')
+       #df=pd.read_excel('AM_2023_Antropo.xlsx')
+       df=pd.read_excel('ANTRO_AM_DIF_COLIMA.xlsx')
+
        st.dataframe(df)
        with st.expander("**Información adicional**"):
            # Mostrar información adicional sobre el DataFrame
@@ -1075,7 +1112,7 @@ elif pestañas == "Modelos con 2 variables":
        df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
        df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
               'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
-              'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+              'Agua Corporal (%)', 'Músculo (kg)',
               'Grasa Corporal (%)', 'Centro',
               'FA','Velocidad de marcha']]
        df_2=df
@@ -1083,7 +1120,7 @@ elif pestañas == "Modelos con 2 variables":
        # Muestra una tabla con los primeros registros de los datos
        st.markdown("""
        <div style="text-align: justify;">
-       Antes de crear los modelos, eliminamos las filas que tuvieran datos faltantes en alguna de las columnas de interés. La tabla con los datos que se usaron para los modelos se muestra a continuación:
+       Antes de crear los modelos, eliminamos las filas que tuvieran datos faltantes en alguna de las columnas de interés. Además, la fuerza de agarre (FA) que se muestra corresponde a la fuerza de presión palmar promedio cada brazo (esto también se hizo con la grasa subcutánea de ambos brazos y piernas). La tabla con los datos que se usaron para los modelos se muestra abajo:
                    
        </div>
        """, unsafe_allow_html=True) 
@@ -1114,7 +1151,7 @@ elif pestañas == "Modelos con 2 variables":
            download_button_CSV(data, 'muestra_antrompométrica_colima_2023_sin_nan.csv', 'Descargar como CSV')
            st.write('')
 
-       st.subheader("Modelos predictivos que usan fuerza de agarre y perímetro de pantorrilla.")
+       st.subheader("Modelos predictivos para masa muscular y grasa corporal que usan dos variables.")
        
        import streamlit as st
        import pandas as pd
@@ -1190,8 +1227,6 @@ elif pestañas == "Modelos con 2 variables":
         - $\bbeta_1$ es el coeficiente de la variable independiente.
         - $X$ es la variable independiente.
         - $\epsilon$ es el término de error o residual.
-
-        Para múltiples variables independientes, el modelo se extiende a:
         """)
 
         st.latex(r'''
@@ -1341,7 +1376,7 @@ elif pestañas == "Modelos con 2 variables":
          st.write("No hay árboles en el Gradient Boosting.")
 
 
-
+       st.subheader("Predicción de masa muscular a partir de perímetro de pantorrilla y fuerza de agarre.")
 
        st.markdown("""
        <div style="text-align: justify;">
@@ -1464,6 +1499,12 @@ elif pestañas == "Modelos con 2 variables":
             st.write(f"- Coeficiente de Determinación (R²): {values['r2']:.2f}")
             st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
 
+
+       st.markdown("## Calculadora de masa muscular con dos variables", unsafe_allow_html=True)
+       st.markdown('<a name="Calculadora_de_masa_muscular_2_variables"></a>', unsafe_allow_html=True)
+       #Calculadora_de_masa_muscular_2_variables
+
+
        # Interfaz de usuario para predicciones
        st.write("### Predicción de Masa Muscular")
        ppantorrilla_input = st.number_input("Ingresa el valor de PPantorrilla (cm): ", min_value=20.0, max_value=50.0, value=30.0, step=0.1)
@@ -1496,6 +1537,16 @@ elif pestañas == "Modelos con 2 variables":
        from sklearn.metrics import mean_squared_error, r2_score 
        import pandas as pd
 
+       st.subheader("Predicción de grasa corporal a partir de perímetro y pliegue cutáneo de brazo.")
+
+       st.markdown("""
+       <div style="text-align: justify;">
+       
+       Abajo puede ver las predicciones que cada modelo hace sobre el conjunto de datos. Los **gráficos de superficie** muestran los puntos que corresponden a las mediciones de ***perímetro de brazo*** y al ***pliegue cutáneo de brazo*** (representados por los puntos de distintos colores). El color de cada punto corresponde al rango de ***porcentaje de grasa corporal*** al que corresponde dicho punto. En cuanto a los modelos, las zonas de cada color corresponden a los rangos que predicen. Se considera que el modelo es acertado en la predicción del porcentaje de grasa corporal siempre que el color de la zona coincida con las de los puntos que están en ella. **Arriba de cada gráfico de superficie se muestra el coeficiente de determinación del modelo.**
+       
+       </div>
+       """, unsafe_allow_html=True)
+ 
        # Supongamos que 'df' es tu DataFrame ya cargado previamente
        data = df
 
@@ -1593,7 +1644,9 @@ elif pestañas == "Modelos con 2 variables":
             st.write(f"- Raíz del Error Cuadrático Medio (RMSE): {values['rmse']:.2f}")
 
        # Interfaz de usuario para predicciones
-       st.write("### Predicción de Grasa Corporal")
+       st.markdown("## Calculadora de grasa corporal", unsafe_allow_html=True)
+       st.markdown('<a name="Calculadora_de_grasa_corporal_2_variables"></a>', unsafe_allow_html=True)
+       
        pbrazo_input = st.number_input("Ingresa el valor de PBrazo (cm): ", min_value=20.0, max_value=50.0, value=30.0, step=0.1)
        pcb_input = st.number_input("Ingresa el valor de PCB (mm): ", min_value=0.0, max_value=50.0, value=20.0, step=0.1)
 
@@ -1627,6 +1680,9 @@ elif pestañas == "Modelos con 2 variables":
        # Filtrar las columnas numéricas
        columnas_numericas = data.select_dtypes(include=[np.number]).columns
 
+       st.subheader("Predicción de masa muscular y porcentaje de grasa corporal mediante otras variables antropométricas")
+       st.markdown('<a name="Predicción_de_masa_muscular_y_porcentaje_de_grasa_corporal_2v"></a>', unsafe_allow_html=True)
+       
        # Seleccionar las variables independientes
        st.write("### Selección de Variables Independientes") 
        var_indep_1 = st.selectbox("Selecciona la primera variable independiente:", columnas_numericas)
@@ -1904,7 +1960,7 @@ elif pestañas == "Predicción de Sarcopenia":
        st.markdown("""
        <div style="text-align: justify;">
 
-       Los modelos fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sesgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recolecten mas datos.                              
+       Los modelos fueron calculados a partir de una muestra con datos antropométricos de adultos mayores que asistem regularmente a centros de convivencia en la zona Colima-Villa de Álvarez y están limitados por el tamaño de la muestra. Así mismo existe un sezgo en el sexo de los participantes que es necesario tomar en cuenta, ya que **la mayoría de los participantes son mujeres**). Se espera que el efecto de este sesgo se reduzca cuando se recolecten mas datos.                              
        
         A continuación se muestra la base de datos de adultos mayores. La pestaña desplegable de "**Claves de variables**" explica que es cada una de estas variables. En la parte superior de cada columna se muestra el nombre del parámetro y las unidades correspondientes. Si deja el ícono del mouse en la parte superior derecha puede descargar la tabla con los datos.
        </div>
@@ -1940,7 +1996,9 @@ elif pestañas == "Predicción de Sarcopenia":
 
 
        #import streamlit as st       
-       df=pd.read_excel('AM_2023_Antropo.xlsx')
+      # df=pd.read_excel('AM_2023_Antropo.xlsx')
+       df=pd.read_excel('ANTRO_AM_DIF_COLIMA.xlsx')
+
        st.dataframe(df)
        with st.expander("**Información adicional**"):
            # Mostrar información adicional sobre el DataFrame
@@ -2007,7 +2065,7 @@ elif pestañas == "Predicción de Sarcopenia":
        df['Gs Pierna'] = (df['Gs pierna derecha'] + df['Gs pierna izquierda']) / 2
        df=df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
               'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
-              'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+              'Agua Corporal (%)', 'Músculo (kg)',
               'Grasa Corporal (%)', 'Centro',
               'FA','Velocidad de marcha']]
        df_2=df
@@ -2322,7 +2380,9 @@ elif pestañas == "Registro de datos":
        from sklearn.ensemble import GradientBoostingRegressor
 
        # Cargar datos y entrenar modelo
-       df = pd.read_excel('AM_2023_Antropo.xlsx')
+       #df = pd.read_excel('AM_2023_Antropo.xlsx')
+       df=pd.read_excel('ANTRO_AM_DIF_COLIMA.xlsx')
+
        #st.dataframe(df)
 
        df = df.dropna()
@@ -2332,7 +2392,7 @@ elif pestañas == "Registro de datos":
 
        df = df[['Folio', 'Peso (kg)', 'Talla (cm)', 'IMC', 'PCintura (cm)',
          'PCadera (cm)', 'PBrazo (cm)', 'PPantorrilla (cm)', 'PCB (mm)',
-         'PCT (mm)', 'PCSE (mm)', 'Agua Corporal (%)', 'Músculo (kg)',
+         'Agua Corporal (%)', 'Músculo (kg)',
          'Grasa Corporal (%)', 'Centro', 'FA', 'Velocidad de marcha']]
 
        X = df[['PPantorrilla (cm)', 'FA']]
@@ -2346,40 +2406,83 @@ elif pestañas == "Registro de datos":
        modelo_grasa_gb = GradientBoostingRegressor()
        modelo_grasa_gb.fit(X_2, y_2)
 
+#       def clasificar_filas(df):
+#        clasificaciones = []
+#        for _, fila in df.iterrows():
+#            if fila['FA'] <= 23.90:
+#                if fila['Músculo (kg)'] <= 62.81:
+#                    if fila['Grasa Corporal (%)'] <= 43.65:
+#                        if fila['Velocidad de marcha'] <= 0.55:
+#                            clasificacion = 3.0
+#                        else:
+#                            if fila['Velocidad de marcha'] <= 0.75:
+#                                clasificacion = 1.0
+#                            else:
+#                                clasificacion = 1.0
+#                    else:
+#                        clasificacion = 3.0
+#                else:
+#                    clasificacion = 0.0
+#            else:
+#                if fila['FA'] <= 32.60:
+#                    if fila['Músculo (kg)'] <= 61.80:
+#                        clasificacion = 2.0
+#                    else:
+#                        clasificacion = 0.0
+#                else:
+#                    clasificacion = 2.0
+#            clasificaciones.append(clasificacion)
+#        df["Clasificación"] = clasificaciones
+#        return df
+
+
        def clasificar_filas(df):
         clasificaciones = []
         for _, fila in df.iterrows():
-            if fila['FA'] <= 23.90:
-                if fila['Músculo (kg)'] <= 62.81:
-                    if fila['Grasa Corporal (%)'] <= 43.65:
-                        if fila['Velocidad de marcha'] <= 0.55:
-                            clasificacion = 3.0
-                        else:
-                            if fila['Velocidad de marcha'] <= 0.75:
-                                clasificacion = 1.0
-                            else:
-                                clasificacion = 1.0
-                    else:
-                        clasificacion = 3.0
-                else:
-                    clasificacion = 0.0
-            else:
-                if fila['FA'] <= 32.60:
-                    if fila['Músculo (kg)'] <= 61.80:
-                        clasificacion = 2.0
-                    else:
+            if fila['Grasa Corporal (%)'] <= 33.75:
+                if fila['Músculo (kg)'] <= 46.30:
+                    if fila['FA'] <= 22.82:
                         clasificacion = 0.0
+                    else:
+                        clasificacion = 1.0
                 else:
                     clasificacion = 2.0
+            else:
+                if fila['Velocidad de marcha'] <= 0.94:
+                    if fila['Músculo (kg)'] <= 40.80:
+                        if fila['FA'] <= 24.43:
+                            clasificacion = 3.0
+                        else:
+                            clasificacion = 1.0
+                    else:
+                        if fila['Velocidad de marcha'] <= 0.87:
+                            if fila['FA'] <= 19.60:
+                                if fila['Músculo (kg)'] <= 43.80:
+                                    clasificacion = 3.0
+                                else:
+                                    clasificacion = 4.0
+                            else:
+                                clasificacion = 4.0
+                        else:
+                            if fila['FA'] <= 21.48:
+                                clasificacion = 3.0
+                            else:
+                                clasificacion = 2.0
+                else:
+                    if fila['FA'] <= 17.85:
+                        clasificacion = 3.0
+                    else:
+                        clasificacion = 1.0
             clasificaciones.append(clasificacion)
-        df["Clasificación"] = clasificaciones
-        return df
+        df["Cluster"] = clasificaciones
+        return(df)
+
 
 
        #st.title("Ingreso de datos en tiempo real")
        st.markdown("""
        <div style=text-align:justify>
-       
+                   
        En esta sección puede cargar datos individualmente y generar un archivo .xlsx o .csv con la información recolectada. Está pensado como un módulo de captura de datos pero tiene la ventaja de que **puede calcular la masa muscular y porcentaje de grasa corporal de la persona bajo observación a partir de los modelos descritos en los módulos anteriores.**
        <div>
        """, unsafe_allow_html=True)
@@ -2392,7 +2495,7 @@ elif pestañas == "Registro de datos":
        st.subheader('Ingreso manual de datos de pacientes')
        st.markdown("""
        <div style=text-align:justify>
-       
+                   
         En el siguiente espacio puede ingresar los datos de una persona bajo observación. Cada una de las cajas permite teclear los resultados de las mediciones. **Si no conoce los valores para la masa muscular o el porcentaje de grasa corporal deje estos campos en 0.0 y los modelos predictivos los calcularán**.
        </div>
        """, unsafe_allow_html=True)
@@ -2474,7 +2577,7 @@ elif pestañas == "Registro de datos":
                     Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
                     FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
                     Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
-                    #Clasificación = st.text_input('Clasificación', value=data_table.loc[edit_row_number, 'Clasificación'])
+                    etiqueta_clasificacion = st.text_input('Clasificación', value=data_table.iloc[edit_row_number]['Clasificación'])
 
         
                     if st.form_submit_button('Guardar Cambios'):
@@ -2504,9 +2607,6 @@ elif pestañas == "Registro de datos":
                 b64 = base64.b64encode(excel_data).decode('utf-8')
                 href = f'<a href="data:application/octet-stream;base64,{b64}" download="datos_pacientes.xlsx">Descargar Excel</a>'
                 st.markdown(href, unsafe_allow_html=True)
-
-
-
 
 
 
