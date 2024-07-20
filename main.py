@@ -2534,9 +2534,13 @@ elif pestañas == "Registro de datos":
 
             # Asignar etiquetas
             if clasificacion == 1.0:
-                etiqueta_clasificacion = "Riesgo de sarcopenia"
-            elif clasificacion == 0.0:
                 etiqueta_clasificacion = "Sin riesgo"
+            elif clasificacion == 0.0:
+                etiqueta_clasificacion = "Riesgo de sarcopenia"
+            elif clasificacion == 2.0:
+                etiqueta_clasificacion = "Riesgo de obesidad sarcopenia"
+            elif clasificacion == 3.0:
+                etiqueta_clasificacion = "Riesgo de obsesidad sarcopenica"
             else:
                 etiqueta_clasificacion = "Obesidad"
 
