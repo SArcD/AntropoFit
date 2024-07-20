@@ -2481,7 +2481,7 @@ elif pestañas == "Registro de datos":
                     else:
                         clasificacion = 1.0
             clasificaciones.append(clasificacion)
-        df["Cluster"] = clasificaciones
+        df["Clasificación"] = clasificaciones
         return(df)
 
 
