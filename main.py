@@ -2391,7 +2391,7 @@ elif pestañas == "Registro de datos":
        #st.dataframe(df)
        df = df.drop("Nombre", axis=1)
 
-       st.dataframe(df, use_container_width=True)
+       #st.dataframe(df, use_container_width=True)
        df = df.dropna()
        df['FA'] = (df['Fuerza mano derecha'] + df['Fuerza mano izquierda']) / 2
        df['Gs Brazo'] = (df['Gs Brazo derecho'] + df['Gs Brazo izquierdo']) / 2
