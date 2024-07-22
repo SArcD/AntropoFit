@@ -1690,7 +1690,12 @@ elif pestañas == "Modelos con 2 variables":
        # Seleccionar las variables independientes
        st.write("### Selección de Variables Independientes") 
        var_indep_1 = st.selectbox("Selecciona la primera variable independiente:", columnas_numericas)
-       var_indep_2 = st.selectbox("Selecciona la segunda variable independiente:", columnas_numericas)
+
+       # Filtrar las opciones para la segunda variable para que no incluya la primera variable seleccionada
+       columnas_numericas_var_2 = [col for col in columnas_numericas if col != var_indep_1]
+       var_indep_2 = st.selectbox("Selecciona la segunda variable independiente:", columnas_numericas_var_2)
+
+       #var_indep_2 = st.selectbox("Selecciona la segunda variable independiente:", columnas_numericas)
 
        X = data[[var_indep_1, var_indep_2]]
 
