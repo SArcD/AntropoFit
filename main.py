@@ -539,7 +539,7 @@ if pestañas == "Modelos con una variable":
        from sklearn.metrics import mean_absolute_error
 
 
-       st.set_option('deprecation.showPyplotGlobalUse', False)
+       #st.set_option('deprecation.showPyplotGlobalUse', False)
        st.subheader("Predicción del porcentaje de grasa corporal")
        st.markdown("""
        <div style="text-align: justify;">
@@ -787,7 +787,7 @@ if pestañas == "Modelos con una variable":
        import numpy as np
        import matplotlib.pyplot as plt
 
-       st.set_option('deprecation.showPyplotGlobalUse', False)
+       #st.set_option('deprecation.showPyplotGlobalUse', False)
 
        # Supongamos que 'df' es tu DataFrame ya cargado previamente
        data = df
