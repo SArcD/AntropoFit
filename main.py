@@ -374,7 +374,7 @@ if pestañas == "Modelos con una variable":
        from sklearn.metrics import mean_absolute_error
 
 
-       st.set_option('deprecation.showPyplotGlobalUse', False)
+       #st.set_option('deprecation.showPyplotGlobalUse', False)
 
        ########################
        # Divide tus datos en características (X) y la variable dependiente (y)
