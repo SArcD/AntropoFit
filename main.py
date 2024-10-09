@@ -2572,9 +2572,24 @@ elif pestañas == "Registro de datos":
        En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, **escriba el número de fila a editar y cambien los valores del campo a modificar**. Una vez realizados los cambios, haga clic en el botón de ***'Guardar cambios'***.
        <div>""", unsafe_allow_html=True)
 
-       # Ingresar el número de fila a editar
-       edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
+        # Establece un valor máximo por defecto si 'st.session_state.data' está vacío
+        max_val = len(st.session_state.data) - 1 if 'data' in st.session_state and len(st.session_state.data) > 0 else 0
 
+        # Define el campo de número con el valor máximo actualizado
+        edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=max_val, value=0, step=1, key='edit_row_number')
+
+    
+       # Ingresar el número de fila a editar
+       #edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
+
+
+# Establece un valor máximo por defecto si 'st.session_state.data' está vacío
+#max_val = len(st.session_state.data) - 1 if 'data' in st.session_state and len(st.session_state.data) > 0 else 0
+
+# Define el campo de número con el valor máximo actualizado
+#edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=max_val, value=0, step=1, key='edit_row_number')
+
+    
                 # Crear un formulario para editar datos de un paciente
        if edit_row_number is not None:
             with st.form('Editar Paciente'):
