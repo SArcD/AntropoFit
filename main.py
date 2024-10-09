@@ -2111,9 +2111,22 @@ elif pestañas == "Predicción de Sarcopenia":
                        clasificacion = 2.0
                clasificaciones.append(clasificacion)
            df["Clasificación"] = clasificaciones
+#           return df
+
+
+           # Mapeo de valores numéricos a etiquetas de clasificación
+           etiquetas_clasificacion = {
+           0.0: "Riesgo de sarcopenia",
+           1.0: "Sin riesgo",
+           2.0: "Riesgo de obesidad sarcopenia",
+           3.0: "Riesgo de obesidad sarcopénica"
+           }
+    
+           # Renombrar clasificaciones en el DataFrame
+           df["Clasificación"] = df["Clasificación"].map(etiquetas_clasificacion)
            return df
 
-# Utiliza la función para clasificar las filas de tu DataFrame
+
 
        clasificado_df = clasificar_filas(N_df.copy())
 
@@ -2501,7 +2514,7 @@ elif pestañas == "Registro de datos":
 
        # Crear un DataFrame vacío para almacenar los datos de los pacientes
        if 'data' not in st.session_state:
-        st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)", "Clasificación"])
+        st.session_state.data = pd.DataFrame(columns=["Folio", "Edad (años)", "Peso (kg)", "Altura (cm)", "Grasa Corporal (%)", "Músculo (kg)", "PBrazo (cm)", "PPantorrilla (cm)", 'FA (kg)', "Marcha (ms-1)", "Clasificación"])
 
        # Título
        st.subheader('Ingreso manual de datos de pacientes')
@@ -2517,7 +2530,7 @@ elif pestañas == "Registro de datos":
         Edad = st.number_input('Edad (años) ', min_value=0, max_value=150)
         Peso = st.number_input("Peso (kg)", min_value=0.0)
         Altura = st.number_input('Altura (cm)', min_value=0.0)
-        Grasa = st.number_input('Grasa (%)', min_value=0.0)
+        Grasa = st.number_input('Grasa Corporal (%)', min_value=0.0)
         Musculo = st.number_input('Músculo (kg)', min_value=0.0)
         PBrazo = st.number_input('PBrazo (cm)', min_value=0.0)
         PCB = st.number_input('PCB (mm)', min_value=0.0)
@@ -2552,10 +2565,17 @@ elif pestañas == "Registro de datos":
             # Agregar los datos del paciente al DataFrame en session_state
             st.session_state.data = st.session_state.data.append({
                 'Folio': Folio, 'Edad (años)': Edad, 'Peso (kg)': Peso, 'Altura (cm)': Altura, 
-                'Grasa (%)': Grasa, 'Músculo (kg)': Musculo, 'PBrazo (cm)': PBrazo, 'PCB (mm)': PCB, 
+                'Grasa Corporal (%)': Grasa, 'Músculo (kg)': Musculo, 'PBrazo (cm)': PBrazo, 'PCB (mm)': PCB, 
                 'PPantorrilla (cm)': Pantorrilla, 'FA (kg)': FA, 'Marcha (ms-1)': Marcha, 
                 'Clasificación': etiqueta_clasificacion
             }, ignore_index=True)
+
+            # Reordenar columnas para mantener el orden original
+            st.session_state.data = st.session_state.data[[
+            'Folio', 'Edad (años)', 'Peso (kg)', 'Altura (cm)', 'Grasa Corporal (%)', 'Músculo (kg)',
+            'PBrazo (cm)', 'PCB (mm)', 'PPantorrilla (cm)', 'FA (kg)', 'Marcha (ms-1)', 'Clasificación'
+            ]]
+
             st.success('Datos del paciente agregados con éxito!')
 
 
@@ -2565,72 +2585,143 @@ elif pestañas == "Registro de datos":
        import pandas as pd
        import io
        import base64
-
-       # Instrucciones iniciales
+       import pickle
        st.markdown("""
        <div style=text-align:justify>
-       En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, **escriba el número de fila a editar y cambie los valores del campo a modificar**. Una vez realizados los cambios, haga clic en el botón de ***'Guardar cambios'***.
+                   
+       En esta sección es posible editar los datos de cualquier paciente previamente registrado. En la caja de ingreso de datos, **escriba el número de fila a editar y cambien los valores del campo a modificar**. Una vez realizados los cambios, haga clic en el botón de ***'Guardar cambios'***.
        <div>""", unsafe_allow_html=True)
 
-       # Establece un valor máximo por defecto si 'st.session_state.data' está vacío
-       max_val = len(st.session_state.data) - 1 if 'data' in st.session_state and len(st.session_state.data) > 0 else 0
-
-       # Define el campo de número con el valor máximo actualizado
-       edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=max_val, value=0, step=1, key='edit_row_number')
-
-       # Verifica si el formulario puede renderizarse
-       if 'data' in st.session_state and not st.session_state.data.empty:
-           with st.form('Editar Paciente'):
-               st.subheader('Editar Fila {}'.format(edit_row_number))
+       # Ingresar el número de fila a editar
+       edit_row_number = st.number_input('Número de Fila a Editar', min_value=0, max_value=len(st.session_state.data)-1, value=0, step=1, key='edit_row_number')
+#--------------
+#      Crear un formulario para editar datos de un paciente
+       if edit_row_number is not None:
+        with st.form('Editar Paciente'):
+            st.subheader('Editar Fila {}'.format(edit_row_number))
         
-               # Copia de los datos para editar
-               data_table = st.session_state.data.copy()
-               st.dataframe(data_table, use_container_width=True)
-        
-               # Campos de edición
-               Folio = st.text_input('Nombre del Paciente', value=data_table.iloc[edit_row_number]['Folio'])
-               Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)']))
-               Peso = st.number_input('Peso', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Peso (kg)']))
-               Altura = st.number_input('Altura', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Altura (cm)']))
-               Grasa = st.number_input('Grasa', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Grasa (%)']))
-               Musculo = st.number_input('Músculo (kg)', min_value=5.0, value=float(data_table.loc[edit_row_number, 'Músculo (kg)']))
-               PBrazo = st.number_input('PBrazo (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PBrazo (cm)']))
-               PCB = st.number_input('PCB (mm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PCB (mm)']))
-               Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
-               FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
-               Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
-               etiqueta_clasificacion = st.text_input('Clasificación', value=data_table.iloc[edit_row_number]['Clasificación'])
-        
-               # Botón para guardar cambios
-               if st.form_submit_button('Guardar Cambios'):
-                    data_table.loc[edit_row_number] = [Folio, Edad, Peso, Altura, Grasa, Musculo, PBrazo, PCB, Pantorrilla, FA, Marcha, etiqueta_clasificacion]
-                    st.session_state.data = data_table
-                    st.success('Cambios guardados con éxito!')
+            data_table = st.session_state.data.copy()
+            st.dataframe(data_table, use_container_width=True)
 
-           # Mostrar los datos ingresados en el DataFrame
-           if st.button('Mostrar Resultados'):
-                st.subheader('DataFrame Resultante')
-                st.write(st.session_state.data)
+            # Campos de edición
+            Folio = st.text_input('Nombre del Paciente', value=data_table.iloc[edit_row_number]['Folio'])
+            Edad = st.number_input('Edad', min_value=0, max_value=150, value=int(data_table.loc[edit_row_number, 'Edad (años)']))
+            Peso = st.number_input('Peso', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Peso (kg)']))
+            Altura = st.number_input('Altura', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Altura (cm)']))
+            Grasa = st.number_input('Grasa Corporal (%)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Grasa Corporal (%)']))
+            Musculo = st.number_input('Músculo (kg)', min_value=5.0, value=float(data_table.loc[edit_row_number, 'Músculo (kg)']))
+            PBrazo = st.number_input('PBrazo (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PBrazo (cm)']))
+            PCB = st.number_input('PCB (mm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PCB (mm)']))
+            Pantorrilla = st.number_input('PPantorrilla (cm)', min_value=0.0, value=float(data_table.loc[edit_row_number, 'PPantorrilla (cm)']))
+            FA = st.number_input('FA', min_value=0.0, value=float(data_table.loc[edit_row_number, 'FA (kg)']))
+            Marcha = st.number_input('Marcha', min_value=0.0, value=float(data_table.loc[edit_row_number, 'Marcha (ms-1)']))
+            etiqueta_clasificacion = st.text_input('Clasificación', value=data_table.iloc[edit_row_number]['Clasificación'])
 
-           # Botón para descargar los datos en formato Excel
-           if not st.session_state.data.empty:
-                st.subheader('Descargar Datos')
-                st.write('Haga clic en el enlace a continuación para descargar los datos en formato Excel.')
+            # Botón de guardar cambios
+            if st.form_submit_button('Guardar Cambios'):
+                # Actualiza la fila en `data_table` usando un diccionario
+                data_table.loc[edit_row_number] = {
+                'Folio': Folio,
+                'Edad (años)': Edad,
+                'Peso (kg)': Peso,
+                'Altura (cm)': Altura,
+                'Grasa Corporal (%)': Grasa,
+                'Músculo (kg)': Musculo,
+                'PBrazo (cm)': PBrazo,
+                'PCB (mm)': PCB,
+                'PPantorrilla (cm)': Pantorrilla,
+                'FA (kg)': FA,
+                'Marcha (ms-1)': Marcha,
+                'Clasificación': etiqueta_clasificacion
+            }
+                
+            # Reordena las columnas en el orden original
+            data_table = data_table[st.session_state.data.columns]
     
-           #  Generar un enlace para la descarga del archivo Excel
-           output = io.BytesIO()
-           excel_writer = pd.ExcelWriter(output, engine='xlsxwriter')
-           st.session_state.data.to_excel(excel_writer, sheet_name='Datos', index=False)
-           excel_writer.save()
-    
-           # Crear el enlace de descarga
-           excel_data = output.getvalue()
-           b64 = base64.b64encode(excel_data).decode('utf-8')
-           href = f'<a href="data:application/octet-stream;base64,{b64}" download="datos_pacientes.xlsx">Descargar Excel</a>'
-           st.markdown(href, unsafe_allow_html=True)
-       else:
-           st.warning("No hay datos disponibles para editar.")
+            # Guarda la tabla actualizada en `st.session_state.data`
+            st.session_state.data = data_table
+            st.success('Cambios guardados con éxito!')
+            
+        # Mostrar los datos ingresados en el DataFrame
+        if st.button('Mostrar Resultados'):
+            st.subheader('DataFrame Resultante')
+            st.write(st.session_state.data)
 
+        # Botón para descargar los datos en formato Excel
+        if not st.session_state.data.empty:
+            st.subheader('Descargar Datos')
+            st.write('Haga clic en el enlace a continuación para descargar los datos en formato Excel.')
+    
+            # Generar un enlace para la descarga del archivo Excel
+            output = io.BytesIO()
+            excel_writer = pd.ExcelWriter(output, engine='xlsxwriter')
+            st.session_state.data.to_excel(excel_writer, sheet_name='Datos', index=False)
+            excel_writer.save()
+    
+            # Crear el enlace de descarga
+            excel_data = output.getvalue()
+            b64 = base64.b64encode(excel_data).decode('utf-8')
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="datos_pacientes.xlsx">Descargar Excel</a>'
+            st.markdown(href, unsafe_allow_html=True)
+
+
+#############
+
+        # Sección para cargar archivo Excel
+        st.subheader("Cargar archivo Excel para clasificación de pacientes")
+        uploaded_file = st.file_uploader("Seleccione un archivo Excel", type=["xlsx"])
+
+        if uploaded_file is not None:
+            # Leer el archivo cargado
+            uploaded_df = pd.read_excel(uploaded_file)
+    
+            # Verificar que el archivo tenga las columnas necesarias
+            #required_columns = ['Folio', 'Músculo (kg)', 'Grasa Corporal (%)', 'FA', 'Velocidad de marcha']
+            
+            required_columns = [
+            'Folio', 'Edad (años)', 'Peso (kg)', 'Altura (cm)', 'Grasa Corporal (%)', 
+            'Músculo (kg)', 'PBrazo (cm)', 'PCB (mm)', 'PPantorrilla (cm)', 
+            'FA (kg)', 'Marcha (ms-1)'
+            ]
+            
+            if all(column in uploaded_df.columns for column in required_columns):
+                
+                
+                # Renombrar las columnas para que coincidan con los nombres internos usados en la función clasificar_filas
+                uploaded_df = uploaded_df.rename(columns={'FA (kg)': 'FA', 'Marcha (ms-1)': 'Velocidad de marcha'})
+        
+                # Clasificar las filas en el archivo cargado
+                classified_df = clasificar_filas(uploaded_df)
+        
+                # Mapeo de valores numéricos a etiquetas
+                etiquetas_clasificacion = {
+                0.0: "Riesgo de sarcopenia",
+                1.0: "Sin riesgo",
+                2.0: "Riesgo de obesidad sarcopenia",
+                3.0: "Riesgo de obesidad sarcopenica"
+                }
+        
+                # Convertir los valores numéricos de "Clasificación" a etiquetas
+                classified_df["Clasificación"] = classified_df["Clasificación"].map(etiquetas_clasificacion)
+        
+                # Mostrar el DataFrame clasificado
+                st.write("Archivo clasificado:")
+                st.write(classified_df)
+        
+                # Opción para descargar el archivo clasificado
+                output = io.BytesIO()
+                with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                    classified_df.to_excel(writer, index=False, sheet_name='Clasificado')
+                    writer.save()
+                    processed_data = output.getvalue()
+        
+                # Crear enlace de descarga para el archivo clasificado
+                b64 = base64.b64encode(processed_data).decode('utf-8')
+                href = f'<a href="data:application/octet-stream;base64,{b64}" download="archivo_clasificado.xlsx">Descargar archivo clasificado</a>'
+                st.markdown(href, unsafe_allow_html=True)
+        
+            else:
+                st.error(f"El archivo debe contener las columnas requeridas: {', '.join(required_columns)}")
 
 
 ############
