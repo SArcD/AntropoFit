@@ -76,7 +76,8 @@ st.write(f"Esta página ha sido visitada {counter} veces.")
 
 
 # Crear una barra lateral para las pestañas
-pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Registro de datos",  "Equipo de trabajo"))
+#pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Registro de datos",  "Equipo de trabajo"))
+pestañas = st.sidebar.radio("Selecciona una pestaña:", ("Presentación", "Modelos con una variable", "Modelos con 2 variables", "Predicción de Sarcopenia", "Registro de datos"))
 if pestañas == "Presentación":
        st.title("Sobre AntropoFit")
        st.markdown("""
