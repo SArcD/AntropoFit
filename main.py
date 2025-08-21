@@ -85,7 +85,7 @@ if pestañas == "Presentación":
        
        Esta aplicación es resultado del proyecto de estancia posdoctoral "**Identificación 
        de las etapas y tipos de sarcopenia mediante modelos predictivos como herramienta 
-       de apoyo en el diagnóstico a partir de parámetros antropométricos**"
+       de apoyo en el diagnóstico a partir de parámetros antropométricos**, financiada por la Secretaría de Humanidades, Ciencia, Tecnología e Innovación (antes CONAHCYT)."
        </div>
        """, unsafe_allow_html=True)
 
